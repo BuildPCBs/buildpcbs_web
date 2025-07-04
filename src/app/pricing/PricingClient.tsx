@@ -74,7 +74,7 @@ const PricingPage = () => {
       ],
       cta: "Notify Me",
       ctaLink:
-        "mailto:support@buildpcbs.com?subject=Notify me for Professional Plan",
+        "mailto:abdulrohim@buildpcbs.com?subject=Notify me for Professional Plan",
       recommended: true,
       icon: <Sparkles size={20} />,
       color: "amber",
@@ -94,7 +94,7 @@ const PricingPage = () => {
       ],
       cta: "Notify Me",
       ctaLink:
-        "mailto:support@buildpcbs.com?subject=Notify me for Startup Plan",
+        "mailto:abdulrohim@buildpcbs.com?subject=Notify me for Startup Plan",
       recommended: false,
       icon: <Rocket size={20} />,
       color: "green",
@@ -113,7 +113,7 @@ const PricingPage = () => {
         "Design Analytics",
       ],
       cta: "Contact Sales",
-      ctaLink: "mailto:sales@buildpcbs.com",
+      ctaLink: "mailto:abdulrohim@buildpcbs.com",
       recommended: false,
       icon: <Users size={20} />,
       color: "violet",
@@ -132,7 +132,7 @@ const PricingPage = () => {
         "SAML/SSO",
       ],
       cta: "Contact Sales",
-      ctaLink: "mailto:sales@buildpcbs.com",
+      ctaLink: "mailto:abdulrohim@buildpcbs.com",
       recommended: false,
       icon: <Building size={20} />,
       color: "rose",
@@ -363,7 +363,7 @@ const PricingPage = () => {
                 for your needs.
               </p>
               <a
-                href="mailto:support@buildpcbs.com"
+                href="mailto:abdulrohim@buildpcbs.com"
                 className="bg-teal-800 hover:bg-teal-700 text-white font-medium py-2 px-6 rounded-lg transition-colors flex items-center"
               >
                 <Mail className="mr-2" size={18} />
@@ -412,7 +412,7 @@ const PricingPage = () => {
                 Documentation
               </a>
               <a
-                href="mailto:support@buildpcbs.com"
+                href="mailto:abdulrohim@buildpcbs.com"
                 className="text-slate-500 hover:text-teal-400 transition-colors"
               >
                 Contact
