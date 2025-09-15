@@ -3,8 +3,10 @@ import LandingPageClient from "./LandingPageClient"; // Assuming the main page c
 
 export const metadata: Metadata = {
   title: "BuildPCB.ai | AI-Powered PCB Design",
-  description:
-    "From Concept to PCB in Minutes, Not Days. The AI co-pilot for hardware engineers that automates schematic design and helps you build faster.",
+  description: "The Figma + Cursor for Electronics Engineers",
+  icons: {
+    icon: "/logo.png",
+  },
   openGraph: {
     title: "BuildPCB.ai | AI-Powered PCB Design",
     description:
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
     siteName: "BuildPCB.ai",
     images: [
       {
-        url: "/og-image.png", // The image file should be in the /public folder
+        url: "/logo.png", // The image file should be in the /public folder
         width: 1200,
         height: 630,
         alt: "BuildPCB.ai Logo and tagline",
@@ -27,7 +29,7 @@ export const metadata: Metadata = {
     title: "BuildPCB.ai | AI-Powered PCB Design",
     description:
       "From Concept to PCB in Minutes, Not Days. The AI co-pilot for hardware engineers.",
-    images: ["/og-image.png"], // The image file should be in the /public folder
+    images: ["/logo.png"], // The image file should be in the /public folder
   },
 };
 
