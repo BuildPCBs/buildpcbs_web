@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Documentation | BuildPCBs.com",
-  description: "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+  description:
+    "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
   openGraph: {
     title: "Documentation | BuildPCBs.com",
-    description: "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+    description:
+      "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
     url: "https://buildpcbs.com/documentation",
     siteName: "BuildPCBs.com",
     type: "website",
@@ -14,7 +16,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Documentation | BuildPCBs.com",
-    description: "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+    description:
+      "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
   },
 };
 

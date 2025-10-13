@@ -1,12 +1,14 @@
-import React from 'react';
+import React from "react";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Resources | BuildPCBs.com",
-  description: "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
+  description:
+    "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
   openGraph: {
     title: "Resources | BuildPCBs.com",
-    description: "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
+    description:
+      "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
     url: "https://buildpcbs.com/resources",
     siteName: "BuildPCBs.com",
     type: "website",
@@ -14,7 +16,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Resources | BuildPCBs.com",
-    description: "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
+    description:
+      "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
   },
 };
 
