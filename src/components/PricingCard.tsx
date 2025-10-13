@@ -4,19 +4,21 @@ import { Info } from "lucide-react";
 interface PricingCardProps {
   planName: string;
   price: string;
-  features: string[];
+  perks: string[];
   isPopular?: boolean;
   isSelected?: boolean;
   onSelect?: () => void;
+  blurred?: boolean;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
   planName,
   price,
-  features,
+  perks,
   isPopular,
   isSelected,
   onSelect,
+  blurred,
 }) => {
   const active = isPopular || isSelected;
 
@@ -56,8 +58,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
           <h3 className="font-geist-sans font-medium text-[18px] leading-[1.3] tracking-[-0.02em] text-[#666666] dark:text-[#CCCCCC]">
             {planName}
           </h3>
-          <p className="text-4xl md:text-[44px] font-geist-sans font-normal text-[#4A4A4A] dark:text-white leading-[1.1] tracking-[-0.03em] my-2">
-            {price}
+          <p
+            className={`text-4xl md:text-[44px] font-geist-sans font-normal text-[#4A4A4A] dark:text-white leading-[1.1] tracking-[-0.03em] my-2 ${
+              blurred ? "blur-sm" : ""
+            }`}
+          >
+            {blurred ? "$XX/m" : price}
           </p>
         </div>
 
@@ -66,10 +72,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
         </button>
 
         <ul className="mt-4 md:mt-8 space-y-2 md:space-y-4">
-          {features.map((feature, index) => (
-            <li key={index} className="flex items-center">
+          {perks.map((perk, index) => (
+            <li
+              key={index}
+              className={`flex items-center ${blurred ? "blur-sm" : ""}`}
+            >
               <span className="font-geist-sans font-normal text-[14px] leading-[1.3] tracking-[-0.02em] text-gray-600 dark:text-gray-300">
-                {feature}
+                {blurred ? "Feature" : perk}
               </span>
               <Info className="w-5 h-5 text-gray-400 ml-2 dark:text-gray-500" />
             </li>

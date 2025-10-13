@@ -9,31 +9,28 @@ const PricingPageClient = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(
     "Standard Plan"
   );
+  const isBlurred = true;
 
   const handleSelectPlan = (planName: string) => {
     setSelectedPlan(planName);
   };
 
-  const features = [
-    "Update Cycle",
-    "Subscription Policy",
-    "Communication",
-    "Companies",
-    "Requests",
-    "Support",
-    "Additional Director",
-  ];
+  const perks = {
+    basic: ["", "", "", "", "", "", ""],
+    standard: ["", "", "", "", "", "", ""],
+    premium: ["", "", "", "", "", "", ""],
+  };
 
   const pricing = {
     monthly: {
-      basic: "$30/m",
-      standard: "$100/m",
-      premium: "$350/m",
+      basic: "00",
+      standard: "000",
+      premium: "000",
     },
     yearly: {
-      basic: "$300/y",
-      standard: "$1000/y",
-      premium: "$3500/y",
+      basic: "00",
+      standard: "000",
+      premium: "000",
     },
   };
 
@@ -49,30 +46,34 @@ const PricingPageClient = () => {
         <div className="flex justify-center mb-6 md:mb-12">
           <PricingToggle isYearly={isYearly} setIsYearly={setIsYearly} />
         </div>
+
         <div className="flex flex-col md:flex-row justify-center items-center md:items-stretch gap-4">
           <PricingCard
             planName="Basic Plan"
             price={isYearly ? pricing.yearly.basic : pricing.monthly.basic}
-            features={features}
+            perks={isBlurred ? Array(7).fill("") : perks.basic}
             isSelected={selectedPlan === "Basic Plan"}
             onSelect={() => handleSelectPlan("Basic Plan")}
+            blurred={isBlurred}
           />
           <PricingCard
             planName="Standard Plan"
             price={
               isYearly ? pricing.yearly.standard : pricing.monthly.standard
             }
-            features={features}
+            perks={isBlurred ? Array(7).fill("") : perks.standard}
             isPopular
             isSelected={selectedPlan === "Standard Plan"}
             onSelect={() => handleSelectPlan("Standard Plan")}
+            blurred={isBlurred}
           />
           <PricingCard
             planName="Premium Plan"
             price={isYearly ? pricing.yearly.premium : pricing.monthly.premium}
-            features={features}
+            perks={isBlurred ? Array(7).fill("") : perks.premium}
             isSelected={selectedPlan === "Premium Plan"}
             onSelect={() => handleSelectPlan("Premium Plan")}
+            blurred={isBlurred}
           />
         </div>
       </div>
