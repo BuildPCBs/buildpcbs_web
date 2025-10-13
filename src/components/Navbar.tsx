@@ -7,6 +7,23 @@ import Image from "next/image";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      if (offset > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const navLinks = [
     { name: "Pricing", href: "/pricing" },
@@ -43,7 +60,11 @@ const Navbar = () => {
   return (
     <>
       {/* Main Static Navbar (Desktop) */}
-      <nav className="hidden md:block w-full border-b border-gray-200/60 dark:border-white/10">
+      <nav
+        className={`hidden md:block w-full border-b border-gray-200/60 dark:border-white/10 transition-opacity duration-300 ${
+          isScrolled ? "opacity-0" : "opacity-100"
+        }`}
+      >
         <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-20 items-center justify-between">
             <div className="flex-shrink-0">
@@ -81,6 +102,39 @@ const Navbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Scrolled Navbar (Desktop) */}
+      <AnimatePresence>
+        {isScrolled && (
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -100, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="hidden md:flex fixed top-4 left-1/2 -translate-x-1/2 w-[349px] h-[72px] bg-white rounded-full p-[4px] border border-gray-200/80 z-50 items-center justify-center shadow-subtle"
+          >
+            <div className="w-full h-full rounded-full border border-dashed border-gray-300 flex items-center justify-between px-4">
+              <Link href="/" className="flex items-center gap-2">
+                <Image
+                  src="/logo.png"
+                  alt="buildpcbs logo"
+                  width={24}
+                  height={20}
+                />
+                <span className="font-medium text-[17px] leading-none tracking-[-0.04em] text-gray-800">
+                  buildpcbs
+                </span>
+              </Link>
+              <a
+                href=""
+                className="flex items-center justify-center w-auto px-4 h-[42px] rounded-3xl bg-[color:var(--primary-brand)] text-sm font-medium text-white hover:opacity-90"
+              >
+                Start Now
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Navbar */}
       <div className="md:hidden fixed top-8 left-1/2 -translate-x-1/2 w-[347px] z-50">
