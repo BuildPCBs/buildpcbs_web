@@ -93,7 +93,7 @@ const Navbar = () => {
             </div>
             <div>
               <a
-                href=""
+                href="https://app.buildpcbs.com"
                 className="flex items-center justify-center w-[138px] h-[42px] rounded-3xl bg-[color:var(--primary-brand)] text-sm font-medium text-white hover:opacity-90"
               >
                 Start Now
@@ -126,7 +126,7 @@ const Navbar = () => {
                 </span>
               </Link>
               <a
-                href=""
+                href="https://app.buildpcbs.com"
                 className="flex items-center justify-center w-auto px-4 h-[42px] rounded-3xl bg-[color:var(--primary-brand)] text-sm font-medium text-white hover:opacity-90"
               >
                 Start Now
@@ -192,7 +192,7 @@ const Navbar = () => {
                 </motion.a>
               ))}
               <motion.a
-                href=""
+                href="https://app.buildpcbs.com"
                 variants={menuItemVariants}
                 className="flex items-center justify-center w-[180px] h-[50px] rounded-full bg-[color:var(--primary-brand)] text-lg font-medium text-white hover:opacity-90"
               >

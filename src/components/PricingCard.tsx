@@ -67,9 +67,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </p>
         </div>
 
-        <button className="w-full bg-[#0038DF] text-white py-3 rounded-full transition-all duration-300 hover:opacity-90">
+        <a
+          href="https://app.buildpcbs.com"
+          className="w-full bg-[#0038DF] text-white py-3 rounded-full transition-all duration-300 hover:opacity-90 flex items-center justify-center"
+        >
           Get Started
-        </button>
+        </a>
 
         <ul className="mt-4 md:mt-8 space-y-2 md:space-y-4">
           {perks.map((perk, index) => (

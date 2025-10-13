@@ -16,7 +16,7 @@ const CTA = () => {
         The first AI copilot for circuit boards is here.
       </p>
       <a
-        href="#"
+        href="https://app.buildpcbs.com"
         className="flex items-center justify-center w-[171px] h-[50px] md:w-[203px] rounded-full bg-white mt-8 text-[#777777] font-medium text-base hover:opacity-90 transition-opacity z-10"
       >
         Start Now

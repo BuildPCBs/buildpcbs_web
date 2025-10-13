@@ -49,7 +49,7 @@ const Hero = () => {
             }
           </p>
           <a
-            href=""
+            href="https://app.buildpcbs.com"
             className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-white font-medium bg-gradient-to-r from-[#0038DF] to-[#001E79] hover:opacity-90 transition-opacity"
           >
             Start Now
