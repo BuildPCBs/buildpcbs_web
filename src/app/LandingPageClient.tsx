@@ -1,7 +1,25 @@
 "use client";
 
-const LandingPage = () => {
-  return <div className="flex items-center justify-center min-h-screen"></div>;
+import Hero from "@/components/Hero";
+import Partners from "@/components/Partners";
+import Features from "@/components/Features";
+import Stats from "@/components/Stats";
+import Quote from "@/components/Quote";
+import WhySwitch from "@/components/WhySwitch";
+import FAQ from "@/components/FAQ";
+
+const LandingPageClient = () => {
+  return (
+    <>
+      <Hero />
+      <Quote />
+      <Partners />
+      <Features />
+      <Stats />
+      <WhySwitch />
+      <FAQ />
+    </>
+  );
 };
 
-export default LandingPage;
+export default LandingPageClient;
