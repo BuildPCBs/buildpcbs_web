@@ -11,6 +11,14 @@ export const metadata: Metadata = {
       "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
     url: "https://buildpcbs.com/documentation",
     siteName: "BuildPCBs.com",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "BuildPCBs.com Documentation",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -18,6 +26,14 @@ export const metadata: Metadata = {
     title: "Documentation | BuildPCBs.com",
     description:
       "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://buildpcbs.com/documentation",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -11,6 +11,14 @@ export const metadata: Metadata = {
       "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
     url: "https://buildpcbs.com/resources",
     siteName: "BuildPCBs.com",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "BuildPCBs.com Resources",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -18,6 +26,14 @@ export const metadata: Metadata = {
     title: "Resources | BuildPCBs.com",
     description:
       "Helpful resources for PCB design, electronics engineering tutorials, design guides, and tools.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://buildpcbs.com/resources",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 

@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   openGraph: {
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png?v=2",
         width: 1200,
         height: 630,
         alt: "buildPCBs.com - From Concept to PCB in Minutes",
@@ -34,7 +34,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.png"],
+    images: ["/og-image.png?v=2"],
+  },
+  alternates: {
+    canonical: "https://buildpcbs.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  other: {
+    "google-site-verification": "your-google-verification-code",
   },
 };
 

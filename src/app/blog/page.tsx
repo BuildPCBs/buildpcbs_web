@@ -11,6 +11,14 @@ export const metadata: Metadata = {
       "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
     url: "https://buildpcbs.com/blog",
     siteName: "BuildPCBs.com",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "BuildPCBs.com Blog",
+      },
+    ],
     type: "website",
   },
   twitter: {
@@ -18,6 +26,14 @@ export const metadata: Metadata = {
     title: "Blog | BuildPCBs.com",
     description:
       "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+    images: ["/og-image.png"],
+  },
+  alternates: {
+    canonical: "https://buildpcbs.com/blog",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
