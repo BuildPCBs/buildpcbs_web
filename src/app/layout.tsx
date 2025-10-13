@@ -19,8 +19,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://buildpcb.ai"),
-  title: "buildPCB.ai",
+  metadataBase: new URL("https://buildpcbs.com"),
+  title: "buildPCBs.com",
   description: "From Concept to PCB in Minutes, Not Days",
   openGraph: {
     images: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "buildPCB.ai - From Concept to PCB in Minutes",
+        alt: "buildPCBs.com - From Concept to PCB in Minutes",
       },
     ],
   },

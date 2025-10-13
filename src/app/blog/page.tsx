@@ -1,4 +1,22 @@
 import React from 'react';
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog | BuildPCBs.com",
+  description: "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+  openGraph: {
+    title: "Blog | BuildPCBs.com",
+    description: "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+    url: "https://buildpcbs.com/blog",
+    siteName: "BuildPCBs.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Blog | BuildPCBs.com",
+    description: "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+  },
+};
 
 const BlogPage = () => {
   return (

@@ -4,8 +4,8 @@ const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://buildpcbs.com";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "BuildPCB.ai",
-    short_name: "BuildPCB",
+    name: "BuildPCBs.com",
+    short_name: "BuildPCBs",
     description:
       "AI co-pilot that helps hardware engineers design printed circuit boards faster.",
     start_url: "/",

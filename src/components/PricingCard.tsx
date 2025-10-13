@@ -23,7 +23,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
   return (
     <div
       onClick={onSelect}
-      className="relative group w-full md:w-[340px] h-auto md:h-[600px] flex items-center justify-center md:mx-0 my-4 cursor-pointer"
+      className="relative group w-full md:w-[340px] h-auto md:h-[600px] flex items-center justify-center mx-2 md:mx-0 my-4 cursor-pointer"
     >
       {/* Blue background card */}
       <div
