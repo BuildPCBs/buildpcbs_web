@@ -5,8 +5,8 @@ const Quote = () => {
     <section className="w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
       <div className="flex flex-col items-center">
         <p className="font-light text-[28px] md:text-[44px] leading-[150%] tracking-[-0.01em] text-center">
-          <span className="text-[#4F4F4F] dark:text-gray-300">We recognise that each</span>
-          <span className="text-[#D9D9D9] dark:text-gray-500"> client’s situation is unique and we therefore focus on providing bespoke solutions tailored to our client’s individual needs and objectives.</span>
+          <span className="text-[#4F4F4F] dark:text-gray-300">The real makers of the future,</span>
+          <span className="text-[#D9D9D9] dark:text-gray-500"> the hardware engineers have yet turned the dial of human change and do it to taste on a beautiful interface at the speed of their thoughts.</span>
         </p>
 
         <div className="flex items-center gap-4 mt-8">

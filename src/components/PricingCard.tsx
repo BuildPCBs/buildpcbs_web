@@ -27,12 +27,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
     >
       {/* Blue background card */}
       <div
-        className={`absolute bottom-0 md:bottom-[37px] w-full md:w-[326px] h-[95%] md:h-[526px]
+        className={`absolute bottom-2 md:bottom-[37px] w-full md:w-[326px] h-[105%] md:h-[526px]
                     rounded-[24px] md:rounded-[28px] z-0 transition-all duration-300 ease-in-out
                     ${
                       active
-                        ? "h-full md:h-[563px] bg-[#0038DF]"
-                        : "bg-transparent group-hover:h-full md:group-hover:h-[563px] group-hover:bg-[#0038DF]"
+                        ? "h-[109%] md:h-[563px] bg-[#0038DF]"
+                        : "bg-transparent group-hover:h-[109%] md:group-hover:h-[563px] group-hover:bg-[#0038DF]"
                     }`}
       >
         <div className="absolute top-3 md:top-4 left-6 md:left-8">
@@ -46,7 +46,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
       {/* White foreground card */}
       <div
-        className="relative z-10 w-full md:w-[320px] h-auto md:h-[520px] rounded-[16px] md:rounded-[24px] flex flex-col
+        className="relative z-10 w-[calc(100%-12px)] md:w-[320px] h-auto md:h-[520px] rounded-[16px] md:rounded-[24px] flex flex-col
                    bg-[#F5F6F7] border border-[#F0F1F3]
                    dark:bg-[#151515] dark:border-[#2A2A2A]
                    md:bg-white md:dark:bg-black md:border-transparent
