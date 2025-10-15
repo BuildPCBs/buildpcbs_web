@@ -37,7 +37,7 @@ const Hero = () => {
             </a>
           </div>
           <h1 className="font-medium text-[32px] md:font-semibold md:text-[40px] leading-[120%] text-[#444444] dark:text-gray-200 md:text-[#4A4A4A] w-full max-w-[454px] whitespace-pre-line">
-            {"Design and build PCBs with text."}
+            {"Design and build circuit boards with text."}
           </h1>
         </div>
 
