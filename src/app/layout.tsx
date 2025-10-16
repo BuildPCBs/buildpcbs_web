@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    images: ["/og-image.png?v=2"],
+    images: ["/og-image.png?v=3"],
   },
   alternates: {
     canonical: "https://buildpcbs.com",
