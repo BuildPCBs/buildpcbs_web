@@ -3,12 +3,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Blog | BuildPCBs.com",
-  description:
-    "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+  description: "There are currently no blog posts available.",
   openGraph: {
     title: "Blog | BuildPCBs.com",
-    description:
-      "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+    description: "There are currently no blog posts available.",
     url: "https://buildpcbs.com/blog",
     siteName: "BuildPCBs.com",
     images: [
@@ -24,8 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Blog | BuildPCBs.com",
-    description:
-      "Latest news, tutorials, and insights about PCB design, electronics engineering, and AI-powered design tools.",
+    description: "There are currently no blog posts available.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -39,10 +36,16 @@ export const metadata: Metadata = {
 
 const BlogPage = () => {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold">Blog</h1>
-      <p className="mt-4 text-lg">Welcome to our blog!</p>
-    </div>
+    <section className="w-full min-h-screen flex items-center justify-center bg-white dark:bg-black">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Blog
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          There are currently no blog posts available.
+        </p>
+      </div>
+    </section>
   );
 };
 

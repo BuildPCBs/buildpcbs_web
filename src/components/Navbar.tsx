@@ -27,8 +27,9 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Pricing", href: "/pricing" },
-    { name: "Resources", href: "/resources" },
+    { name: "Blog", href: "/blog" },
     { name: "Documentation", href: "/documentation" },
+    { name: "Careers", href: "/career" },
   ];
 
   const menuVariants = {
@@ -113,7 +114,7 @@ const Navbar = () => {
             transition={{ duration: 0.3 }}
             className="hidden md:flex fixed top-4 left-1/2 -translate-x-1/2 w-[349px] h-[72px] bg-white dark:bg-[#151515] rounded-full p-[4px] border border-[#ddd] dark:border-gray-800/80 z-50 items-center justify-center shadow-subtle"
           >
-              <div className="w-full h-full rounded-full border border-dashed border-[#ddd] dark:border-[#262626] flex items-center justify-between px-4">
+            <div className="w-full h-full rounded-full border border-dashed border-[#ddd] dark:border-[#262626] flex items-center justify-between px-4">
               <Link href="/" className="flex items-center gap-2">
                 <Image
                   src="/logo.png"

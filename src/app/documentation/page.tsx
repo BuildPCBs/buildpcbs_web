@@ -3,12 +3,10 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Documentation | BuildPCBs.com",
-  description:
-    "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+  description: "There are currently no documentation pages available.",
   openGraph: {
     title: "Documentation | BuildPCBs.com",
-    description:
-      "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+    description: "There are currently no documentation pages available.",
     url: "https://buildpcbs.com/documentation",
     siteName: "BuildPCBs.com",
     images: [
@@ -24,8 +22,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Documentation | BuildPCBs.com",
-    description:
-      "Complete documentation for BuildPCBs.com - Learn how to use our AI-powered PCB design platform.",
+    description: "There are currently no documentation pages available.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -39,10 +36,16 @@ export const metadata: Metadata = {
 
 const DocumentationPage = () => {
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold">Documentation</h1>
-      <p className="mt-4 text-lg">Welcome to our documentation!</p>
-    </div>
+    <section className="w-full min-h-screen flex items-center justify-center bg-white dark:bg-black">
+      <div className="text-center">
+        <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          Documentation
+        </h1>
+        <p className="text-lg text-gray-600 dark:text-gray-400">
+          There are currently no documentation pages available.
+        </p>
+      </div>
+    </section>
   );
 };
 
