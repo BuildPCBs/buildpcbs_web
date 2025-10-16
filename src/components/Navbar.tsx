@@ -62,7 +62,7 @@ const Navbar = () => {
     <>
       {/* Main Static Navbar (Desktop) */}
       <nav
-        className={`hidden md:block w-full border-b border-gray-200/60 dark:border-white/10 transition-opacity duration-300 ${
+        className={`hidden md:block w-full transition-opacity duration-300 ${
           isScrolled ? "opacity-0" : "opacity-100"
         }`}
       >
