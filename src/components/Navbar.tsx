@@ -111,9 +111,9 @@ const Navbar = () => {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -100, opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="hidden md:flex fixed top-4 left-1/2 -translate-x-1/2 w-[349px] h-[72px] bg-[#151515] rounded-full p-[4px] border border-gray-800/80 z-50 items-center justify-center shadow-subtle"
+            className="hidden md:flex fixed top-4 left-1/2 -translate-x-1/2 w-[349px] h-[72px] bg-white dark:bg-[#151515] rounded-full p-[4px] border border-[#ddd] dark:border-gray-800/80 z-50 items-center justify-center shadow-subtle"
           >
-            <div className="w-full h-full rounded-full border border-dashed border-[#262626] flex items-center justify-between px-4">
+              <div className="w-full h-full rounded-full border border-dashed border-[#ddd] dark:border-[#262626] flex items-center justify-between px-4">
               <Link href="/" className="flex items-center gap-2">
                 <Image
                   src="/logo.png"
@@ -121,7 +121,7 @@ const Navbar = () => {
                   width={24}
                   height={20}
                 />
-                <span className="font-medium text-[17px] leading-none tracking-[-0.04em] text-white">
+                <span className="font-medium text-[17px] leading-none tracking-[-0.04em] text-black dark:text-white">
                   buildpcbs
                 </span>
               </Link>

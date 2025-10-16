@@ -16,8 +16,8 @@ const LandingPageClient = () => {
       <Partners />
       <Features />
       <Stats />
-      <WhySwitch />
-      <FAQ />
+      {/* <WhySwitch />
+      <FAQ /> */}
     </>
   );
 };
