@@ -5,6 +5,7 @@ import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import ThemeProvider from "@/components/ThemeProvider";
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -58,9 +59,11 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${dmMono.variable} ${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
       >
-        <Navbar />
-        <main className="pt-32 md:pt-0">{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Navbar />
+          <main className="pt-32 md:pt-0">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,5 +1,5 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const Partners = () => {
   return (
@@ -9,15 +9,15 @@ const Partners = () => {
           Partners
         </h2>
         <div className="flex items-center justify-center gap-12 md:gap-16">
-          <Image 
+          <Image
             src="/figure.png"
             alt="Figure logo"
             width={120}
             height={37}
             className="dark:invert"
           />
-          <Image 
-            src="/Zte.png"
+          <Image
+            src="/ZTE.png"
             alt="ZTE logo"
             width={71}
             height={37}

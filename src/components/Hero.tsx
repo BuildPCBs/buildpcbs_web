@@ -1,4 +1,6 @@
 import React from "react";
+import ParticleButton from "@/components/kokonutui/particle-button";
+import DynamicText from "@/components/kokonutui/dynamic-text";
 
 const Hero = () => {
   return (
@@ -36,19 +38,10 @@ const Hero = () => {
               </svg>
             </a>
           </div>
-          <h1
-            style={{
-              fontFamily: "DM Sans",
-              fontWeight: 400,
-              fontStyle: "normal",
-              fontSize: "40px",
-              lineHeight: "120%",
-              letterSpacing: "0%",
-            }}
-            className="text-[#444444] dark:text-gray-200 md:text-[#4A4A4A] w-full max-w-[454px] whitespace-pre-line"
-          >
-            {"Design and build circuit boards with text."}
-          </h1>
+          <DynamicText
+            className="w-full max-w-[454px] whitespace-pre-line"
+            interval={4000}
+          />
         </div>
 
         {/* Right Column */}
