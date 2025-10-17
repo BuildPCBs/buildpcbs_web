@@ -1,5 +1,6 @@
 "use client";
 
+import DecorativeCircles from "@/components/DecorativeCircles";
 import Hero from "@/components/Hero";
 import Partners from "@/components/Partners";
 import Features from "@/components/Features";
@@ -11,7 +12,10 @@ import FAQ from "@/components/FAQ";
 const LandingPageClient = () => {
   return (
     <>
-      <Hero />
+      <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <DecorativeCircles />
+        <Hero />
+      </div>
       <Quote />
       <Partners />
       <Features />
