@@ -1,26 +1,30 @@
-import React from 'react';
-import Image from 'next/image';
+import React from "react";
+import Image from "next/image";
 
 const featuresData = [
   {
-    title: "God-Speed Design",
-    description: "Drop your idea → get a clean layout in seconds.",
-    image: "/godspeed.png",
+    title: "AI Hardware Compiler",
+    description:
+      "Describe a device in plain text. The system generates the PCB, schematic, BOM, enclosure, and firmware automatically.",
+    image: "/natural.png",
   },
   {
-    title: "Built-in Checks",
-    description: "Error checking in throughput. Eliminates lots of revision cycles and makes prototyping reliable.",
+    title: "Web3 Manufacturing",
+    description:
+      "A decentralized network where CNC owners and fabricators stake $BUILD to receive and process jobs.",
     image: "/checks.png",
   },
   {
-    title: "End-to-End Workflow",
-    description: "No separate tool. That seamless flow is huge.",
+    title: "Closed Marketplace",
+    description:
+      "Publish your designs to a closed ecosystem. Ownership, logs, and version history are tracked on-chain.",
     image: "/end.png",
   },
   {
-    title: "Natural Language + Iteration",
-    description: "You can describe the design in plain English (“type what you need”).",
-    image: "/natural.png",
+    title: "Mobile Execution",
+    description:
+      "Chat with the AI to design hardware, manage builds, or publish products entirely from your phone.",
+    image: "/godspeed.png",
   },
 ];
 

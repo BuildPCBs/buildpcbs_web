@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import LandingPageClient from "./LandingPageClient"; // Assuming the main page component was renamed
 
 export const metadata: Metadata = {
-  title: "BuildPCBs.com | AI-Powered PCB Design",
-  description: "The Figma + Cursor for Electronics Engineers",
+  title: "BuildPCBs | The AI + Web3 Hardware Network",
+  description:
+    "Think it. Chat it. Build it. Sell it. The first decentralized manufacturing network where AI turns text into physical products.",
   icons: {
     icon: "/logo.png",
   },
   openGraph: {
-    title: "BuildPCBs.com | AI-Powered PCB Design",
+    title: "BuildPCBs | The AI + Web3 Hardware Network",
     description:
-      "The AI co-pilot for hardware engineers. From concept to PCB in minutes, not days.",
+      "A full AI + Web3 hardware creation network. Describe a device in plain text, and the system generates the PCB, schematic, BOM, and manufacturing instructions.",
     url: "https://buildpcbs.com",
     siteName: "BuildPCBs.com",
     images: [
@@ -26,9 +27,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "BuildPCBs.com | AI-Powered PCB Design",
+    title: "BuildPCBs | The AI + Web3 Hardware Network",
     description:
-      "From Concept to PCB in Minutes, Not Days. The AI co-pilot for hardware engineers.",
+      "Think it. Chat it. Build it. Sell it. The first decentralized manufacturing network.",
     images: ["/og-image.png?v=2"],
   },
   alternates: {

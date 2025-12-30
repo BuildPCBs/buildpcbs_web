@@ -7,25 +7,25 @@ interface StatCardProps {
 
 const statsData: StatCardProps[] = [
   {
-    description: "Average design time cut from 3 days to 6 hours.",
-    value: "400%",
-    label: "Faster",
+    description: "From text prompt to manufacturing files in minutes.",
+    value: "100x",
+    label: "Faster Build",
   },
   {
-    description: "AI validation catches mistakes before they cost you.",
-    value: "99%",
-    label: "Fewer Errors",
+    description: "Decentralized builders staking $BUILD to process your jobs.",
+    value: "Web3",
+    label: "Manufacturing",
   },
   {
-    description: "The canvas is yours. AI simply helps you execute.",
+    description: "Ownership, logs, and version history tracked on-chain.",
     value: "100%",
-    label: "Creative Control",
+    label: "Transparent",
   },
   {
     description:
-      "Export standard files, so you can keep using your favorite tools downstream.",
-    value: "0",
-    label: "Switching Cost",
+      "Mobile-first experience. Chat with AI to build hardware anywhere.",
+    value: "24/7",
+    label: "Access",
   },
 ];
 

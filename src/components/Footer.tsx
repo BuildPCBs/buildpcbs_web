@@ -14,7 +14,7 @@ const Footer = () => {
           </span>
         </Link>
         <p className="mt-4 text-base font-normal leading-[150%] w-[268px]">
-          AI-powered PCB design — from prompt to production in minutes.
+          The AI + Web3 Hardware Network. Think it. Chat it. Build it.
         </p>
       </div>
       <div>
@@ -145,7 +145,7 @@ const Footer = () => {
           </span>
         </Link>
         <p className="mt-4 text-base font-normal leading-[150%] w-[268px]">
-          AI-powered PCB design — from prompt to production in minutes.
+          The AI + Web3 Hardware Network. Think it. Chat it. Build it.
         </p>
       </div>
 

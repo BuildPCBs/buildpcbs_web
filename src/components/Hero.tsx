@@ -39,16 +39,18 @@ const Hero = () => {
             </a>
           </div>
           <DynamicText
-            className="w-full max-w-[454px] whitespace-pre-line"
-            interval={4000}
+            className="w-full max-w-[500px] whitespace-pre-line"
+            interval={3000}
+            staticPrefix="Think it. Chat it. "
+            dynamicTexts={["Build it.", "Sell it.", "Ship it.", "Own it."]}
           />
         </div>
 
         {/* Right Column */}
         <div className="flex flex-col gap-4 text-left items-start md:text-right md:items-end">
-          <p className="font-normal text-[14px] md:text-[17px] leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300 w-full max-w-[389px] whitespace-pre-line">
+          <p className="font-normal text-[14px] md:text-[17px] leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300 w-full max-w-[400px] whitespace-pre-line">
             {
-              "Design with an AI Agent that takes your prompts into circuit board layouts in minutes."
+              "BuildPCBs is now a full AI + Web3 hardware creation network. The AI acts as a hardware compiler, transforming natural language directly into real physical products."
             }
           </p>
           <a

@@ -6,12 +6,12 @@ const Quote = () => {
       <div className="flex flex-col items-center">
         <p className="font-light text-[28px] md:text-[44px] leading-[150%] tracking-[-0.01em] text-center">
           <span className="text-[#4F4F4F] dark:text-gray-300">
-            The real makers of the future, the hardware engineers
+            Hardware should be as programmable as software.
           </span>
           <span className="text-[#D9D9D9] dark:text-gray-500">
             {" "}
-            have yet turned the dial of human change and do it to taste on a
-            beautiful interface at the speed of their thoughts.
+            We are building the compiler that turns your words into physical
+            reality through a decentralized network.
           </span>
         </p>
 

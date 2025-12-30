@@ -2,10 +2,10 @@ import React from "react";
 
 const WhySwitch = () => {
   const features = [
-    "AI-powered prompt interpreter",
-    "Auto-generated schematic & PCB layout",
-    "Exportable Gerbers, BOM & KiCad projects",
-    "Live 3D preview of your board",
+    "Text-to-Hardware Compiler",
+    "Decentralized Manufacturing Network",
+    "On-Chain Ownership & History",
+    "Mobile-First Execution",
   ];
 
   const conicGradient1 =
@@ -21,7 +21,7 @@ const WhySwitch = () => {
         ></div>
         <div>
           <h3 className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-gray-600 dark:text-gray-400 mb-8">
-            Why Engineers switch to buildpcb:
+            Why creators build with us:
           </h3>
           <div className="flex flex-col gap-6">
             {features.map((feature, index) => (
