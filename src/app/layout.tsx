@@ -21,15 +21,16 @@ const dmMono = DM_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://buildpcbs.com"),
-  title: "buildPCBs.com",
-  description: "From Concept to PCB in Minutes, Not Days",
+  title: "BuildPCBs | The AI + Web3 Hardware Network",
+  description:
+    "Think it. Chat it. Build it. Sell it. The first decentralized manufacturing network where AI turns text into physical products.",
   openGraph: {
     images: [
       {
         url: "/og-image.png?v=2",
         width: 1200,
         height: 630,
-        alt: "buildPCBs.com - From Concept to PCB in Minutes",
+        alt: "BuildPCBs - The AI + Web3 Hardware Network",
       },
     ],
   },
