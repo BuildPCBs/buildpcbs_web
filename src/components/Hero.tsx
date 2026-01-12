@@ -2,7 +2,11 @@ import React from "react";
 import ParticleButton from "@/components/kokonutui/particle-button";
 import DynamicText from "@/components/kokonutui/dynamic-text";
 
-const Hero = () => {
+interface HeroProps {
+  onJoinWaitlist?: () => void;
+}
+
+const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
   return (
     <section className="w-full h-screen flex flex-col justify-end pb-[30vh]">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
@@ -53,12 +57,20 @@ const Hero = () => {
               "BuildPCBs is now a full AI + Web3 hardware creation network. The AI acts as a hardware compiler, transforming natural language directly into real physical products."
             }
           </p>
-          <a
-            href="https://app.buildpcbs.com"
-            className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-white font-medium bg-gradient-to-r from-[#0038DF] to-[#001E79] hover:opacity-90 transition-opacity"
-          >
-            Start Now
-          </a>
+          <div className="flex flex-row gap-2">
+            <a
+              href="https://app.buildpcbs.com"
+              className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-white font-medium bg-gradient-to-r from-[#0038DF] to-[#001E79] hover:opacity-90 transition-opacity"
+            >
+              Start Now
+            </a>
+            <button
+              onClick={onJoinWaitlist}
+              className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-[#0038DF] font-medium border border-[#0038DF] hover:bg-blue-50 transition-colors"
+            >
+              Join Waitlist
+            </button>
+          </div>
         </div>
       </div>
     </section>
