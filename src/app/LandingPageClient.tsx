@@ -10,14 +10,16 @@ import Quote from "@/components/Quote";
 import WhySwitch from "@/components/WhySwitch";
 import FAQ from "@/components/FAQ";
 import WaitlistModal from "@/components/WaitlistModal";
+import { useWaitlist } from "@/context/WaitlistContext";
 
 const LandingPageClient = () => {
-  const [isWaitlistOpen, setIsWaitlistOpen] = useState(false);
+  const { isWaitlistOpen, closeWaitlist, openWaitlist } = useWaitlist();
+
   return (
     <>
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         <DecorativeCircles />
-        <Hero onJoinWaitlist={() => setIsWaitlistOpen(true)} />
+        <Hero onJoinWaitlist={openWaitlist} />
       </div>
       <Quote />
       <Partners />
@@ -25,7 +27,7 @@ const LandingPageClient = () => {
       <Stats />
       {/* <WhySwitch />
       <FAQ /> */}
-      <WaitlistModal isOpen={isWaitlistOpen} onClose={() => setIsWaitlistOpen(false)} />
+      <WaitlistModal isOpen={isWaitlistOpen} onClose={closeWaitlist} />
     </>
   );
 };
