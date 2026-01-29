@@ -23,7 +23,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
             staticPrefix=""
             staticSuffix=" pcbs with text"
             dynamicTexts={["build", "design"]}
-            dynamicClassName="w-[135px] text-left"
+            dynamicClassName="w-[115px] text-left"
           />
         </div>
 
