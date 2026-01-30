@@ -36,9 +36,9 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "App", href: "/app" },
-    { name: "Guides", href: "/guides" },
-    { name: "$BUILDERS", href: "/builders" },
+    { name: "App", href: "#" }, // hrefs temporarily disabled as per user request
+    { name: "Guides", href: "#" },
+    { name: "$BUILDERS", href: "#" },
   ];
 
   const menuVariants = {
@@ -71,12 +71,12 @@ const Navbar = () => {
     <>
       {/* Main Static Navbar (Desktop) */}
       <nav
-        className={`hidden md:block w-full transition-opacity duration-300 py-[28px] ${isScrolled ? "opacity-0" : "opacity-100"
-          }`}
+        className={`hidden md:block w-full transition-opacity duration-300 py-[28px] ${
+          isScrolled ? "opacity-0" : "opacity-100"
+        }`}
       >
         <div className="mx-auto w-full max-w-[1192px] px-4">
           <div className="flex h-[42px] items-center justify-start">
-
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
               <Link href="/" className="flex items-center gap-[5px]">
@@ -94,7 +94,6 @@ const Navbar = () => {
 
             {/* Links + Button Group */}
             <div className="flex items-center gap-[24px] ml-auto">
-
               {/* Nav Links */}
               <div className="flex items-center gap-8">
                 {navLinks.map((link) => {
@@ -106,16 +105,22 @@ const Navbar = () => {
                         onMouseEnter={() => setIsAppHovered(true)}
                         onMouseLeave={() => setIsAppHovered(false)}
                       >
-                        <Link href={link.href} className="flex items-center">
-                          <AnimatedText text={link.name} className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300" />
-                        </Link>
+                        <div className="flex items-center cursor-default">
+                          <AnimatedText
+                            text={link.name}
+                            className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300"
+                          />
+                        </div>
                         <AnimatePresence>
                           {isAppHovered && (
                             <motion.div
                               initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
                               animate={{ opacity: 1, scaleY: 1, y: 0 }}
                               exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                              transition={{
+                                duration: 0.4,
+                                ease: [0.16, 1, 0.3, 1],
+                              }}
                               className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
                             >
                               <AppDropdown />
@@ -134,16 +139,22 @@ const Navbar = () => {
                         onMouseEnter={() => setIsGuidesHovered(true)}
                         onMouseLeave={() => setIsGuidesHovered(false)}
                       >
-                        <Link href={link.href} className="flex items-center">
-                          <AnimatedText text={link.name} className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300" />
-                        </Link>
+                        <div className="flex items-center cursor-default">
+                          <AnimatedText
+                            text={link.name}
+                            className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300"
+                          />
+                        </div>
                         <AnimatePresence>
                           {isGuidesHovered && (
                             <motion.div
                               initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
                               animate={{ opacity: 1, scaleY: 1, y: 0 }}
                               exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                              transition={{
+                                duration: 0.4,
+                                ease: [0.16, 1, 0.3, 1],
+                              }}
                               className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
                             >
                               <GuidesDropdown />
@@ -162,7 +173,7 @@ const Navbar = () => {
                         onMouseEnter={() => setIsBuildersHovered(true)}
                         onMouseLeave={() => setIsBuildersHovered(false)}
                       >
-                        <Link href={link.href} className="flex items-center">
+                        <div className="flex items-center cursor-default">
                           <motion.span
                             initial="initial"
                             whileHover="hovered"
@@ -172,8 +183,14 @@ const Navbar = () => {
                               {"$BUILDers".split("").map((char, index) => (
                                 <motion.span
                                   key={index}
-                                  variants={{ initial: { y: 0 }, hovered: { y: -5 } }}
-                                  transition={{ duration: 0.2, delay: index * 0.03 }}
+                                  variants={{
+                                    initial: { y: 0 },
+                                    hovered: { y: -5 },
+                                  }}
+                                  transition={{
+                                    duration: 0.2,
+                                    delay: index * 0.03,
+                                  }}
                                   className="inline-block"
                                 >
                                   {char}
@@ -181,14 +198,17 @@ const Navbar = () => {
                               ))}
                             </div>
                           </motion.span>
-                        </Link>
+                        </div>
                         <AnimatePresence>
                           {isBuildersHovered && (
                             <motion.div
                               initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
                               animate={{ opacity: 1, scaleY: 1, y: 0 }}
                               exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                              transition={{
+                                duration: 0.4,
+                                ease: [0.16, 1, 0.3, 1],
+                              }}
                               className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
                             >
                               <BuildersDropdown />
@@ -229,66 +249,14 @@ const Navbar = () => {
                 </div>
               </motion.button>
             </div>
-
           </div>
         </div>
       </nav>
 
       {/* Floating Navbar (Desktop & Mobile Pop-up) */}
-      <AnimatePresence>
-        {isScrolled && (
-          <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed bottom-8 left-1/2 -translate-x-1/2 w-[349px] h-[72px] bg-white dark:bg-[#151515] rounded-[99px] p-[4px] border-[0.5px] border-[#DDDDDD] dark:border-gray-800/80 z-50 flex items-center justify-center shadow-[1px_2px_48px_1px_rgba(126,126,126,0.25)]"
-          >
-            <div className="w-[341px] h-[62px] rounded-[99px] border border-dashed border-[#DDDDDD] dark:border-[#262626] flex items-center justify-between px-4 gap-[43px]">
-              <Link href="/" className="flex items-center gap-2">
-                <Image
-                  src="/logo.png"
-                  alt="buildpcbs logo"
-                  width={24}
-                  height={20}
-                />
-                <span className="font-medium text-[17px] leading-none tracking-[-0.04em] text-black dark:text-white">
-                  buildpcbs
-                </span>
-              </Link>
+      <AnimatePresence>{isScrolled && <FloatingContractNav />}</AnimatePresence>
 
-              <motion.button
-                onClick={openWaitlist}
-                initial="initial"
-                whileHover="hovered"
-                className="flex items-center justify-center w-[121px] h-[42px] rounded-[24px] bg-[#0038DF] text-sm font-medium text-white hover:opacity-90 whitespace-nowrap overflow-hidden"
-              >
-                <div className="flex">
-                  {"Join Waitlist".split("").map((char, index) => (
-                    <motion.span
-                      key={index}
-                      variants={{
-                        initial: { y: 0 },
-                        hovered: { y: -5 },
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                        delay: index * 0.03,
-                      }}
-                      className="inline-block"
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Mobile Menu Button (Only when NOT scrolled, as floating nav replaces it?) 
+      {/* Mobile Menu Button (Only when NOT scrolled, as floating nav replaces it?)
           Actually user said 'let it pop up from the bottom of the viewport both on mobile and desktop'.
           So the floating bar should likely replace the standard mobile header when scrolled.
           For now, I will keep the standard mobile header for top state, and show floating bar when scrolled.
@@ -411,6 +379,58 @@ const Navbar = () => {
         )}
       </AnimatePresence>
     </>
+  );
+};
+
+const FloatingContractNav = () => {
+  const [copied, setCopied] = useState(false);
+  const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(contractAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 100, opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      className="fixed bottom-8 left-1/2 -translate-x-1/2 w-auto h-[72px] bg-white dark:bg-[#151515] rounded-[99px] p-[4px] border-[0.5px] border-[#DDDDDD] dark:border-gray-800/80 z-50 flex items-center justify-center shadow-[1px_2px_48px_1px_rgba(126,126,126,0.25)]"
+    >
+      <div className="h-[62px] rounded-[99px] border border-dashed border-[#DDDDDD] dark:border-[#262626] flex items-center justify-between px-2 pl-4 gap-4 bg-[#FAFAFA] dark:bg-[#1A1A1A]">
+        <div className="flex items-center gap-3">
+          <div className="flex-shrink-0">
+            <Image
+              src="/logo.png"
+              alt="buildpcbs logo"
+              width={24}
+              height={20}
+              className="w-6 h-5"
+            />
+          </div>
+          <div className="flex flex-col">
+            <span className="text-[10px] font-bold text-[#0038DF] uppercase tracking-wider leading-none mb-0.5">
+              Official CA
+            </span>
+            <span className="font-mono text-sm font-medium text-black dark:text-gray-200 leading-none">
+              {contractAddress.slice(0, 4)}...{contractAddress.slice(-4)}
+            </span>
+          </div>
+        </div>
+
+        <motion.button
+          onClick={handleCopy}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center justify-center px-5 h-[42px] rounded-full bg-[#0038DF] text-sm font-medium text-white hover:opacity-90 transition-all min-w-[80px]"
+        >
+          {copied ? "Copied!" : "Copy"}
+        </motion.button>
+      </div>
+    </motion.div>
   );
 };
 

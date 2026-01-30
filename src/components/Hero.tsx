@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Github } from "lucide-react";
 import ParticleButton from "@/components/kokonutui/particle-button";
 import DynamicText from "@/components/kokonutui/dynamic-text";
 
@@ -8,22 +9,42 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
+  const [copied, setCopied] = useState(false);
+  const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(contractAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const buttonText = copied ? "Copied!" : "Copy CA";
+
   return (
     <section className="w-full h-screen flex flex-col justify-end pb-[30vh]">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Left Column */}
         <div className="flex flex-col gap-6 md:gap-8">
-
-          <p className="text-[10px] uppercase tracking-widest font-medium text-gray-500 dark:text-gray-400 mb-[-16px]">
-            th world's first ai hardware compiler
-          </p>
+          <div className="flex flex-col items-start gap-4">
+            <a
+              href="https://github.com/BuildPCbs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-gray-200 dark:border-gray-800 bg-white/50 dark:bg-white/5 backdrop-blur-md hover:bg-gray-100 dark:hover:bg-white/10 transition-colors group"
+            >
+              <Github className="w-3.5 h-3.5 text-black dark:text-white" />
+              <span className="text-xs font-medium text-black dark:text-white">
+                Star on GitHub
+              </span>
+            </a>
+          </div>
           <DynamicText
             className="w-full max-w-[500px] whitespace-pre-line"
             interval={3000}
             staticPrefix=""
             staticSuffix=" pcbs with text"
-            dynamicTexts={["build", "design"]}
-            dynamicClassName="w-[115px] text-left"
+            dynamicTexts={["Design", "Validate", "Build"]}
+            dynamicClassName="font-bold bg-clip-text !text-transparent bg-gradient-to-r from-[#0038DF] to-[#001E79]"
           />
         </div>
 
@@ -35,15 +56,15 @@ const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
             }
           </p>
           <motion.button
-            onClick={onJoinWaitlist}
+            onClick={handleCopy}
             initial="initial"
             whileHover="hovered"
             className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-white font-medium bg-gradient-to-r from-[#0038DF] to-[#001E79] hover:opacity-90 transition-opacity overflow-hidden"
           >
             <div className="flex">
-              {"Join Waitlist".split("").map((char, index) => (
+              {buttonText.split("").map((char, index) => (
                 <motion.span
-                  key={index}
+                  key={`${buttonText}-${index}`}
                   variants={{
                     initial: { y: 0 },
                     hovered: { y: -5 },
