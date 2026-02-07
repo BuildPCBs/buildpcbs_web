@@ -37,31 +37,45 @@ interface FeatureCardProps {
 const FeatureCard = ({ title, description, image }: FeatureCardProps) => {
   return (
     <div className="group relative p-8 bg-white dark:bg-black border-[0.5px] border-[#0038DF] rounded-xl transition-all duration-300 hover:bg-gradient-to-b from-[#255CFF] to-[#0038DF]">
-      <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 md:items-end">
-        <div className="text-left md:pt-8">
-          <h3 className="text-xl font-normal leading-[150%] tracking-[-0.005em] text-gray-800 dark:text-[#C7C7C7] group-hover:text-white">
+      <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center md:items-start">
+        <div className="text-left max-w-[476px]">
+          <h3 className="text-[24px] font-medium leading-[150%] tracking-[-0.005em] text-[#999999] group-hover:text-white">
             {title}
           </h3>
-          <p className="mt-2 text-[17px] font-normal leading-[120%] tracking-[-0.005em] text-gray-600 dark:text-[#949494] group-hover:text-white/80">
+          <p className="mt-2 text-[14px] font-normal leading-[125%] tracking-[-0.005em] text-[#C3C3C3] group-hover:text-white/80 max-w-[409px]">
             {description}
           </p>
         </div>
         <div className="flex justify-center md:justify-end">
-          <Image src={image} alt={title} width={144} height={144} />
+          <Image
+            src={image}
+            alt={title}
+            width={144}
+            height={144}
+            className="transition-transform duration-700 ease-in-out group-hover:scale-[1] group-hover:-translate-y-[40px]"
+          />
         </div>
       </div>
     </div>
   );
 };
 
+import MobileFeatures from "@/components/MobileFeatures";
+
+// ... (existing imports and FeatureCard)
+
 const Features = () => {
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section className="w-full max-w-7xl mx-auto px-0 md:px-6 lg:px-8 py-0 md:py-24">
+      {/* Desktop Grid */}
+      <div className="hidden md:grid grid-cols-2 gap-8 px-4">
         {featuresData.map((feature) => (
           <FeatureCard key={feature.title} {...feature} />
         ))}
       </div>
+
+      {/* Mobile View */}
+      <MobileFeatures />
     </section>
   );
 };

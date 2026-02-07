@@ -42,13 +42,13 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                 boxShadow: "0px 4px 24px -1px rgba(0, 0, 0, 0.1)",
               }}
             >
-                {/* Close Button */}
-                <button 
-                    onClick={onClose}
-                    className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
-                >
-                    <X className="w-5 h-5 text-[#444444]" />
-                </button>
+              {/* Close Button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 p-1 rounded-full hover:bg-gray-100 transition-colors"
+              >
+                <X className="w-5 h-5 text-[#444444]" />
+              </button>
 
               {/* Content Wrapper */}
               <div className="flex flex-col items-start w-full px-[28px] pt-[75px] gap-[11px]">
@@ -56,7 +56,7 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
                 <h2 className="w-[311px] font-[family-name:var(--font-sans)] font-normal text-[32px] leading-[120%] text-[#444444]">
                   A cracked, better version.
                 </h2>
-                
+
                 {/* Subtitle */}
                 <p className="w-[311px] font-[family-name:var(--font-geist-sans)] font-normal text-[13px] leading-[100%] tracking-[-0.01em] text-[#4A4A4A]">
                   Enter your mail for early access.
@@ -65,26 +65,26 @@ const WaitlistModal: React.FC<WaitlistModalProps> = ({ isOpen, onClose }) => {
 
               {/* Form Area */}
               <div className="w-full px-[32px] mt-auto pb-[55px] flex flex-col gap-3">
-                
+
                 {/* Email Input Frame */}
                 <div className="box-border flex flex-row justify-center items-center px-[10px] gap-[8px] w-[294px] h-[40px] border border-[#E7E7E7] rounded-[99px]">
-                    <input 
-                        type="email"
-                        placeholder="buildpcbs@gmail.com"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-[255px] h-[13px] font-[family-name:var(--font-geist-sans)] font-medium text-[13px] leading-[100%] tracking-[-0.02em] text-[#444444] placeholder:text-[#BCBCBC] bg-transparent border-none outline-none focus:ring-0 p-0"
-                    />
+                  <input
+                    type="email"
+                    placeholder="buildpcbs@gmail.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-[255px] h-[13px] font-[family-name:var(--font-geist-sans)] font-medium text-[13px] leading-[100%] tracking-[-0.02em] text-[#444444] placeholder:text-[#BCBCBC] bg-transparent border-none outline-none focus:ring-0 p-0"
+                  />
                 </div>
 
                 {/* Submit Button Frame */}
                 <button
-                    onClick={handleSubmit}
-                    className="box-border flex flex-row justify-center items-center px-[10px] gap-[8px] w-[294px] h-[40px] bg-[#E7E7E7] border border-[#0038E1] rounded-[99px] hover:bg-[#dcdcdc] transition-colors cursor-pointer group"
+                  onClick={handleSubmit}
+                  className="box-border flex flex-row justify-center items-center px-[10px] gap-[8px] w-[294px] h-[40px] bg-[#E7E7E7] border border-[#0038E1] rounded-[99px] hover:bg-[#dcdcdc] transition-colors cursor-pointer group"
                 >
-                    <span className="w-[80px] h-[13px] font-[family-name:var(--font-geist-sans)] font-medium text-[13px] leading-[100%] text-center tracking-[-0.005em] text-[#0038DF]">
-                        Join Waitlist
-                    </span>
+                  <span className="w-[80px] h-[13px] font-[family-name:var(--font-geist-sans)] font-medium text-[13px] leading-[100%] text-center tracking-[-0.005em] text-[#0038DF]">
+                    Join Waitlist
+                  </span>
                 </button>
 
               </div>
