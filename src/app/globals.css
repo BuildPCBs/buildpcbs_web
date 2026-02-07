@@ -138,3 +138,19 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.logo-carousel {
+  display: flex;
+  animation: slide 30s linear infinite; /* Adjust duration as needed */
+  width: max-content; /* Allow content to dictate width */
+  padding-right: 100%; /* To ensure smooth looping */
+}

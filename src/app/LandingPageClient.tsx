@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import DecorativeCircles from "@/components/DecorativeCircles";
 import Hero from "@/components/Hero";
-// import Partners from "@/components/Partners";
 import Features from "@/components/Features";
 import Stats from "@/components/Stats";
 // import Quote from "@/components/Quote";
