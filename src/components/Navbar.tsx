@@ -1,14 +1,15 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
 import Image from "next/image";
-import { useWaitlist } from "@/context/WaitlistContext";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import AnimatedText from "@/components/AnimatedText";
 import AppDropdown from "@/components/AppDropdown";
 import GuidesDropdown from "@/components/GuidesDropdown";
 import BuildersDropdown from "@/components/BuildersDropdown";
+import { useWaitlist } from "@/context/WaitlistContext";
+import WaitlistModal from "@/components/WaitlistModal";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -16,16 +17,20 @@ const Navbar = () => {
   const [isGuidesHovered, setIsGuidesHovered] = useState(false);
   const [isBuildersHovered, setIsBuildersHovered] = useState(false);
   const [isMobileAppOpen, setIsMobileAppOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
   const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
 
-  // Scroll state logic
-  const [isScrolled, setIsScrolled] = useState(false);
+  const { isWaitlistOpen, openWaitlist, closeWaitlist } = useWaitlist();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Toggle state based on scroll position (20px threshold)
-      setIsScrolled(window.scrollY > 20);
+      // Toggle at 20px
+      if (window.scrollY > 20) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -37,8 +42,6 @@ const Navbar = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  const { openWaitlist } = useWaitlist();
 
   const navLinks = [
     { name: "App", href: "#" },
@@ -74,258 +77,267 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Main Navbar (Desktop) */}
-      <nav
-        className={`fixed top-0 w-full py-4 z-50 flex items-center justify-center transition-all duration-300 ${isScrolled
-            ? "bg-white/80 dark:bg-[#151515]/80 backdrop-blur-sm border-b border-[#DDDDDD] dark:border-gray-800/80 shadow-lg"
-            : "bg-transparent border-transparent"
-          }`}
-      >
-        <div className="mx-auto w-full max-w-[1192px] px-4">
-          <div className="flex h-[42px] items-center justify-between relative">
-            {/* Left: Logo (Visible only when scrolled) */}
-            <div className={`flex-shrink-0 flex items-center w-[150px] transition-opacity duration-300 ${isScrolled ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-              <Link href="/" className="flex items-center gap-[5px]">
-                <Image
-                  src="/logo.png"
-                  alt="buildpcbs logo"
-                  width={24}
-                  height={20}
-                />
-                <span className="font-medium text-[17px] leading-[22px] tracking-[-0.04em] text-[#444444] dark:text-white">
-                  BuildPCBs
-                </span>
-              </Link>
-            </div>
-
-            {/* Center: Nav Links (Always visible, centered) */}
-            <div className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center">
-              <div className="flex items-center gap-8">
-                {navLinks.map((link) => {
-                  if (link.name === "App") {
-                    return (
-                      <div
-                        key={link.name}
-                        className="relative flex items-center h-full"
-                        onMouseEnter={() => setIsAppHovered(true)}
-                        onMouseLeave={() => setIsAppHovered(false)}
-                      >
-                        <div className="flex items-center cursor-default">
-                          <AnimatedText
-                            text={link.name}
-                            className={`text-[17px] font-normal leading-[150%] tracking-[-0.005em] transition-colors duration-300 ${isScrolled ? "text-[#777777] dark:text-gray-300" : "text-[#444444] dark:text-white"
-                              }`}
-                          />
-                        </div>
-                        <AnimatePresence>
-                          {isAppHovered && (
-                            <motion.div
-                              initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              animate={{ opacity: 1, scaleY: 1, y: 0 }}
-                              exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              transition={{
-                                duration: 0.4,
-                                ease: [0.16, 1, 0.3, 1],
-                              }}
-                              className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
-                            >
-                              <AppDropdown />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  }
-
-                  if (link.name === "Guides") {
-                    return (
-                      <div
-                        key={link.name}
-                        className="relative flex items-center h-full"
-                        onMouseEnter={() => setIsGuidesHovered(true)}
-                        onMouseLeave={() => setIsGuidesHovered(false)}
-                      >
-                        <div className="flex items-center cursor-default">
-                          <AnimatedText
-                            text={link.name}
-                            className={`text-[17px] font-normal leading-[150%] tracking-[-0.005em] transition-colors duration-300 ${isScrolled ? "text-[#777777] dark:text-gray-300" : "text-[#444444] dark:text-white"
-                              }`}
-                          />
-                        </div>
-                        <AnimatePresence>
-                          {isGuidesHovered && (
-                            <motion.div
-                              initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              animate={{ opacity: 1, scaleY: 1, y: 0 }}
-                              exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              transition={{
-                                duration: 0.4,
-                                ease: [0.16, 1, 0.3, 1],
-                              }}
-                              className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
-                            >
-                              <GuidesDropdown />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  }
-
-                  if (link.name === "$BUILDERS") {
-                    return (
-                      <div
-                        key={link.name}
-                        className="relative flex items-center h-full"
-                        onMouseEnter={() => setIsBuildersHovered(true)}
-                        onMouseLeave={() => setIsBuildersHovered(false)}
-                      >
-                        <div className="flex items-center cursor-default">
-                          <motion.span
-                            initial="initial"
-                            whileHover="hovered"
-                            className={`text-[17px] font-normal leading-[150%] tracking-[-0.005em] cursor-pointer inline-block relative overflow-hidden transition-colors duration-300 ${isScrolled ? "text-[#777777] dark:text-gray-300" : "text-[#444444] dark:text-white"
-                              }`}
-                          >
-                            <div className="flex">
-                              {"$BUILDers".split("").map((char, index) => (
-                                <motion.span
-                                  key={index}
-                                  variants={{
-                                    initial: { y: 0 },
-                                    hovered: { y: -5 },
-                                  }}
-                                  transition={{
-                                    duration: 0.2,
-                                    delay: index * 0.03,
-                                  }}
-                                  className="inline-block"
-                                >
-                                  {char}
-                                </motion.span>
-                              ))}
-                            </div>
-                          </motion.span>
-                        </div>
-                        <AnimatePresence>
-                          {isBuildersHovered && (
-                            <motion.div
-                              initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              animate={{ opacity: 1, scaleY: 1, y: 0 }}
-                              exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
-                              transition={{
-                                duration: 0.4,
-                                ease: [0.16, 1, 0.3, 1],
-                              }}
-                              className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
-                            >
-                              <BuildersDropdown />
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  }
-                })}
-              </div>
-            </div>
-
-            {/* Right: Buttons (Visible only when scrolled) */}
-            <div className={`flex items-center gap-4 justify-end w-[188px] transition-opacity duration-300 ${isScrolled ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}`}>
-              {/* Join Waitlist Button */}
-              <motion.button
-                onClick={openWaitlist}
-                initial="initial"
-                whileHover="hovered"
-                className="flex items-center justify-center w-[138px] h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
-              >
-                <div className="flex">
-                  {"Join Waitlist".split("").map((char, index) => (
-                    <motion.span
-                      key={index}
-                      variants={{
-                        initial: { y: 0 },
-                        hovered: { y: -5 },
-                      }}
-                      transition={{
-                        duration: 0.2,
-                        ease: "easeInOut",
-                        delay: index * 0.03,
-                      }}
-                      className="inline-block"
-                    >
-                      {char === " " ? "\u00A0" : char}
-                    </motion.span>
-                  ))}
-                </div>
-              </motion.button>
-
-              {/* Copy CA Button */}
-              <div className="relative">
-                <motion.button
-                  onClick={handleCopy}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="flex items-center justify-center w-[42px] h-[42px] rounded-full bg-[#0038DF] text-white hover:opacity-90 -ml-2"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    className="lucide lucide-copy"
-                  >
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v2" />
-                  </svg>
-                </motion.button>
-                {copied && (
-                  <motion.span
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: -20 }}
-                    exit={{ opacity: 0 }}
-                    className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-black dark:text-white bg-white dark:bg-gray-700 px-2 py-1 rounded"
-                  >
-                    Copied!
-                  </motion.span>
-                )}
-              </div>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center ml-auto">
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
-                aria-controls="mobile-menu"
-                aria-expanded={isMobileMenuOpen}
-              >
-                <span className="sr-only">Open main menu</span>
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
-            </div>
+      {/* Fixed container to center the nav */}
+      <div className="fixed top-0 left-0 w-full z-50 flex justify-center pointer-events-none">
+        <motion.nav
+          // Static "Scrolled" style as default
+          initial={false}
+          animate={{
+            marginTop: "20px",
+            width: "fit-content",
+            maxWidth: "90%",
+            borderRadius: "9999px",
+            padding: "10px 24px",
+            backgroundColor: "rgba(255, 255, 255, 0.8)", // Glass effect
+            borderColor: "rgba(220, 220, 220, 0.5)",
+            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
+          }}
+          className="pointer-events-auto flex items-center justify-between gap-8 box-border border"
+        >
+          {/* Left: Logo (Always Visible) */}
+          <div className="flex-shrink-0 flex items-center mr-5">
+            <Link href="/" className="flex items-center gap-[5px] whitespace-nowrap">
+              <Image
+                src="/logo.png"
+                alt="buildpcbs logo"
+                width={24}
+                height={20}
+              />
+              <span className="font-medium text-[17px] leading-[22px] tracking-[-0.04em] text-[#444444] dark:text-white">
+                BuildPCBs
+              </span>
+            </Link>
           </div>
-        </div>
-      </nav>
+
+          {/* Center: Nav Links (Always Visible) */}
+          <div className="flex items-center gap-8 flex-shrink-0">
+            {navLinks.map((link) => {
+              if (link.name === "App") {
+                return (
+                  <div
+                    key={link.name}
+                    className="relative flex items-center h-full"
+                    onMouseEnter={() => setIsAppHovered(true)}
+                    onMouseLeave={() => setIsAppHovered(false)}
+                  >
+                    <div className="flex items-center cursor-default">
+                      <AnimatedText
+                        text={link.name}
+                        className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300 hover:text-[#444444] dark:hover:text-white transition-colors duration-300"
+                      />
+                    </div>
+                    <AnimatePresence>
+                      {isAppHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
+                          animate={{ opacity: 1, scaleY: 1, y: 0 }}
+                          exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
+                          transition={{
+                            duration: 0.4,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
+                        >
+                          <AppDropdown />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+              if (link.name === "Guides") {
+                return (
+                  <div
+                    key={link.name}
+                    className="relative flex items-center h-full"
+                    onMouseEnter={() => setIsGuidesHovered(true)}
+                    onMouseLeave={() => setIsGuidesHovered(false)}
+                  >
+                    <div className="flex items-center cursor-default">
+                      <AnimatedText
+                        text={link.name}
+                        className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300 hover:text-[#444444] dark:hover:text-white transition-colors duration-300"
+                      />
+                    </div>
+                    <AnimatePresence>
+                      {isGuidesHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
+                          animate={{ opacity: 1, scaleY: 1, y: 0 }}
+                          exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
+                          transition={{
+                            duration: 0.4,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
+                        >
+                          <GuidesDropdown />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+              if (link.name === "$BUILDERS") {
+                return (
+                  <div
+                    key={link.name}
+                    className="relative flex items-center h-full"
+                    onMouseEnter={() => setIsBuildersHovered(true)}
+                    onMouseLeave={() => setIsBuildersHovered(false)}
+                  >
+                    <div className="flex items-center cursor-default">
+                      <motion.span
+                        initial="initial"
+                        whileHover="hovered"
+                        className="text-[17px] font-normal leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-300 hover:text-[#444444] dark:hover:text-white transition-colors duration-300 cursor-pointer inline-block relative overflow-hidden"
+                      >
+                        <div className="flex">
+                          {"$BUILDers".split("").map((char, index) => (
+                            <motion.span
+                              key={index}
+                              variants={{
+                                initial: { y: 0 },
+                                hovered: { y: -5 },
+                              }}
+                              transition={{
+                                duration: 0.2,
+                                delay: index * 0.03,
+                              }}
+                              className="inline-block"
+                            >
+                              {char}
+                            </motion.span>
+                          ))}
+                        </div>
+                      </motion.span>
+                    </div>
+                    <AnimatePresence>
+                      {isBuildersHovered && (
+                        <motion.div
+                          initial={{ opacity: 0, scaleY: 0.9, y: -10 }}
+                          animate={{ opacity: 1, scaleY: 1, y: 0 }}
+                          exit={{ opacity: 0, scaleY: 0.9, y: -10 }}
+                          transition={{
+                            duration: 0.4,
+                            ease: [0.16, 1, 0.3, 1],
+                          }}
+                          className="absolute top-[35px] left-1/2 -translate-x-1/2 z-50 origin-top pt-4"
+                        >
+                          <BuildersDropdown />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              }
+              return null;
+            })}
+          </div>
+
+          {/* Right: Buttons (Join Always visible, Copy Conditional) */}
+          <div className="flex items-center gap-2 flex-shrink-0 ml-5">
+            {/* Join Waitlist - Always Visible */}
+            <motion.button
+              onClick={openWaitlist}
+              initial="initial"
+              whileHover="hovered"
+              className="flex items-center justify-center w-[138px] h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
+            >
+              <div className="flex">
+                {"Join Waitlist".split("").map((char, index) => (
+                  <motion.span
+                    key={index}
+                    variants={{
+                      initial: { y: 0 },
+                      hovered: { y: -5 },
+                    }}
+                    transition={{
+                      duration: 0.2,
+                      ease: "easeInOut",
+                      delay: index * 0.03,
+                    }}
+                    className="inline-block"
+                  >
+                    {char === " " ? "\u00A0" : char}
+                  </motion.span>
+                ))}
+              </div>
+            </motion.button>
+
+            {/* Copy CA Button - Visible ONLY when Scrolled */}
+            <AnimatePresence>
+              {isScrolled && (
+                <div className="relative">
+                  <motion.button
+                    initial={{ width: 0, opacity: 0, scale: 0.8 }}
+                    animate={{ width: "42px", opacity: 1, scale: 1 }}
+                    exit={{ width: 0, opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.3, ease: "backOut" }}
+                    onClick={handleCopy}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center justify-center h-[42px] rounded-full bg-[#0038DF] text-white hover:opacity-90 overflow-hidden"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-copy flex-shrink-0"
+                    >
+                      <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                      <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2v2" />
+                    </svg>
+                  </motion.button>
+                  {copied && (
+                    <motion.span
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: -20 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute -top-6 left-1/2 -translate-x-1/2 text-xs text-black dark:text-white bg-white dark:bg-gray-700 px-2 py-1 rounded whitespace-nowrap"
+                    >
+                      Copied!
+                    </motion.span>
+                  )}
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Mobile Menu Button - Keeping consistent visibility */}
+          <div className="md:hidden flex items-center ml-auto">
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white"
+            >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                className="block h-6 w-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
+
+        </motion.nav>
+      </div>
 
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -469,6 +481,7 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+      <WaitlistModal isOpen={isWaitlistOpen} onClose={closeWaitlist} />
     </>
   );
 };
