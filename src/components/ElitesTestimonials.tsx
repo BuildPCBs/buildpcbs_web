@@ -45,15 +45,14 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 top: `${top}px`,
                 left: `${left}px`,
             }}
-            initial={{ y: 0 }}
-            animate={{ y: [0, -10, 0] }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
+                duration: 0.5,
+                ease: "easeOut",
                 delay: delay,
             }}
-            viewport={{ once: false }} // Animates whenever in viewport (or always running)
+            viewport={{ once: true }} // Animates only once when it enters the viewport
         >
             {/* Content Image Area (Top) */}
             {contentImageUrl && (
@@ -172,14 +171,14 @@ const ElitesTestimonials = () => {
                             left: '731px',
                             top: '166px'
                         }}
-                        initial={{ y: 0 }}
-                        animate={{ y: [0, -12, 0] }} // Slightly different movement
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{
-                            duration: 5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
+                            duration: 0.5,
+                            ease: "easeOut",
                             delay: 1,
                         }}
+                        viewport={{ once: true }}
                     >
                         {/* PAUL GRAHAM SPECIFIC INNER LAYOUT */}
                         {/* Info Group at Bottom */}
@@ -232,14 +231,14 @@ const ElitesTestimonials = () => {
                             left: '690px',
                             top: '423px'
                         }}
-                        initial={{ y: 0 }}
-                        animate={{ y: [0, -8, 0] }}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
                         transition={{
-                            duration: 6,
-                            repeat: Infinity,
-                            ease: "easeInOut",
+                            duration: 0.5,
+                            ease: "easeOut",
                             delay: 0.5,
                         }}
+                        viewport={{ once: true }}
                     >
                         {/* Decorative elements */}
                         <div className="absolute left-[43px] top-[11px] w-[43px] h-[21px] bg-[#008ED3]"></div>
