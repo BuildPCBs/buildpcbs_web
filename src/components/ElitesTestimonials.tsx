@@ -67,7 +67,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             initial={{ opacity: 0, y: 20, scale: 1 }}
             whileInView={{ opacity: 1, y: 0 }}
             animate={{
-                scale: isHovered ? 2.5 : 1,
+                scale: isHovered ? 2 : 1,
                 filter: (isAnyHovered && !isHovered) ? "blur(2px) brightness(0.8)" : "none",
             }}
             transition={{
@@ -177,7 +177,7 @@ const ElitesTestimonials = () => {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
     return (
-        <section className="w-full bg-white relative py-20 px-4 overflow-hidden min-h-[700px]">
+        <section className="w-full bg-white relative py-20 px-4 overflow-hidden min-h-[700px] -mt-[200px]">
             {/* Backdrop Blur Overlay */}
             <AnimatePresence>
                 {hoveredCard && (
@@ -236,7 +236,7 @@ const ElitesTestimonials = () => {
                         initial={{ opacity: 0, y: 20, scale: 1 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         animate={{
-                            scale: hoveredCard === "paul" ? 2.5 : 1,
+                            scale: hoveredCard === "paul" ? 2 : 1,
                             filter: (hoveredCard && hoveredCard !== "paul") ? "blur(2px) brightness(0.8)" : "none",
                         }}
                         transition={{
