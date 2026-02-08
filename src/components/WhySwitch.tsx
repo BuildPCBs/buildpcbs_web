@@ -264,12 +264,11 @@ const WhySwitch = () => {
   ];
 
   useEffect(() => {
-    // Automatically switch to the next tab every 1 second (plus buffer for animation feel)
-    // User requested "1sec per bar" and "moves to next item when fully progressed"
-    // So the total duration per item is ~1000ms.
+    // Automatically switch to the next tab every 2 seconds (updated)
+    // User requested "2secs" duration
     const timer = setInterval(() => {
       setActiveIndex((prev) => (prev + 1) % FEATURES.length);
-    }, 1000);
+    }, 2000);
 
     return () => clearInterval(timer);
   }, [FEATURES.length]);
@@ -381,7 +380,7 @@ const WhySwitch = () => {
                           initial={{ width: "0%" }}
                           animate={{ width: "100%" }}
                           transition={{
-                            duration: 1, // 1 second duration as requested
+                            duration: 2, // 2 seconds duration as requested
                             ease: "linear"
                           }}
                         />
