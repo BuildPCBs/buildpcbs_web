@@ -92,7 +92,6 @@ const Navbar = () => {
             borderColor: "rgba(220, 220, 220, 0.5)",
             boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
             backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
           }}
           className="pointer-events-auto flex items-center justify-between gap-8 box-border border"
         >
