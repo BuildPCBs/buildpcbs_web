@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
-import ParticleButton from "@/components/kokonutui/particle-button";
 import DynamicText from "@/components/kokonutui/dynamic-text";
 
 interface HeroProps {
@@ -9,16 +8,7 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
-  const [copied, setCopied] = useState(false);
-  const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
-
-  const handleCopy = () => {
-    navigator.clipboard.writeText(contractAddress);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  const buttonText = copied ? "Copied!" : "Copy CA";
+  const buttonText = "Join Waitlist";
 
   return (
     <section className="w-full h-screen flex flex-col justify-end pb-[30vh]">
@@ -56,7 +46,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
             }
           </p>
           <motion.button
-            onClick={handleCopy}
+            onClick={onJoinWaitlist}
             initial="initial"
             whileHover="hovered"
             className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-white font-medium bg-gradient-to-r from-[#0038DF] to-[#001E79] hover:opacity-90 transition-opacity overflow-hidden"
