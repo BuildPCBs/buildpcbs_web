@@ -12,6 +12,70 @@ import FigureSvg from "@/assets/Figure Svg.svg";
 import MITSvg from "@/assets/MIT SVG.svg";
 import ZTESvg from "@/assets/ZTE Svg.svg";
 
+const TESTIMONIALS_DATA = [
+    {
+        id: "eric",
+        name: "Eric Migicovsky",
+        avatar: EricAv,
+        content: EricQuote,
+        isCustom: false
+    },
+    {
+        id: "paul",
+        name: "Paul Graham",
+        avatar: null, // Custom layout
+        content: null,
+        isCustom: true
+    },
+    {
+        id: "vince",
+        name: "Vincent Himpe",
+        avatar: VinceAv,
+        content: VinceQuote,
+        isCustom: false
+    },
+    {
+        id: "remi",
+        name: "Remi Cadene",
+        avatar: RemyAv,
+        content: RemyQuote,
+        isCustom: false
+    }
+];
+
+const PartnerTicker = ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
+    <motion.div
+        className={`bg-[#F1F1F1] border-[0.2px] border-[#EDECEC] rounded-full overflow-hidden flex items-center ${className}`}
+        style={style}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
+        viewport={{ once: true }}
+    >
+        <div className="flex items-center gap-6 whitespace-nowrap overflow-hidden w-full mask-linear-fade">
+            <motion.div
+                className="flex items-center gap-8 min-w-full"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 8, ease: "linear", repeat: Infinity }}
+            >
+                {[...Array(2)].map((_, setIndex) => (
+                    <React.Fragment key={setIndex}>
+                        <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                            <Image src={MITSvg} alt="MIT" fill className="object-contain" />
+                        </div>
+                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                            <Image src={FigureSvg} alt="Figure" fill className="object-contain" />
+                        </div>
+                        <div className="relative w-12 h-6 opacity-100 hover:opacity-100 transition-opacity flex-shrink-0">
+                            <Image src={ZTESvg} alt="ZTE" fill className="object-contain" />
+                        </div>
+                    </React.Fragment>
+                ))}
+            </motion.div>
+        </div>
+    </motion.div>
+);
+
 interface TestimonialCardProps {
     name: string;
     avatarUrl: string | any;
@@ -145,33 +209,51 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 };
 
 // Simplified card for mobile (stacked) with no animations for performance
-const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl, badgeSrc }: any) => (
-    <div className="bg-[#F1F1F1] border border-[#DCDBDB] rounded-lg p-3 w-full max-w-sm mx-auto mb-4">
-        {/* Mobile layout: Content then Info? Or Info then Content? 
-         Standard mobile feed usually has Header then Content. 
-         But sticking to the desktop "inverted" style might be weird. 
-         Let's stick to standard readable: Header -> Content. 
-     */}
-        <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-300 relative">
-                {avatarUrl && <Image src={avatarUrl} alt={name} fill className="object-cover" />}
-            </div>
-            <div>
-                <p className="text-xs font-semibold text-gray-700">{name}</p>
-                {badgeSrc && (
-                    <div className="w-8 h-3 relative mt-1">
-                        <Image src={badgeSrc} alt="Badge" fill className="object-contain" />
+// Sticky card for mobile (stacked) with animations
+const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl, isCustom, index }: any) => {
+    return (
+        <motion.div
+            className="sticky w-full max-w-sm mx-auto bg-[#F1F1F1] border border-[#DCDBDB] rounded-lg p-3 box-border shadow-sm mb-24"
+            style={{
+                top: `${100 + index * 10}px`,
+                zIndex: index + 10
+            }}
+            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            whileInView={{ scale: 1, opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+            {isCustom ? (
+                // Paul Graham Custom Layout Mobile
+                <div className="flex flex-col gap-4 p-2 min-h-[120px] justify-end relative">
+                    <div className="bg-white border-[0.3px] border-[#EDECEC] rounded-lg p-2 absolute top-2 left-2 right-2 bottom-12" />
+                    <div className="relative z-10 mt-auto">
+                        <div className="w-[38px] h-[34px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg mb-2"></div>
+                        <p className="font-['DM_Sans'] text-[12px] text-[#4F4F4F]">Paul Graham</p>
+                        <div className="w-[61px] h-[14px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg mt-1"></div>
                     </div>
-                )}
-            </div>
-        </div>
-        {contentImageUrl && (
-            <div className="w-full h-32 bg-white rounded border border-gray-200 overflow-hidden relative">
-                <Image src={contentImageUrl} alt="Content" fill className="object-contain" />
-            </div>
-        )}
-    </div>
-);
+                </div>
+            ) : (
+                // Standard Card
+                <>
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-white overflow-hidden border border-gray-300 relative shrink-0">
+                            {avatarUrl && <Image src={avatarUrl} alt={name} fill className="object-cover" />}
+                        </div>
+                        <div>
+                            <p className="text-xs font-semibold text-gray-700">{name}</p>
+                        </div>
+                    </div>
+                    {contentImageUrl && (
+                        <div className="w-full h-32 bg-white rounded border border-gray-200 overflow-hidden relative">
+                            <Image src={contentImageUrl} alt="Content" fill className="object-contain" />
+                        </div>
+                    )}
+                </>
+            )}
+        </motion.div>
+    );
+};
 
 const ElitesTestimonials = () => {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
@@ -297,9 +379,9 @@ const ElitesTestimonials = () => {
                         isAnyHovered={!!hoveredCard}
                     />
 
-                    {/* Partners Bar (formerly Blue Shape/Decor item) */}
-                    <motion.div
-                        className="absolute bg-[#F1F1F1] border-[0.2px] border-[#EDECEC] rounded-full overflow-hidden flex items-center"
+                    {/* Partners Bar (Desktop) */}
+                    <PartnerTicker
+                        className="absolute"
                         style={{
                             width: '234px',
                             height: '45px',
@@ -307,51 +389,26 @@ const ElitesTestimonials = () => {
                             top: '423px',
                             zIndex: 20
                         }}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{
-                            duration: 0.5,
-                            ease: "easeOut",
-                            delay: 0.5,
-                        }}
-                        viewport={{ once: true }}
-                    >
-                        {/* Infinite Scroll Container */}
-                        <div className="flex items-center gap-6 whitespace-nowrap overflow-hidden w-full mask-linear-fade">
-                            <motion.div
-                                className="flex items-center gap-8 min-w-full"
-                                animate={{ x: ["0%", "-50%"] }}
-                                transition={{
-                                    duration: 8,
-                                    ease: "linear",
-                                    repeat: Infinity,
-                                }}
-                            >
-                                {/* Duplicated set for seamless loop (x3 to fill space securely) */}
-                                {[...Array(2)].map((_, setIndex) => (
-                                    <React.Fragment key={setIndex}>
-                                        <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
-                                            <Image src={MITSvg} alt="MIT" fill className="object-contain" />
-                                        </div>
-                                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
-                                            <Image src={FigureSvg} alt="Figure" fill className="object-contain" />
-                                        </div>
-                                        <div className="relative w-12 h-6 opacity-100 hover:opacity-100 transition-opacity flex-shrink-0">
-                                            <Image src={ZTESvg} alt="ZTE" fill className="object-contain" />
-                                        </div>
-                                    </React.Fragment>
-                                ))}
-                            </motion.div>
-                        </div>
-                    </motion.div>
+                    />
                 </div>
 
-                {/* Mobile Cards (Stacked) */}
-                <div className="lg:hidden flex flex-col items-center gap-6">
-                    <MobileTestimonialCard name="Eric Migicovsky" avatarUrl={EricAv} contentImageUrl={EricQuote} />
-                    <MobileTestimonialCard name="Paul Graham" avatarUrl="" contentImageUrl="" />
-                    <MobileTestimonialCard name="Vincent Himpe" avatarUrl={VinceAv} contentImageUrl={VinceQuote} />
-                    <MobileTestimonialCard name="Remi Cadene" avatarUrl={RemyAv} contentImageUrl={RemyQuote} />
+                {/* Mobile Cards (Stacked Sticky Scroll) */}
+                <div className="lg:hidden flex flex-col relative pb-20">
+                    {TESTIMONIALS_DATA.map((item, index) => (
+                        <MobileTestimonialCard
+                            key={item.id}
+                            name={item.name}
+                            avatarUrl={item.avatar}
+                            contentImageUrl={item.content}
+                            isCustom={item.isCustom}
+                            index={index}
+                        />
+                    ))}
+
+                    {/* Partners Bar (Mobile) */}
+                    <div className="sticky top-[300px] mt-10 flex justify-center pb-10">
+                        <PartnerTicker className="w-[80vw] h-[50px] max-w-[300px]" />
+                    </div>
                 </div>
 
             </div>
