@@ -283,13 +283,13 @@ const ElitesTestimonials = () => {
                                 {/* Duplicated set for seamless loop (x3 to fill space securely) */}
                                 {[...Array(2)].map((_, setIndex) => (
                                     <React.Fragment key={setIndex}>
-                                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                                        <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
                                             <Image src={MITSvg} alt="MIT" fill className="object-contain" />
                                         </div>
                                         <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
                                             <Image src={FigureSvg} alt="Figure" fill className="object-contain" />
                                         </div>
-                                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                                        <div className="relative w-12 h-6 opacity-100 hover:opacity-100 transition-opacity flex-shrink-0">
                                             <Image src={ZTESvg} alt="ZTE" fill className="object-contain" />
                                         </div>
                                     </React.Fragment>
