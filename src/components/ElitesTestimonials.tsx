@@ -1,5 +1,5 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 import EricAv from "@/assets/Eric Av.png";
@@ -28,6 +28,11 @@ interface TestimonialCardProps {
     infoTop?: number; // Distance from top to the info row
     infoLeft?: number;
     delay?: number;
+    // Hover Interaction
+    onHoverStart?: () => void;
+    onHoverEnd?: () => void;
+    isHovered?: boolean;
+    isAnyHovered?: boolean;
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
@@ -44,24 +49,34 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     infoTop = 84,
     infoLeft = 4,
     delay = 0,
+    onHoverStart,
+    onHoverEnd,
+    isHovered,
+    isAnyHovered,
 }) => {
     return (
         <motion.div
-            className="absolute bg-[#F1F1F1] border-[0.2px] border-[#DCDBDB] rounded-lg box-border hidden lg:block"
+            className="absolute bg-[#F1F1F1] border-[0.2px] border-[#DCDBDB] rounded-lg box-border hidden lg:block cursor-pointer"
             style={{
                 width: `${width}px`,
                 height: `${height}px`,
                 top: `${top}px`,
                 left: `${left}px`,
+                zIndex: isHovered ? 50 : (isAnyHovered ? 1 : 10), // Lower z-index if another is hovered
             }}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 20, scale: 1 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{
-                duration: 0.5,
-                ease: "easeOut",
-                delay: delay,
+            animate={{
+                scale: isHovered ? 2.5 : 1,
+                filter: (isAnyHovered && !isHovered) ? "blur(2px) brightness(0.8)" : "none",
             }}
-            viewport={{ once: true }} // Animates only once when it enters the viewport
+            transition={{
+                duration: 0.3, // Faster for hover
+                ease: "easeOut",
+            }}
+            viewport={{ once: true }}
+            onMouseEnter={onHoverStart}
+            onMouseLeave={onHoverEnd}
         >
             {/* Content Image Area (Top) */}
             {contentImageUrl && (
@@ -159,8 +174,22 @@ const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl, badgeSrc }: a
 );
 
 const ElitesTestimonials = () => {
+    const [hoveredCard, setHoveredCard] = useState<string | null>(null);
+
     return (
         <section className="w-full bg-white relative py-20 px-4 overflow-hidden min-h-[700px]">
+            {/* Backdrop Blur Overlay */}
+            <AnimatePresence>
+                {hoveredCard && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="absolute inset-0 z-40 bg-white/30 backdrop-blur-sm pointer-events-none"
+                    />
+                )}
+            </AnimatePresence>
+
             <div className="max-w-[1240px] mx-auto relative h-full">
 
                 {/* Left Text Section */}
@@ -188,25 +217,35 @@ const ElitesTestimonials = () => {
                         contentHeight={59}
                         infoTop={96}
                         delay={0}
+                        onHoverStart={() => setHoveredCard("eric")}
+                        onHoverEnd={() => setHoveredCard(null)}
+                        isHovered={hoveredCard === "eric"}
+                        isAnyHovered={!!hoveredCard}
                     />
 
                     {/* Paul Graham - Custom Layout */}
                     <motion.div
-                        className="absolute bg-[#F1F1F1] border-[0.3px] border-[#DCDBDB] rounded-xl box-border"
+                        className="absolute bg-[#F1F1F1] border-[0.3px] border-[#DCDBDB] rounded-xl box-border cursor-pointer hidden lg:block"
                         style={{
                             width: '199.5px',
                             height: '234px',
                             left: '731px',
-                            top: '166px'
+                            top: '166px',
+                            zIndex: hoveredCard === "paul" ? 50 : (hoveredCard ? 1 : 10),
                         }}
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 20, scale: 1 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        animate={{
+                            scale: hoveredCard === "paul" ? 2.5 : 1,
+                            filter: (hoveredCard && hoveredCard !== "paul") ? "blur(2px) brightness(0.8)" : "none",
+                        }}
                         transition={{
-                            duration: 0.5,
+                            duration: 0.3,
                             ease: "easeOut",
-                            delay: 1,
                         }}
                         viewport={{ once: true }}
+                        onMouseEnter={() => setHoveredCard("paul")}
+                        onMouseLeave={() => setHoveredCard(null)}
                     >
                         {/* PAUL GRAHAM SPECIFIC INNER LAYOUT */}
                         {/* Info Group at Bottom */}
@@ -233,6 +272,10 @@ const ElitesTestimonials = () => {
                         infoTop={113}
                         infoLeft={6}
                         delay={2}
+                        onHoverStart={() => setHoveredCard("vince")}
+                        onHoverEnd={() => setHoveredCard(null)}
+                        isHovered={hoveredCard === "vince"}
+                        isAnyHovered={!!hoveredCard}
                     />
 
                     {/* Remi Cadene */}
@@ -248,6 +291,10 @@ const ElitesTestimonials = () => {
                         contentHeight={55}
                         infoTop={84}
                         delay={1.5}
+                        onHoverStart={() => setHoveredCard("remi")}
+                        onHoverEnd={() => setHoveredCard(null)}
+                        isHovered={hoveredCard === "remi"}
+                        isAnyHovered={!!hoveredCard}
                     />
 
                     {/* Partners Bar (formerly Blue Shape/Decor item) */}
