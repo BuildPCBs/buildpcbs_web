@@ -180,7 +180,6 @@ const ElitesTestimonials = () => {
                         name="Eric Migicovsky"
                         avatarUrl={EricAv}
                         contentImageUrl={EricQuote}
-                        badgeSrc={MITSvg}
                         width={168}
                         height={129}
                         left={539}
@@ -225,7 +224,6 @@ const ElitesTestimonials = () => {
                         name="Vincent Himpe"
                         avatarUrl={VinceAv}
                         contentImageUrl={VinceQuote}
-                        badgeSrc={ZTESvg}
                         width={168}
                         height={144}
                         left={709}
@@ -242,7 +240,6 @@ const ElitesTestimonials = () => {
                         name="Remi Cadene"
                         avatarUrl={RemyAv}
                         contentImageUrl={RemyQuote}
-                        badgeSrc={FigureSvg}
                         width={168}
                         height={115}
                         left={504}
@@ -253,14 +250,15 @@ const ElitesTestimonials = () => {
                         delay={1.5}
                     />
 
-                    {/* Blue Shape/Decor item */}
+                    {/* Partners Bar (formerly Blue Shape/Decor item) */}
                     <motion.div
-                        className="absolute bg-[#C5C4C4] border-[0.2px] border-[#EDECEC] rounded-md opacity-50 overflow-hidden"
+                        className="absolute bg-[#F1F1F1] border-[0.2px] border-[#EDECEC] rounded-full overflow-hidden flex items-center"
                         style={{
                             width: '234px',
                             height: '45px',
                             left: '690px',
-                            top: '423px'
+                            top: '423px',
+                            zIndex: 20
                         }}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -271,18 +269,42 @@ const ElitesTestimonials = () => {
                         }}
                         viewport={{ once: true }}
                     >
-                        {/* Decorative elements */}
-                        <div className="absolute left-[43px] top-[11px] w-[43px] h-[21px] bg-[#008ED3]"></div>
-                        <div className="absolute left-[13px] top-[10px] w-[12px] h-[24px] bg-black"></div>
+                        {/* Infinite Scroll Container */}
+                        <div className="flex items-center gap-6 whitespace-nowrap overflow-hidden w-full mask-linear-fade">
+                            <motion.div
+                                className="flex items-center gap-8 min-w-full"
+                                animate={{ x: ["0%", "-50%"] }}
+                                transition={{
+                                    duration: 8,
+                                    ease: "linear",
+                                    repeat: Infinity,
+                                }}
+                            >
+                                {/* Duplicated set for seamless loop (x3 to fill space securely) */}
+                                {[...Array(2)].map((_, setIndex) => (
+                                    <React.Fragment key={setIndex}>
+                                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                                            <Image src={MITSvg} alt="MIT" fill className="object-contain" />
+                                        </div>
+                                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                                            <Image src={FigureSvg} alt="Figure" fill className="object-contain" />
+                                        </div>
+                                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
+                                            <Image src={ZTESvg} alt="ZTE" fill className="object-contain" />
+                                        </div>
+                                    </React.Fragment>
+                                ))}
+                            </motion.div>
+                        </div>
                     </motion.div>
                 </div>
 
                 {/* Mobile Cards (Stacked) */}
                 <div className="lg:hidden flex flex-col items-center gap-6">
-                    <MobileTestimonialCard name="Eric Migicovsky" avatarUrl={EricAv} contentImageUrl={EricQuote} badgeSrc={MITSvg} />
+                    <MobileTestimonialCard name="Eric Migicovsky" avatarUrl={EricAv} contentImageUrl={EricQuote} />
                     <MobileTestimonialCard name="Paul Graham" avatarUrl="" contentImageUrl="" />
-                    <MobileTestimonialCard name="Vincent Himpe" avatarUrl={VinceAv} contentImageUrl={VinceQuote} badgeSrc={ZTESvg} />
-                    <MobileTestimonialCard name="Remi Cadene" avatarUrl={RemyAv} contentImageUrl={RemyQuote} badgeSrc={FigureSvg} />
+                    <MobileTestimonialCard name="Vincent Himpe" avatarUrl={VinceAv} contentImageUrl={VinceQuote} />
+                    <MobileTestimonialCard name="Remi Cadene" avatarUrl={RemyAv} contentImageUrl={RemyQuote} />
                 </div>
 
             </div>
