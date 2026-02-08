@@ -1,12 +1,22 @@
-"use client";
-
 import React from "react";
 import { motion } from "framer-motion";
+import Image from "next/image";
+
+import EricAv from "@/assets/Eric Av.png";
+import EricQuote from "@/assets/Eric Quote.png";
+import RemyAv from "@/assets/Remy Av.png";
+import RemyQuote from "@/assets/Remy Quote.png";
+import VinceAv from "@/assets/Vince Av.png";
+import VinceQuote from "@/assets/Vince Quote.png";
+import FigureSvg from "@/assets/Figure Svg.svg";
+import MITSvg from "@/assets/MIT SVG.svg";
+import ZTESvg from "@/assets/ZTE Svg.svg";
 
 interface TestimonialCardProps {
     name: string;
-    avatarUrl: string;
-    contentImageUrl?: string;
+    avatarUrl: string | any;
+    contentImageUrl?: string | any;
+    badgeSrc?: string | any;
     // Dimensions & Positioning
     width: number;
     height: number;
@@ -17,7 +27,6 @@ interface TestimonialCardProps {
     contentHeight?: number;
     infoTop?: number; // Distance from top to the info row
     infoLeft?: number;
-    hasBadge?: boolean;
     delay?: number;
 }
 
@@ -25,6 +34,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     name,
     avatarUrl,
     contentImageUrl,
+    badgeSrc,
     width,
     height,
     top,
@@ -33,7 +43,6 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
     contentHeight = 59,
     infoTop = 84,
     infoLeft = 4,
-    hasBadge = true,
     delay = 0,
 }) => {
     return (
@@ -65,9 +74,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                         height: `${contentHeight}px`
                     }}
                 >
-                    <div
-                        className="w-full h-full bg-cover bg-center bg-no-repeat"
-                        style={{ backgroundImage: `url(${contentImageUrl})` }}
+                    <Image
+                        src={contentImageUrl}
+                        alt="Testimonial content"
+                        className="w-full h-full object-cover"
+                        fill={false} // Using simplistic style for now to match structure
+                        style={{ objectFit: 'contain' }} // Quotes might text, contain ensures visibility
                     />
                 </div>
             )}
@@ -84,9 +96,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             >
                 {/* Avatar */}
                 <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden bg-white border border-[#EDECEC] shrink-0">
-                    <div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${avatarUrl})` }}
+                    <Image
+                        src={avatarUrl}
+                        alt={name}
+                        className="w-full h-full object-cover"
+                        width={26}
+                        height={26}
                     />
                 </div>
 
@@ -95,9 +110,18 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                     <span className="font-['DM_Sans'] text-[8px] font-normal text-[#4F4F4F] leading-none whitespace-nowrap">
                         {name}
                     </span>
-                    {/* Badge Placeholder */}
-                    {hasBadge && (
-                        <div className="w-[25px] h-[9px] bg-white border-[0.2px] border-[#EDECEC] rounded-md" />
+                    {/* Badge */}
+                    {badgeSrc && (
+                        <div className="w-[25px] h-[9px] relative rounded-md overflow-hidden">
+                            <Image
+                                src={badgeSrc}
+                                alt="Badge"
+                                className="w-full h-full object-contain"
+                                fill={false}
+                                width={25}
+                                height={9}
+                            />
+                        </div>
                     )}
                 </div>
             </div>
@@ -106,7 +130,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 };
 
 // Simplified card for mobile (stacked) with no animations for performance
-const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl }: any) => (
+const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl, badgeSrc }: any) => (
     <div className="bg-[#F1F1F1] border border-[#DCDBDB] rounded-lg p-3 w-full max-w-sm mx-auto mb-4">
         {/* Mobile layout: Content then Info? Or Info then Content? 
          Standard mobile feed usually has Header then Content. 
@@ -114,17 +138,21 @@ const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl }: any) => (
          Let's stick to standard readable: Header -> Content. 
      */}
         <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-300">
-                <div className="w-full h-full bg-cover bg-center" style={{ backgroundImage: `url(${avatarUrl})` }} />
+            <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-300 relative">
+                {avatarUrl && <Image src={avatarUrl} alt={name} fill className="object-cover" />}
             </div>
             <div>
                 <p className="text-xs font-semibold text-gray-700">{name}</p>
-                <div className="w-8 h-3 bg-white border border-gray-200 rounded mt-1"></div>
+                {badgeSrc && (
+                    <div className="w-8 h-3 relative mt-1">
+                        <Image src={badgeSrc} alt="Badge" fill className="object-contain" />
+                    </div>
+                )}
             </div>
         </div>
         {contentImageUrl && (
-            <div className="w-full h-32 bg-white rounded border border-gray-200 overflow-hidden">
-                <div className="w-full h-full bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url(${contentImageUrl})` }} />
+            <div className="w-full h-32 bg-white rounded border border-gray-200 overflow-hidden relative">
+                <Image src={contentImageUrl} alt="Content" fill className="object-contain" />
             </div>
         )}
     </div>
@@ -150,8 +178,9 @@ const ElitesTestimonials = () => {
                     {/* Eric Migicovsky */}
                     <TestimonialCard
                         name="Eric Migicovsky"
-                        avatarUrl="/IMG_9496.png"
-                        contentImageUrl="/IMG_9500.png"
+                        avatarUrl={EricAv}
+                        contentImageUrl={EricQuote}
+                        badgeSrc={MITSvg}
                         width={168}
                         height={129}
                         left={539}
@@ -194,8 +223,9 @@ const ElitesTestimonials = () => {
                     {/* Vincent Himpe */}
                     <TestimonialCard
                         name="Vincent Himpe"
-                        avatarUrl="/IMG_9501.png"
-                        contentImageUrl="/IMG_9502.png"
+                        avatarUrl={VinceAv}
+                        contentImageUrl={VinceQuote}
+                        badgeSrc={ZTESvg}
                         width={168}
                         height={144}
                         left={709}
@@ -210,8 +240,9 @@ const ElitesTestimonials = () => {
                     {/* Remi Cadene */}
                     <TestimonialCard
                         name="Remi Cadene"
-                        avatarUrl="/IMG_9498.png"
-                        contentImageUrl="/IMG_9499.png"
+                        avatarUrl={RemyAv}
+                        contentImageUrl={RemyQuote}
+                        badgeSrc={FigureSvg}
                         width={168}
                         height={115}
                         left={504}
@@ -248,10 +279,10 @@ const ElitesTestimonials = () => {
 
                 {/* Mobile Cards (Stacked) */}
                 <div className="lg:hidden flex flex-col items-center gap-6">
-                    <MobileTestimonialCard name="Eric Migicovsky" avatarUrl="/IMG_9496.png" contentImageUrl="/IMG_9500.png" />
+                    <MobileTestimonialCard name="Eric Migicovsky" avatarUrl={EricAv} contentImageUrl={EricQuote} badgeSrc={MITSvg} />
                     <MobileTestimonialCard name="Paul Graham" avatarUrl="" contentImageUrl="" />
-                    <MobileTestimonialCard name="Vincent Himpe" avatarUrl="/IMG_9501.png" contentImageUrl="/IMG_9502.png" />
-                    <MobileTestimonialCard name="Remi Cadene" avatarUrl="/IMG_9498.png" contentImageUrl="/IMG_9499.png" />
+                    <MobileTestimonialCard name="Vincent Himpe" avatarUrl={VinceAv} contentImageUrl={VinceQuote} badgeSrc={ZTESvg} />
+                    <MobileTestimonialCard name="Remi Cadene" avatarUrl={RemyAv} contentImageUrl={RemyQuote} badgeSrc={FigureSvg} />
                 </div>
 
             </div>
