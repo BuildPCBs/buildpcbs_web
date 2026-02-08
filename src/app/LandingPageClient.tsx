@@ -24,8 +24,8 @@ const LandingPageClient = () => {
       <ElitesTestimonials />
       <Features />
       <Stats />
-      {/* <WhySwitch />
-      <FAQ /> */}
+      <WhySwitch />
+      {/* <FAQ /> */}
       <WaitlistModal isOpen={isWaitlistOpen} onClose={closeWaitlist} />
     </>
   );
