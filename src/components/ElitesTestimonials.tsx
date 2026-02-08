@@ -259,7 +259,13 @@ const ElitesTestimonials = () => {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
     return (
-        <section className="w-full bg-white relative py-20 px-4 overflow-hidden min-h-[700px] mt-[100px]">
+        <section
+            className="
+        w-full bg-white relative px-4 overflow-hidden min-h-[700px]
+        py-20 mt-[100px]
+        lg:py-[120px]           /* was py-20 -> gives you more controlled vertical rhythm */
+      "
+        >
             {/* Backdrop Blur Overlay */}
             <AnimatePresence>
                 {hoveredCard && (
@@ -272,145 +278,149 @@ const ElitesTestimonials = () => {
                 )}
             </AnimatePresence>
 
-            <div className="max-w-[1240px] mx-auto relative h-full">
+            {/* ✅ Desktop: create a stable "stage" and center it vertically */}
+            <div
+                className="
+          max-w-[1240px] mx-auto relative
+          lg:min-h-[760px]        /* stage height you can tweak */
+          lg:flex lg:items-center /* vertically centers the stage inside the section */
+        "
+            >
+                {/* ✅ Desktop: everything inside this gets shifted up slightly */}
+                <div className="w-full relative lg:-translate-y-10">
+                    {/* Left Text Section */}
+                    <div className="relative z-10 lg:absolute lg:top-[352px] lg:left-[94px] lg:w-[315px] flex flex-col gap-5 mb-12 lg:mb-0">
+                        <h2 className="font-['DM_Sans'] font-light text-[36px] leading-[150%] tracking-[-0.01em] text-[#4F4F4F]">
+                            Words from elites
+                        </h2>
+                        <p className="font-['DM_Sans'] font-normal text-[14px] leading-[150%] tracking-[-0.005em] text-[#777777]">
+                            Industry leaders and everyone’s mentor have given us directives from early.
+                        </p>
+                    </div>
 
-                {/* Left Text Section */}
-                <div className="relative z-10 lg:absolute lg:top-[352px] lg:left-[94px] lg:w-[315px] flex flex-col gap-5 mb-12 lg:mb-0">
-                    <h2 className="font-['DM_Sans'] font-light text-[36px] leading-[150%] tracking-[-0.01em] text-[#4F4F4F]">
-                        Words from elites
-                    </h2>
-                    <p className="font-['DM_Sans'] font-normal text-[14px] leading-[150%] tracking-[-0.005em] text-[#777777]">
-                        Industry leaders and everyone’s mentor have given us directives from early.
-                    </p>
-                </div>
-
-                {/* Desktop Cards (Absolute) */}
-                <div className="relative w-full h-[600px] hidden lg:block">
-                    {/* Eric Migicovsky */}
-                    <TestimonialCard
-                        name="Eric Migicovsky"
-                        avatarUrl={EricAv}
-                        contentImageUrl={EricQuote}
-                        width={168}
-                        height={129}
-                        left={539}
-                        top={258}
-                        contentTop={8}
-                        contentHeight={59}
-                        infoTop={96}
-                        delay={0}
-                        onHoverStart={() => setHoveredCard("eric")}
-                        onHoverEnd={() => setHoveredCard(null)}
-                        isHovered={hoveredCard === "eric"}
-                        isAnyHovered={!!hoveredCard}
-                    />
-
-                    {/* Paul Graham - Custom Layout */}
-                    <motion.div
-                        className="absolute bg-[#F1F1F1] border-[0.3px] border-[#DCDBDB] rounded-xl box-border cursor-pointer hidden lg:block"
-                        style={{
-                            width: '199.5px',
-                            height: '234px',
-                            left: '731px',
-                            top: '166px',
-                            zIndex: hoveredCard === "paul" ? 50 : (hoveredCard ? 1 : 10),
-                        }}
-                        initial={{ opacity: 0, y: 20, scale: 1 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        animate={{
-                            scale: hoveredCard === "paul" ? 2 : 1,
-                            filter: (hoveredCard && hoveredCard !== "paul") ? "blur(2px) brightness(0.8)" : "none",
-                        }}
-                        transition={{
-                            duration: 0.3,
-                            ease: "easeOut",
-                        }}
-                        viewport={{ once: true }}
-                        onMouseEnter={() => setHoveredCard("paul")}
-                        onMouseLeave={() => setHoveredCard(null)}
-                    >
-                        {/* PAUL GRAHAM SPECIFIC INNER LAYOUT */}
-                        {/* Info Group at Bottom */}
-                        <div className="absolute top-[195px] left-[5px] w-[38px] h-[34px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg"></div>
-                        <p className="absolute left-[48px] top-[196px] font-['DM_Sans'] text-[12px] text-[#4F4F4F] whitespace-nowrap">Paul Graham</p>
-                        <div className="absolute left-[48px] top-[214px] w-[61px] h-[14px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg"></div>
-
-                        {/* Content Placeholder (Assuming big empty space above is the content area) */}
-                        {/* <div className="absolute top-2 left-2 right-2 bottom-[50px] bg-white rounded-lg"></div>  */}
-                        {/* Prompt didn't specify content box for Paul, just the info, so leaving blank/background as per prompt */}
-                    </motion.div>
-
-                    {/* Vincent Himpe */}
-                    <TestimonialCard
-                        name="Vincent Himpe"
-                        avatarUrl={VinceAv}
-                        contentImageUrl={VinceQuote}
-                        width={168}
-                        height={144}
-                        left={709}
-                        top={498}
-                        contentTop={8}
-                        contentHeight={68.7}
-                        infoTop={113}
-                        infoLeft={6}
-                        delay={2}
-                        onHoverStart={() => setHoveredCard("vince")}
-                        onHoverEnd={() => setHoveredCard(null)}
-                        isHovered={hoveredCard === "vince"}
-                        isAnyHovered={!!hoveredCard}
-                    />
-
-                    {/* Remi Cadene */}
-                    <TestimonialCard
-                        name="Remi Cadene"
-                        avatarUrl={RemyAv}
-                        contentImageUrl={RemyQuote}
-                        width={168}
-                        height={115}
-                        left={504}
-                        top={446}
-                        contentTop={9}
-                        contentHeight={55}
-                        infoTop={84}
-                        delay={1.5}
-                        onHoverStart={() => setHoveredCard("remi")}
-                        onHoverEnd={() => setHoveredCard(null)}
-                        isHovered={hoveredCard === "remi"}
-                        isAnyHovered={!!hoveredCard}
-                    />
-
-                    {/* Partners Bar (Desktop) */}
-                    <PartnerTicker
-                        className="absolute"
-                        style={{
-                            width: '234px',
-                            height: '45px',
-                            left: '690px',
-                            top: '423px',
-                            zIndex: 20
-                        }}
-                    />
-                </div>
-
-                {/* Mobile Cards (Stacked Sticky Scroll) */}
-                <div className="lg:hidden flex flex-col relative pb-20">
-                    {TESTIMONIALS_DATA.map((item, index) => (
-                        <MobileTestimonialCard
-                            key={item.id}
-                            name={item.name}
-                            avatarUrl={item.avatar}
-                            contentImageUrl={item.content}
-                            isCustom={item.isCustom}
-                            index={index}
+                    {/* Desktop Cards (Absolute) */}
+                    <div className="relative w-full h-[600px] hidden lg:block">
+                        {/* Eric Migicovsky */}
+                        <TestimonialCard
+                            name="Eric Migicovsky"
+                            avatarUrl={EricAv}
+                            contentImageUrl={EricQuote}
+                            width={168}
+                            height={129}
+                            left={539}
+                            top={258}
+                            contentTop={8}
+                            contentHeight={59}
+                            infoTop={96}
+                            delay={0}
+                            onHoverStart={() => setHoveredCard("eric")}
+                            onHoverEnd={() => setHoveredCard(null)}
+                            isHovered={hoveredCard === "eric"}
+                            isAnyHovered={!!hoveredCard}
                         />
-                    ))}
 
-                    {/* Partners Bar (Mobile) */}
-                    <div className="sticky top-[300px] mt-10 flex justify-center pb-10">
-                        <PartnerTicker className="w-[80vw] h-[50px] max-w-[300px]" />
+                        {/* Paul Graham - Custom Layout */}
+                        <motion.div
+                            className="absolute bg-[#F1F1F1] border-[0.3px] border-[#DCDBDB] rounded-xl box-border cursor-pointer hidden lg:block"
+                            style={{
+                                width: "199.5px",
+                                height: "234px",
+                                left: "731px",
+                                top: "166px",
+                                zIndex: hoveredCard === "paul" ? 50 : (hoveredCard ? 1 : 10),
+                            }}
+                            initial={{ opacity: 0, y: 20, scale: 1 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            animate={{
+                                scale: hoveredCard === "paul" ? 2 : 1,
+                                filter:
+                                    (hoveredCard && hoveredCard !== "paul")
+                                        ? "blur(2px) brightness(0.8)"
+                                        : "none",
+                            }}
+                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            viewport={{ once: true }}
+                            onMouseEnter={() => setHoveredCard("paul")}
+                            onMouseLeave={() => setHoveredCard(null)}
+                        >
+                            <div className="absolute top-[195px] left-[5px] w-[38px] h-[34px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg" />
+                            <p className="absolute left-[48px] top-[196px] font-['DM_Sans'] text-[12px] text-[#4F4F4F] whitespace-nowrap">
+                                Paul Graham
+                            </p>
+                            <div className="absolute left-[48px] top-[214px] w-[61px] h-[14px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg" />
+                        </motion.div>
+
+                        {/* Vincent Himpe */}
+                        <TestimonialCard
+                            name="Vincent Himpe"
+                            avatarUrl={VinceAv}
+                            contentImageUrl={VinceQuote}
+                            width={168}
+                            height={144}
+                            left={709}
+                            top={498}
+                            contentTop={8}
+                            contentHeight={68.7}
+                            infoTop={113}
+                            infoLeft={6}
+                            delay={2}
+                            onHoverStart={() => setHoveredCard("vince")}
+                            onHoverEnd={() => setHoveredCard(null)}
+                            isHovered={hoveredCard === "vince"}
+                            isAnyHovered={!!hoveredCard}
+                        />
+
+                        {/* Remi Cadene */}
+                        <TestimonialCard
+                            name="Remi Cadene"
+                            avatarUrl={RemyAv}
+                            contentImageUrl={RemyQuote}
+                            width={168}
+                            height={115}
+                            left={504}
+                            top={446}
+                            contentTop={9}
+                            contentHeight={55}
+                            infoTop={84}
+                            delay={1.5}
+                            onHoverStart={() => setHoveredCard("remi")}
+                            onHoverEnd={() => setHoveredCard(null)}
+                            isHovered={hoveredCard === "remi"}
+                            isAnyHovered={!!hoveredCard}
+                        />
+
+                        {/* Partners Bar (Desktop) */}
+                        <PartnerTicker
+                            className="absolute"
+                            style={{
+                                width: "234px",
+                                height: "45px",
+                                left: "690px",
+                                top: "423px",
+                                zIndex: 20,
+                            }}
+                        />
+                    </div>
+
+                    {/* Mobile stays as-is for now */}
+                    <div className="lg:hidden flex flex-col relative pb-20">
+                        {TESTIMONIALS_DATA.map((item, index) => (
+                            <MobileTestimonialCard
+                                key={item.id}
+                                name={item.name}
+                                avatarUrl={item.avatar}
+                                contentImageUrl={item.content}
+                                isCustom={item.isCustom}
+                                index={index}
+                            />
+                        ))}
+
+                        {/* Partners Bar (Mobile) */}
+                        <div className="sticky top-[300px] mt-10 flex justify-center pb-10">
+                            <PartnerTicker className="w-[80vw] h-[50px] max-w-[300px]" />
+                        </div>
                     </div>
                 </div>
-
             </div>
         </section>
     );
