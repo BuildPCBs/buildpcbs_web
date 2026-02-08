@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // --- Visual Components (Meticulously recreated from Figma) ---
@@ -25,7 +25,6 @@ const MeticulousAnalytics = () => (
       position: 'absolute',
       width: '429.3px',
       height: '265.5px',
-
       left: '84.76px',
       top: '17.09px',
       background: '#FFFFFF',
@@ -220,9 +219,6 @@ const MetricDots = () => (
   </>
 );
 
-// --- Reuse other visuals for now to save space, assuming only the first was fully specified ---
-// (Actually the prompt implies replacing the whole section, but only gave specific details for the first visual)
-
 const VisualExport = () => (
   <div className="relative w-full h-full flex items-center justify-center bg-[#F9F9F9] rounded-2xl border border-gray-100">
     <div className="text-gray-400 text-sm">Visual: Export & Invite</div>
@@ -266,6 +262,17 @@ const WhySwitch = () => {
       label: "AI-powered prompt interpreter"
     }
   ];
+
+  useEffect(() => {
+    // Automatically switch to the next tab every 1 second (plus buffer for animation feel)
+    // User requested "1sec per bar" and "moves to next item when fully progressed"
+    // So the total duration per item is ~1000ms.
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % FEATURES.length);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [FEATURES.length]);
 
   return (
     <section className="w-full relative bg-white pb-24 overflow-hidden mt-32 md:mt-0">
@@ -360,16 +367,23 @@ const WhySwitch = () => {
                         position: 'relative',
                         overflow: 'hidden'
                       }}>
-                        {/* Frame 17 - The moving part */}
+                        {/* Frame 17 - The moving part with TIMED ANIMATION */}
                         <motion.div
                           style={{
-                            width: '139px',
                             height: '100%',
                             background: '#4A4A4A',
                             borderRadius: '99px',
-                            position: 'absolute'
+                            position: 'absolute',
+                            left: 0,
+                            top: 0
                           }}
                           layoutId="active-bar-indicator"
+                          initial={{ width: "0%" }}
+                          animate={{ width: "100%" }}
+                          transition={{
+                            duration: 1, // 1 second duration as requested
+                            ease: "linear"
+                          }}
                         />
                       </div>
                     )}
