@@ -177,7 +177,7 @@ const ElitesTestimonials = () => {
     const [hoveredCard, setHoveredCard] = useState<string | null>(null);
 
     return (
-        <section className="w-full bg-white relative py-20 px-4 overflow-hidden min-h-[700px] -mt-[200px]">
+        <section className="w-full bg-white relative py-20 px-4 overflow-hidden min-h-[700px] -mt-[400px]">
             {/* Backdrop Blur Overlay */}
             <AnimatePresence>
                 {hoveredCard && (
