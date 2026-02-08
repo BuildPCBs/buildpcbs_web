@@ -261,33 +261,36 @@ const ElitesTestimonials = () => {
     return (
         <section
             className="
-        w-full bg-white relative px-4 overflow-hidden min-h-[700px]
-        py-20 mt-[100px]
-        lg:py-[120px]           /* was py-20 -> gives you more controlled vertical rhythm */
+        w-full bg-white relative px-4 overflow-visible min-h-[500px]
+        py-16 mt-[-80px]
+        lg:py-[140px]
       "
         >
-            {/* Backdrop Blur Overlay */}
-            <AnimatePresence>
-                {hoveredCard && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 z-40 bg-white/30 backdrop-blur-sm pointer-events-none"
-                    />
-                )}
-            </AnimatePresence>
-
             {/* ✅ Desktop: create a stable "stage" and center it vertically */}
             <div
                 className="
           max-w-[1240px] mx-auto relative
-          lg:min-h-[760px]        /* stage height you can tweak */
+          lg:min-h-[600px]        /* Reduced stage height */
           lg:flex lg:items-center /* vertically centers the stage inside the section */
         "
             >
                 {/* ✅ Desktop: everything inside this gets shifted up slightly */}
-                <div className="w-full relative lg:-translate-y-10">
+                <div className="w-full relative lg:-translate-y-20">
+                    {/* Backdrop Blur Overlay - Moved here to share stacking context */}
+                    <AnimatePresence>
+                        {hoveredCard && (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="absolute inset-0 z-40 bg-white/30 backdrop-blur-sm pointer-events-none rounded-xl"
+                                style={{
+                                    padding: '200px', margin: '-200px'
+                                }}
+                            />
+                        )}
+                    </AnimatePresence>
+
                     {/* Left Text Section */}
                     <div className="relative z-10 lg:absolute lg:top-[352px] lg:left-[94px] lg:w-[315px] flex flex-col gap-5 mb-12 lg:mb-0">
                         <h2 className="font-['DM_Sans'] font-light text-[36px] leading-[150%] tracking-[-0.01em] text-[#4F4F4F]">
@@ -333,12 +336,12 @@ const ElitesTestimonials = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             animate={{
                                 scale: hoveredCard === "paul" ? 2 : 1,
-                                filter:
-                                    (hoveredCard && hoveredCard !== "paul")
-                                        ? "blur(2px) brightness(0.8)"
-                                        : "none",
+                                filter: (hoveredCard && hoveredCard !== "paul") ? "blur(2px) brightness(0.8)" : "none",
                             }}
-                            transition={{ duration: 0.3, ease: "easeOut" }}
+                            transition={{
+                                duration: 0.3,
+                                ease: "easeOut",
+                            }}
                             viewport={{ once: true }}
                             onMouseEnter={() => setHoveredCard("paul")}
                             onMouseLeave={() => setHoveredCard(null)}
@@ -402,7 +405,7 @@ const ElitesTestimonials = () => {
                         />
                     </div>
 
-                    {/* Mobile stays as-is for now */}
+                    {/* Mobile Cards (Stacked Sticky Scroll) */}
                     <div className="lg:hidden flex flex-col relative pb-20">
                         {TESTIMONIALS_DATA.map((item, index) => (
                             <MobileTestimonialCard
@@ -420,6 +423,7 @@ const ElitesTestimonials = () => {
                             <PartnerTicker className="w-[80vw] h-[50px] max-w-[300px]" />
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
