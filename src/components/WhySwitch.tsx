@@ -25,16 +25,7 @@ const MeticulousAnalytics = () => (
       position: 'absolute',
       width: '429.3px',
       height: '265.5px',
-      left: '35px', // calc(50% - 429.3px/2 + 6.41px) relative to something, let's approx relative to 586? No, likely relative to previous frame or group. 
-      // The prompt says `left: calc(50% - 429.3px/2 + 6.41px)` which implies centering. 
-      // But absolute coordinates in prompt were likely global or relative to a 586px frame.
-      // Let's stick to the prompt's `left` values assuming they are all relative to the Frame 1000015282 (586x486).
-      // Actually, prompt says `left: 7px` for the bg card. 
-      // Let's assume the root is the 586x486 box.
-      // Re-calculating center: (586 - 429.3)/2 = 78.35. + 6.41 = 84.76px.
-      // The prompt says `left: calc(50% - 429.3px/2 + 6.41px); top: 17.09px;`.
-      // Wait, "Frame 1000015282" is 586px wide.
-      // So left = 586/2 - 214.65 + 6.41 = 293 - 214.65 + 6.41 = 84.76px.
+
       left: '84.76px',
       top: '17.09px',
       background: '#FFFFFF',
@@ -290,7 +281,6 @@ const WhySwitch = () => {
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
           backgroundClip: 'text',
-          textFillColor: 'transparent',
           textAlign: 'center',
           width: '1140px',
           height: '285px',
@@ -380,9 +370,6 @@ const WhySwitch = () => {
                             position: 'absolute'
                           }}
                           layoutId="active-bar-indicator"
-                          {/* Optional animation if desired, but Figma just shows a static bar in the Frame.
-                                                        Prompt implies the layout, but usually these bars animate over time or just sit there.
-                                                        I will keep it static or minimal entry animation. */}
                         />
                       </div>
                     )}
