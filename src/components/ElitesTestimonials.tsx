@@ -51,7 +51,7 @@ const TESTIMONIALS_DATA = [
 
 const PartnerTicker = ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
     <motion.div
-        className={`bg-[#F1F1F1] border-[0.2px] border-[#EDECEC] rounded-full overflow-hidden flex items-center ${className}`}
+        className={`bg-[#F1F1F1] dark:bg-neutral-800 border-[0.2px] border-[#EDECEC] dark:border-neutral-700 rounded-full overflow-hidden flex items-center ${className}`}
         style={style}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -66,14 +66,22 @@ const PartnerTicker = ({ className, style }: { className?: string, style?: React
             >
                 {[...Array(2)].map((_, setIndex) => (
                     <React.Fragment key={setIndex}>
-                        <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
-                            <Image src={MITSvg} alt="MIT" fill className="object-contain" />
+                        <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0 invert dark:invert-0">
+                            {/* Inverted for light mode if they are white? No, logos usually need standard handling. 
+                                SVGs might be black by default? If grayscale, they are gray.
+                                Check bg color. Ticker bg is light/dark. Logos need to contrast.
+                                If logos are black: visible on light, invisible on dark.
+                                I'll add dark:invert if they are black logos.
+                                Assuming standard logos.
+                             */}
+                            {/* Actually, existing code had grayscale. I'll just add dark support if needed, but let's stick to container styles first. */}
+                            <Image src={MITSvg} alt="MIT" fill className="object-contain dark:brightness-200" />
                         </div>
                         <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
-                            <Image src={FigureSvg} alt="Figure" fill className="object-contain" />
+                            <Image src={FigureSvg} alt="Figure" fill className="object-contain dark:brightness-200" />
                         </div>
                         <div className="relative w-12 h-6 opacity-100 hover:opacity-100 transition-opacity flex-shrink-0">
-                            <Image src={ZTESvg} alt="ZTE" fill className="object-contain" />
+                            <Image src={ZTESvg} alt="ZTE" fill className="object-contain dark:brightness-200" />
                         </div>
                     </React.Fragment>
                 ))}
@@ -126,7 +134,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
     return (
         <motion.div
-            className="absolute bg-[#F1F1F1] border-[0.2px] border-[#DCDBDB] rounded-lg box-border hidden lg:block cursor-pointer"
+            className="absolute bg-[#F1F1F1] dark:bg-neutral-800 border-[0.2px] border-[#DCDBDB] dark:border-neutral-700 rounded-lg box-border hidden lg:block cursor-pointer"
             style={{
                 width: `${width}px`,
                 height: `${height}px`,
@@ -141,7 +149,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 filter: (isAnyHovered && !isHovered) ? "blur(2px) brightness(0.8)" : "none",
             }}
             transition={{
-                duration: 0.3, // Faster for hover
+                duration: 0.3,
                 ease: "easeOut",
             }}
             viewport={{ once: true }}
@@ -153,8 +161,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 <div
                     className="absolute bg-white rounded-md overflow-hidden"
                     style={{
-                        left: '7px', // Consistent across most cards
-                        width: `${width - 14}px`, // 168 - 14 = 154 (approx 153/154)
+                        left: '7px',
+                        width: `${width - 14}px`,
                         top: `${contentTop}px`,
                         height: `${contentHeight}px`
                     }}
@@ -163,8 +171,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                         src={contentImageUrl}
                         alt="Testimonial content"
                         className="w-full h-full object-cover"
-                        fill={false} // Using simplistic style for now to match structure
-                        style={{ objectFit: 'contain' }} // Quotes might text, contain ensures visibility
+                        fill={false}
+                        style={{ objectFit: 'contain' }}
                     />
                 </div>
             )}
@@ -180,7 +188,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 }}
             >
                 {/* Avatar */}
-                <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden bg-white border border-[#EDECEC] shrink-0">
+                <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600 shrink-0">
                     <Image
                         src={avatarUrl}
                         alt={name}
@@ -192,7 +200,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
                 {/* Text Group */}
                 <div className="flex flex-col gap-[1px]">
-                    <span className="font-['DM_Sans'] text-[8px] font-normal text-[#4F4F4F] leading-none whitespace-nowrap">
+                    <span className="font-['DM_Sans'] text-[8px] font-normal text-[#4F4F4F] dark:text-gray-200 leading-none whitespace-nowrap">
                         {name}
                     </span>
                     {/* Badge */}
@@ -219,12 +227,12 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) => {
     return (
         <div
-            className="relative w-full aspect-square rounded-[12px] bg-[#F1F1F1] border border-[#DCDBDB] overflow-hidden"
+            className="relative w-full aspect-square rounded-[12px] bg-[#F1F1F1] dark:bg-neutral-800 border border-[#DCDBDB] dark:border-neutral-700 overflow-hidden"
             style={{ transformOrigin: "bottom center" }}
         >
             {/* Quote Content */}
             {item.content && (
-                <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white rounded-[8px] overflow-hidden border border-[#EDECEC]">
+                <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white rounded-[8px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600">
                     <Image
                         src={item.content}
                         alt="Quote"
@@ -236,12 +244,12 @@ const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) 
 
             {/* User Info */}
             <div className="absolute bottom-[20px] left-[14px] flex items-center gap-3">
-                <div className="relative w-[32px] h-[32px] rounded-full overflow-hidden bg-white border border-[#EDECEC]">
+                <div className="relative w-[32px] h-[32px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600">
                     {item.avatar && (
                         <Image src={item.avatar} alt={item.name} fill className="object-cover" />
                     )}
                 </div>
-                <span className="font-['DM_Sans'] text-[14px] leading-tight text-[#4F4F4F]">
+                <span className="font-['DM_Sans'] text-[14px] leading-tight text-[#4F4F4F] dark:text-gray-200">
                     {item.name}
                 </span>
             </div>
@@ -328,7 +336,7 @@ function ElitesMobileStack() {
     };
 
     return (
-        <section ref={sectionRef as any} className="lg:hidden w-full bg-white relative">
+        <section ref={sectionRef as any} className="lg:hidden w-full bg-white dark:bg-black relative">
             <div ref={pinRef} className="relative h-[100vh] overflow-hidden px-[13px]">
                 <div className="mx-auto w-full max-w-[375px] h-full pt-[70px]">
                     <div className="flex gap-[12px]">
@@ -346,7 +354,9 @@ function ElitesMobileStack() {
                                             <span
                                                 className={[
                                                     "font-['DM_Sans'] text-[14px] leading-[140%] tracking-[-0.005em]",
-                                                    i === active ? "text-[#4F4F4F]" : "text-[#888888]",
+                                                    i === active
+                                                        ? "text-[#4F4F4F] dark:text-gray-100"
+                                                        : "text-[#888888] dark:text-gray-500",
                                                 ].join(" ")}
                                             >
                                                 {f.name}
@@ -355,7 +365,9 @@ function ElitesMobileStack() {
                                             <span
                                                 className={[
                                                     "h-[1px] w-[9px] transition-opacity shrink-0 mt-2",
-                                                    i === active ? "opacity-100 bg-[#4F4F4F]" : "opacity-0 bg-[#888888]",
+                                                    i === active
+                                                        ? "opacity-100 bg-[#4F4F4F] dark:bg-gray-100"
+                                                        : "opacity-0 bg-[#888888] dark:bg-gray-500",
                                                 ].join(" ")}
                                             />
                                         </div>
@@ -407,7 +419,7 @@ const ElitesTestimonials = () => {
             <section
                 className="
                     hidden lg:block
-                    w-full bg-white relative px-4 overflow-visible min-h-[500px]
+                    w-full bg-white dark:bg-black relative px-4 overflow-visible min-h-[500px]
                     py-16 mt-[-80px]
                     lg:py-[140px]
                 "
@@ -429,7 +441,7 @@ const ElitesTestimonials = () => {
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
-                                    className="absolute inset-0 z-40 bg-white/30 backdrop-blur-sm pointer-events-none rounded-xl"
+                                    className="absolute inset-0 z-40 bg-white/30 dark:bg-black/30 backdrop-blur-sm pointer-events-none rounded-xl"
                                     style={{
                                         padding: '200px', margin: '-200px'
                                     }}
@@ -439,10 +451,10 @@ const ElitesTestimonials = () => {
 
                         {/* Left Text Section */}
                         <div className="relative z-10 lg:absolute lg:top-[352px] lg:left-[94px] lg:w-[315px] flex flex-col gap-5 mb-12 lg:mb-0">
-                            <h2 className="font-['DM_Sans'] font-light text-[36px] leading-[150%] tracking-[-0.01em] text-[#4F4F4F]">
+                            <h2 className="font-['DM_Sans'] font-light text-[36px] leading-[150%] tracking-[-0.01em] text-[#4F4F4F] dark:text-white">
                                 Words from elites
                             </h2>
-                            <p className="font-['DM_Sans'] font-normal text-[14px] leading-[150%] tracking-[-0.005em] text-[#777777]">
+                            <p className="font-['DM_Sans'] font-normal text-[14px] leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-400">
                                 Industry leaders and everyone’s mentor have given us directives from early.
                             </p>
                         </div>
