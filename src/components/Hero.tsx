@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
-import DynamicText from "@/components/kokonutui/dynamic-text";
 
 interface HeroProps {
   onJoinWaitlist?: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
-  const buttonText = "Join Waitlist";
+  const [copied, setCopied] = useState(false);
+  const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(contractAddress);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const buttonText = copied ? "Copied!" : "Copy CA";
 
   return (
-    <section className="w-full h-screen flex flex-col justify-end pb-[30vh]">
+    <section className="w-full h-screen flex flex-col justify-end pb-[20vh]">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Left Column */}
         <div className="flex flex-col gap-6 md:gap-8">
@@ -28,14 +36,12 @@ const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
               </span>
             </a>
           </div>
-          <DynamicText
-            className="w-full max-w-[500px] whitespace-pre-line"
-            interval={3000}
-            staticPrefix=""
-            staticSuffix=" pcbs with text"
-            dynamicTexts={["Design", "Validate", "Build"]}
-            dynamicClassName="font-bold bg-clip-text !text-transparent bg-gradient-to-r from-[#0038DF] to-[#001E79]"
-          />
+          <h1 className="text-[32px] md:text-[48px] leading-[1.1] font-bold tracking-[-0.02em] text-[#111111] dark:text-white max-w-[600px]">
+            Text-to-Hardware. <br />
+            <span className="text-[#777777] dark:text-gray-400">
+              Design, Mint, and Manufacture.
+            </span>
+          </h1>
         </div>
 
         {/* Right Column */}
@@ -46,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
             }
           </p>
           <motion.button
-            onClick={onJoinWaitlist}
+            onClick={handleCopy}
             initial="initial"
             whileHover="hovered"
             className="hidden md:flex items-center justify-center w-[157px] h-[50px] rounded-full text-white font-medium bg-gradient-to-r from-[#0038DF] to-[#001E79] hover:opacity-90 transition-opacity overflow-hidden"

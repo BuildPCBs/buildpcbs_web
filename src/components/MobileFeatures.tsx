@@ -22,7 +22,8 @@ const Icon1 = ({ isActive }: { isActive: boolean }) => (
       width="222"
       height="221"
       rx="12"
-      fill={isActive ? "url(#grad1_active)" : "white"}
+      fill={isActive ? "url(#grad1_active)" : undefined}
+      className={isActive ? "" : "fill-white dark:fill-neutral-900"}
       stroke={isActive ? "#F5F5F5" : "rgba(0, 56, 223, 0.54)"}
       strokeWidth={isActive ? "1" : "0.5"}
     />
@@ -60,7 +61,8 @@ const Icon1 = ({ isActive }: { isActive: boolean }) => (
       />
       <path
         d="M98.8186 100.951L69.0722 124.65L49.5706 140.187C48.4734 141.051 47.1294 141.243 45.5386 140.777C43.934 140.311 42.398 139.255 40.8894 137.582C39.3946 135.923 38.2289 134.017 37.3786 131.863C36.5283 129.71 36.199 127.722 36.4047 125.898L41.191 90.7069L22.6357 79.996C20.2357 78.6109 18.4665 76.348 17.3283 73.2349C16.1763 70.108 16.2996 67.804 17.6985 66.3229L62.4482 18.3091C62.695 18.0486 62.9556 17.8429 63.2436 17.6646L63.3397 17.6097L63.751 17.4177C64.4916 17.0886 65.3557 17.0337 66.3432 17.212C67.934 17.5 69.5796 18.4737 71.2802 20.1469C72.0207 20.8737 72.6654 21.6417 73.2277 22.4646C73.9683 23.5206 74.5717 24.6726 75.0243 25.9069C75.8197 28.0874 76.1213 30.0897 75.9156 31.9274L71.1293 73.6326L94.3203 87.0314C96.9123 88.5263 98.7363 90.8989 99.7923 94.1354C100.835 97.372 100.505 99.6486 98.8186 100.951Z"
-        fill={isActive ? "white" : "#FFFFFF"}
+        fill={isActive ? "white" : undefined}
+        className={isActive ? "" : "fill-white dark:fill-neutral-900"}
         stroke="#229EFF"
         strokeWidth="1.37143"
         strokeLinecap="round"
@@ -92,7 +94,8 @@ const Icon2 = ({ isActive }: { isActive: boolean }) => (
       width="222"
       height="221"
       rx="12"
-      fill={isActive ? "url(#grad2_active)" : "white"}
+      fill={isActive ? "url(#grad2_active)" : undefined}
+      className={isActive ? "" : "fill-white dark:fill-neutral-900"}
       stroke={isActive ? "#F5F5F5" : "rgba(0, 56, 223, 0.54)"}
       strokeWidth={isActive ? "1" : "0.5"}
     />
@@ -114,6 +117,7 @@ const Icon2 = ({ isActive }: { isActive: boolean }) => (
       <path
         d="M141.217 65.3882V89.5082C141.205 89.9522 141.145 90.3722 141.025 90.8162C140.545 92.5562 139.225 94.0562 137.041 95.3042L112.332 109.572C100.14 116.616 85.2363 121.176 67.6323 123.24C50.0283 125.304 33.3362 124.044 17.5802 119.472C16.8842 119.268 16.2242 119.04 15.6122 118.788C15.0002 118.536 14.3763 118.236 13.7643 117.876C13.1523 117.516 12.6242 117.168 12.1922 116.808C11.7482 116.46 11.3523 116.076 11.0043 115.68C5.54425 109.404 2.82031 102.888 2.82031 96.1082V72.1082C2.82031 76.1042 3.7683 80.0042 5.6643 83.8202C6.9843 86.4842 8.76025 89.1002 11.0043 91.6802C11.3523 92.0762 11.7482 92.4602 12.1922 92.8082C12.6242 93.1682 13.1523 93.5162 13.7643 93.8762C14.3763 94.2362 15.0002 94.5362 15.6122 94.7882C16.2242 95.0402 16.8842 95.2683 17.5802 95.4723C33.3362 100.044 50.0283 101.304 67.6323 99.2402C74.6163 98.4242 81.1922 97.2122 87.3362 95.5922C92.0762 94.3562 96.5762 92.8802 100.812 91.1642C104.892 89.5202 108.732 87.6602 112.332 85.5722L131.125 74.7242L137.041 71.3042C139.225 70.0562 140.545 68.5562 141.025 66.8162C141.157 66.3362 141.217 65.8682 141.217 65.3882Z"
         fill={isActive ? "white" : "#292D32"}
+        className={isActive ? "" : "dark:fill-gray-300"}
         stroke={isActive ? "white" : "#0038DF"}
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -149,7 +153,8 @@ const Icon3 = ({ isActive }: { isActive: boolean }) => (
       width="222"
       height="221"
       rx="12"
-      fill={isActive ? "url(#grad3_active)" : "white"}
+      fill={isActive ? "url(#grad3_active)" : undefined}
+      className={isActive ? "" : "fill-white dark:fill-neutral-900"}
       stroke={isActive ? "#F5F5F5" : "rgba(0, 56, 223, 0.54)"}
       strokeWidth={isActive ? "1" : "0.5"}
     />
@@ -169,7 +174,8 @@ const Icon3 = ({ isActive }: { isActive: boolean }) => (
     <g transform="translate(41 44)">
       <path
         d="M140.216 46.4015C140.216 47.2967 140.099 48.1918 139.853 49.1129C139.606 50.034 139.205 50.9938 138.622 52.0057L117.722 88.1484C116.567 90.1592 115.205 91.6122 113.661 92.4944C112.104 93.3895 110.755 93.5063 109.588 92.8446C108.42 92.183 107.836 90.9246 107.836 89.0954C107.836 87.2663 108.42 85.3333 109.575 83.3225L120.459 64.4987L89.1033 82.596L48.6667 105.947L59.5898 112.187C60.6536 112.901 61.2114 114.172 61.2633 115.976C61.3152 117.792 60.7574 119.699 59.6028 121.71C58.4352 123.72 57.0859 125.16 55.5292 126.055C53.9854 126.951 52.6233 127.067 51.4558 126.406L30.5045 114.419C29.9856 114.133 29.6093 113.718 29.3758 113.186C29.3368 113.122 29.2978 113.044 29.2719 112.966C29.0254 112.33 28.9085 111.565 28.8955 110.67C28.8955 109.774 29.0254 108.866 29.2589 107.945C29.5054 107.037 29.9208 106.064 30.4916 105.065L33.7994 99.3441L44.8783 80.183L51.3908 68.9226C52.5583 66.9118 53.9078 65.4588 55.4516 64.5637C56.8397 63.7594 58.0719 63.5907 59.1486 64.0448L59.5248 64.2264C60.6924 64.888 61.2763 66.1464 61.2763 67.9756C61.2763 68.9615 61.1075 69.9603 60.7832 70.9981C60.4978 71.8933 60.0828 72.8144 59.5379 73.7484L48.6537 92.5722L82.3964 73.0868L98.2883 63.915L120.446 51.1237L109.536 44.8836C109.536 44.8836 109.419 44.8058 109.367 44.754C108.407 44.0275 107.901 42.8079 107.849 41.0954C107.797 39.2792 108.355 37.3723 109.523 35.3615C110.677 33.3507 112.039 31.8977 113.583 31.0026C113.648 30.9637 113.726 30.9246 113.791 30.8987C115.257 30.0944 116.541 30.0296 117.657 30.6653L138.609 42.6394C139.193 42.9767 139.606 43.4696 139.853 44.1053C140.086 44.741 140.216 45.5064 140.216 46.4015Z"
-        fill={isActive ? "white" : "#FFFFFF"}
+        fill={isActive ? "white" : undefined}
+        className={isActive ? "" : "fill-white dark:fill-neutral-900"}
         stroke={isActive ? "white" : "#0038DF"}
         strokeWidth="0.648649"
         strokeLinecap="round"
@@ -193,7 +199,8 @@ const Icon4 = ({ isActive }: { isActive: boolean }) => (
       width="222"
       height="221"
       rx="12"
-      fill={isActive ? "url(#grad4_active)" : "white"}
+      fill={isActive ? "url(#grad4_active)" : undefined}
+      className={isActive ? "" : "fill-white dark:fill-neutral-900"}
       stroke={isActive ? "#F5F5F5" : "rgba(0, 56, 223, 0.54)"}
       strokeWidth={isActive ? "1" : "0.5"}
     />
@@ -213,7 +220,8 @@ const Icon4 = ({ isActive }: { isActive: boolean }) => (
     <g transform="translate(41 44)">
       <path
         d="M80.6943 64.3246V65.7375C80.8438 65.7239 80.9796 65.7103 81.1155 65.6831C80.8438 65.262 80.6943 64.8001 80.6943 64.3246ZM120.539 53.1035C120.552 53.2122 120.552 53.3345 120.552 53.4431V53.1171C120.552 53.1171 120.552 53.1035 120.539 53.1035Z"
-        fill={isActive ? "white" : "#FFFFFF"}
+        fill={isActive ? "white" : undefined}
+        className={isActive ? "" : "fill-white dark:fill-neutral-900"}
         stroke={isActive ? "white" : "#0038DF"}
         strokeWidth="1.35849"
         strokeLinecap="round"
@@ -324,10 +332,10 @@ const MobileFeatures = () => {
   return (
     <div
       ref={sectionRef}
-      className="block md:hidden bg-white pb-20 font-['DM_Sans'] h-screen flex flex-col overflow-hidden"
+      className="block md:hidden bg-white dark:bg-black pb-20 font-['DM_Sans'] h-screen flex flex-col overflow-hidden"
     >
       {/* Sticky Header - Pinned by logic, but physically inside the pinned container */}
-      <div className="w-full bg-white/95 backdrop-blur-md pt-4 pb-2 px-2 shadow-sm border-b border-gray-100 z-50">
+      <div className="w-full bg-white/95 dark:bg-black/95 backdrop-blur-md pt-4 pb-2 px-2 shadow-sm border-b border-gray-100 dark:border-neutral-800 z-50">
         <div className="flex justify-between items-start w-full px-2">
           {features.map((f, i) => (
             <div key={i} className="flex flex-col items-center gap-1.5 w-[23%]">
@@ -340,7 +348,7 @@ const MobileFeatures = () => {
                 {f.title}
               </span>
               {/* Loading Bar Track */}
-              <div className="w-full h-[2px] bg-gray-100 rounded-full overflow-hidden">
+              <div className="w-full h-[2px] bg-gray-100 dark:bg-neutral-800 rounded-full overflow-hidden">
                 <div
                   className={`h-full bg-[#0038DF] transition-all duration-300 ${activeIndex === i ? "w-full" : "w-0"}`}
                 />

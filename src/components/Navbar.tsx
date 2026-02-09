@@ -88,17 +88,20 @@ const Navbar = () => {
             maxWidth: "90%",
             borderRadius: "9999px",
             padding: "10px 24px",
-            backgroundColor: "rgba(255, 255, 255, 0.8)", // Glass effect
-            borderColor: "rgba(220, 220, 220, 0.5)",
-            boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)",
+            backgroundColor: "var(--navbar-bg)",
+            borderColor: "var(--navbar-border)",
+            boxShadow: "var(--navbar-shadow)",
             backdropFilter: "blur(12px)",
-            WebkitBackdropFilter: "blur(12px)",
           }}
+          style={{ WebkitBackdropFilter: "blur(12px)" }}
           className="pointer-events-auto flex items-center justify-between gap-8 box-border border"
         >
           {/* Left: Logo (Always Visible) */}
           <div className="flex-shrink-0 flex items-center mr-5">
-            <Link href="/" className="flex items-center gap-[5px] whitespace-nowrap">
+            <Link
+              href="/"
+              className="flex items-center gap-[5px] whitespace-nowrap"
+            >
               <Image
                 src="/logo.png"
                 alt="buildpcbs logo"
@@ -335,7 +338,6 @@ const Navbar = () => {
               </svg>
             </button>
           </div>
-
         </motion.nav>
       </div>
 

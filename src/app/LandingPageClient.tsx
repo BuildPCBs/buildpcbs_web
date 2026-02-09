@@ -17,9 +17,10 @@ const LandingPageClient = () => {
 
   return (
     <>
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: "relative", overflow: "hidden" }}>
         <DecorativeCircles />
         <Hero onJoinWaitlist={openWaitlist} />
+        <div className="absolute bottom-0 left-0 w-full h-[300px] bg-gradient-to-t from-white via-white/80 to-transparent dark:from-black dark:via-black/80 dark:to-transparent z-10 pointer-events-none" />
       </div>
       <ElitesTestimonials />
       <Features />
