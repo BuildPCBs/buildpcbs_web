@@ -8,11 +8,14 @@ import RemyAv from "@/assets/Remy Av.png";
 import RemyQuote from "@/assets/Remy Quote.png";
 import VinceAv from "@/assets/Vince Av.png";
 import VinceQuote from "@/assets/Vince Quote.png";
+import PaulAv from "@/assets/Paul Graham's Av.png";
+import PaulQuote from "@/assets/Paul Graham's Quote.png";
 import FigureSvg from "@/assets/Figure Svg.svg";
 import MITSvg from "@/assets/MIT SVG.svg";
 import ZTESvg from "@/assets/ZTE Svg.svg";
 
 const TESTIMONIALS_DATA = [
+<<<<<<< HEAD
   {
     id: "eric",
     name: "Eric Migicovsky",
@@ -41,6 +44,36 @@ const TESTIMONIALS_DATA = [
     content: RemyQuote,
     isCustom: false,
   },
+=======
+    {
+        id: "eric",
+        name: "Eric Migicovsky",
+        avatar: EricAv,
+        content: EricQuote,
+        isCustom: false
+    },
+    {
+        id: "paul",
+        name: "Paul Graham",
+        avatar: PaulAv,
+        content: PaulQuote,
+        isCustom: false
+    },
+    {
+        id: "vince",
+        name: "Vincent Himpe",
+        avatar: VinceAv,
+        content: VinceQuote,
+        isCustom: false
+    },
+    {
+        id: "remi",
+        name: "Remi Cadene",
+        avatar: RemyAv,
+        content: RemyQuote,
+        isCustom: false
+    }
+>>>>>>> dbf21f1 (feat: Add Paul Graham testimonial assets and enable standard card layout)
 ];
 
 const PartnerTicker = ({
@@ -222,6 +255,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 
 // Simplified card for mobile (stacked) with no animations for performance
 // Sticky card for mobile (stacked) with animations
+<<<<<<< HEAD
 const MobileTestimonialCard = ({
   name,
   avatarUrl,
@@ -287,6 +321,51 @@ const MobileTestimonialCard = ({
       )}
     </motion.div>
   );
+=======
+const MobileTestimonialCard = ({ name, avatarUrl, contentImageUrl, isCustom, index }: any) => {
+    return (
+        <motion.div
+            className="sticky w-full max-w-sm mx-auto bg-[#F1F1F1] border border-[#DCDBDB] rounded-lg p-3 box-border shadow-sm mb-24"
+            style={{
+                top: `${100 + index * 10}px`,
+                zIndex: index + 10
+            }}
+            initial={{ scale: 0.8, opacity: 0, y: 50 }}
+            whileInView={{ scale: 1, opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-10%" }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+        >
+            {isCustom ? (
+                // Paul Graham Custom Layout Mobile (Fallback if still somehow custom, but should be false now)
+                <div className="flex flex-col gap-4 p-2 min-h-[120px] justify-end relative">
+                    <div className="bg-white border-[0.3px] border-[#EDECEC] rounded-lg p-2 absolute top-2 left-2 right-2 bottom-12" />
+                    <div className="relative z-10 mt-auto">
+                        <div className="w-[38px] h-[34px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg mb-2"></div>
+                        <p className="font-['DM_Sans'] text-[12px] text-[#4F4F4F]">Paul Graham</p>
+                        <div className="w-[61px] h-[14px] bg-white border-[0.3px] border-[#EDECEC] rounded-lg mt-1"></div>
+                    </div>
+                </div>
+            ) : (
+                // Standard Card
+                <>
+                    <div className="flex items-center gap-2 mb-2">
+                        <div className="w-8 h-8 rounded-full bg-white overflow-hidden border border-gray-300 relative shrink-0">
+                            {avatarUrl && <Image src={avatarUrl} alt={name} fill className="object-cover" />}
+                        </div>
+                        <div>
+                            <p className="text-xs font-semibold text-gray-700">{name}</p>
+                        </div>
+                    </div>
+                    {contentImageUrl && (
+                        <div className="w-full h-32 bg-white rounded border border-gray-200 overflow-hidden relative">
+                            <Image src={contentImageUrl} alt="Content" fill className="object-contain" />
+                        </div>
+                    )}
+                </>
+            )}
+        </motion.div>
+    );
+>>>>>>> dbf21f1 (feat: Add Paul Graham testimonial assets and enable standard card layout)
 };
 
 const ElitesTestimonials = () => {
@@ -431,6 +510,7 @@ const ElitesTestimonials = () => {
               isAnyHovered={!!hoveredCard}
             />
 
+<<<<<<< HEAD
             {/* Partners Bar (Desktop) */}
             <PartnerTicker
               className="absolute"
@@ -443,6 +523,27 @@ const ElitesTestimonials = () => {
               }}
             />
           </div>
+=======
+                        {/* Paul Graham */}
+                        <TestimonialCard
+                            name="Paul Graham"
+                            avatarUrl={PaulAv}
+                            contentImageUrl={PaulQuote}
+                            width={199.5}
+                            height={234}
+                            left={731}
+                            top={166}
+                            contentTop={8}
+                            contentHeight={176}
+                            infoTop={195}
+                            infoLeft={5}
+                            delay={1}
+                            onHoverStart={() => setHoveredCard("paul")}
+                            onHoverEnd={() => setHoveredCard(null)}
+                            isHovered={hoveredCard === "paul"}
+                            isAnyHovered={!!hoveredCard}
+                        />
+>>>>>>> dbf21f1 (feat: Add Paul Graham testimonial assets and enable standard card layout)
 
           {/* Mobile Cards (Stacked Sticky Scroll) */}
           <div className="lg:hidden flex flex-col relative pb-20">
