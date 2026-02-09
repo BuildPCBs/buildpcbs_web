@@ -5,7 +5,6 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import EricAv from "@/assets/Eric Av.png";
-// Quotes converted to text, images removed
 import RemyAv from "@/assets/Remy Av.png";
 import VinceAv from "@/assets/Vince Av.png";
 import PaulAv from "@/assets/Paul Graham's Av.png";
@@ -20,22 +19,23 @@ const TESTIMONIALS_DATA = [
         id: "eric",
         name: "Eric Migicovsky",
         avatar: EricAv,
-        // Placeholder text - User to replace with actual quote content
-        content: "I wish I had this when I started Pebble. It would have saved us months of iteration.",
+        // Short email style
+        content: "I wish I had this when I started Pebble. It would have saved us months of iteration.\n\n- Eric",
         isCustom: false
     },
     {
         id: "paul",
         name: "Paul Graham",
         avatar: PaulAv,
-        content: "Hardware is hard. But with tools like this, it's becoming as accessible as software. This is the future of manufacturing.",
+        // Longer email style
+        content: "Subject: Re: BuildPCBs\n\nHardware is hard. But with tools like this, it's becoming as accessible as software.\n\nThis is strictly the future of manufacturing.\n\n- PG",
         isCustom: false
     },
     {
         id: "vince",
         name: "Vincent Himpe",
         avatar: VinceAv,
-        content: "The layout generation is incredible. It respects all the design rules I typically check manually.",
+        content: "The layout generation is incredible. It respects all the design rules I typically check manually.\n\nCheers,\nVincent",
         isCustom: false
     },
     {
@@ -146,9 +146,9 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             onMouseEnter={onHoverStart}
             onMouseLeave={onHoverEnd}
         >
-            {/* Content Text Area (Top) */}
+            {/* Content Text Area (Top - Styled as Email Body) */}
             <div
-                className="absolute bg-white dark:bg-neutral-900 rounded-md overflow-hidden p-3 flex items-start"
+                className="absolute bg-white dark:bg-neutral-900 rounded-md overflow-hidden p-3 flex flex-col items-start"
                 style={{
                     left: '7px',
                     width: `${width - 14}px`,
@@ -156,7 +156,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                     height: `${contentHeight}px`
                 }}
             >
-                <p className="font-['DM_Sans'] text-[11px] leading-[1.4] text-[#111111] dark:text-gray-100 line-clamp-4">
+                {/* Use font-sans (Arial-like) for Gmail vibe, and small text */}
+                <p className="font-sans text-[12px] leading-[1.35] text-gray-900 dark:text-gray-200 whitespace-pre-wrap w-full">
                     {content}
                 </p>
             </div>
@@ -214,10 +215,10 @@ const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) 
             className="relative w-full aspect-square rounded-[12px] bg-[#F1F1F1] dark:bg-neutral-800 border border-[#DCDBDB] dark:border-neutral-700 overflow-hidden"
             style={{ transformOrigin: "bottom center" }}
         >
-            {/* Quote Content */}
+            {/* Quote Content (Email Style) */}
             <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white dark:bg-neutral-900 rounded-[8px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600 p-4">
-                <p className="font-['DM_Sans'] text-[14px] leading-[1.5] text-[#111111] dark:text-gray-100">
-                    "{item.content}"
+                <p className="font-sans text-[13px] leading-[1.4] text-gray-900 dark:text-gray-200 whitespace-pre-wrap">
+                    {item.content}
                 </p>
             </div>
 
@@ -444,7 +445,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Eric Migicovsky"
                                 avatarUrl={EricAv}
-                                content="I wish I had this when I started Pebble. It would have saved us months of iteration."
+                                content={"I wish I had this when I started Pebble. It would have saved us months of iteration.\n\n- Eric"}
                                 width={168}
                                 height={129}
                                 left={539}
@@ -463,7 +464,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Paul Graham"
                                 avatarUrl={PaulAv}
-                                content="Hardware is hard. But with tools like this, it's becoming as accessible as software. This is the future of manufacturing."
+                                content={"Subject: Re: BuildPCBs\n\nHardware is hard. But with tools like this, it's becoming as accessible as software.\n\nThis is strictly the future of manufacturing.\n\n- PG"}
                                 width={199.5}
                                 height={234}
                                 left={731}
@@ -483,7 +484,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Vincent Himpe"
                                 avatarUrl={VinceAv}
-                                content="The layout generation is incredible. It respects all the design rules I typically check manually."
+                                content={"The layout generation is incredible. It respects all the design rules I typically check manually.\n\nCheers,\nVincent"}
                                 width={168}
                                 height={144}
                                 left={709}
@@ -503,7 +504,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Remi Cadene"
                                 avatarUrl={RemyAv}
-                                content="Finally, an AI that understands electronics engineering. This accelerates our prototyping cycle significantly."
+                                content={"Finally, an AI that understands electronics engineering. This accelerates our prototyping cycle significantly."}
                                 width={168}
                                 height={115}
                                 left={504}
