@@ -5,13 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import EricAv from "@/assets/Eric Av.png";
-import EricQuote from "@/assets/Eric Quote.png";
+// Quotes converted to text, images removed
 import RemyAv from "@/assets/Remy Av.png";
-import RemyQuote from "@/assets/Remy Quote.png";
 import VinceAv from "@/assets/Vince Av.png";
-import VinceQuote from "@/assets/Vince Quote.png";
 import PaulAv from "@/assets/Paul Graham's Av.png";
-import PaulQuote from "@/assets/Paul Graham's Quote.png";
 import FigureSvg from "@/assets/Figure Svg.svg";
 import MITSvg from "@/assets/MIT SVG.svg";
 import ZTESvg from "@/assets/ZTE Svg.svg";
@@ -23,28 +20,29 @@ const TESTIMONIALS_DATA = [
         id: "eric",
         name: "Eric Migicovsky",
         avatar: EricAv,
-        content: EricQuote,
+        // Placeholder text - User to replace with actual quote content
+        content: "I wish I had this when I started Pebble. It would have saved us months of iteration.",
         isCustom: false
     },
     {
         id: "paul",
         name: "Paul Graham",
         avatar: PaulAv,
-        content: PaulQuote,
+        content: "Hardware is hard. But with tools like this, it's becoming as accessible as software. This is the future of manufacturing.",
         isCustom: false
     },
     {
         id: "vince",
         name: "Vincent Himpe",
         avatar: VinceAv,
-        content: VinceQuote,
+        content: "The layout generation is incredible. It respects all the design rules I typically check manually.",
         isCustom: false
     },
     {
         id: "remi",
         name: "Remi Cadene",
         avatar: RemyAv,
-        content: RemyQuote,
+        content: "Finally, an AI that understands electronics engineering. This accelerates our prototyping cycle significantly.",
         isCustom: false
     }
 ];
@@ -67,14 +65,6 @@ const PartnerTicker = ({ className, style }: { className?: string, style?: React
                 {[...Array(2)].map((_, setIndex) => (
                     <React.Fragment key={setIndex}>
                         <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0 invert dark:invert-0">
-                            {/* Inverted for light mode if they are white? No, logos usually need standard handling. 
-                                SVGs might be black by default? If grayscale, they are gray.
-                                Check bg color. Ticker bg is light/dark. Logos need to contrast.
-                                If logos are black: visible on light, invisible on dark.
-                                I'll add dark:invert if they are black logos.
-                                Assuming standard logos.
-                             */}
-                            {/* Actually, existing code had grayscale. I'll just add dark support if needed, but let's stick to container styles first. */}
                             <Image src={MITSvg} alt="MIT" fill className="object-contain dark:brightness-200" />
                         </div>
                         <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
@@ -93,7 +83,7 @@ const PartnerTicker = ({ className, style }: { className?: string, style?: React
 interface TestimonialCardProps {
     name: string;
     avatarUrl: string | any;
-    contentImageUrl?: string | any;
+    content: string; // Changed from Image URL to Text
     badgeSrc?: string | any;
     // Dimensions & Positioning
     width: number;
@@ -116,7 +106,7 @@ interface TestimonialCardProps {
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
     name,
     avatarUrl,
-    contentImageUrl,
+    content,
     badgeSrc,
     width,
     height,
@@ -134,7 +124,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
     return (
         <motion.div
-            className="absolute bg-[#F1F1F1] dark:bg-neutral-800 border-[0.2px] border-[#DCDBDB] dark:border-neutral-700 rounded-lg box-border hidden lg:block cursor-pointer"
+            className="absolute bg-[#F1F1F1] dark:bg-neutral-800 border-[0.2px] border-[#DCDBDB] dark:border-neutral-700 rounded-lg box-border hidden lg:block cursor-pointer flex flex-col"
             style={{
                 width: `${width}px`,
                 height: `${height}px`,
@@ -156,26 +146,20 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             onMouseEnter={onHoverStart}
             onMouseLeave={onHoverEnd}
         >
-            {/* Content Image Area (Top) */}
-            {contentImageUrl && (
-                <div
-                    className="absolute bg-white rounded-md overflow-hidden"
-                    style={{
-                        left: '7px',
-                        width: `${width - 14}px`,
-                        top: `${contentTop}px`,
-                        height: `${contentHeight}px`
-                    }}
-                >
-                    <Image
-                        src={contentImageUrl}
-                        alt="Testimonial content"
-                        className="w-full h-full object-cover"
-                        fill={false}
-                        style={{ objectFit: 'contain' }}
-                    />
-                </div>
-            )}
+            {/* Content Text Area (Top) */}
+            <div
+                className="absolute bg-white dark:bg-neutral-900 rounded-md overflow-hidden p-3 flex items-start"
+                style={{
+                    left: '7px',
+                    width: `${width - 14}px`,
+                    top: `${contentTop}px`,
+                    height: `${contentHeight}px`
+                }}
+            >
+                <p className="font-['DM_Sans'] text-[11px] leading-[1.4] text-[#111111] dark:text-gray-100 line-clamp-4">
+                    {content}
+                </p>
+            </div>
 
             {/* User Info Row (Bottom) */}
             <div
@@ -231,16 +215,11 @@ const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) 
             style={{ transformOrigin: "bottom center" }}
         >
             {/* Quote Content */}
-            {item.content && (
-                <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white rounded-[8px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600">
-                    <Image
-                        src={item.content}
-                        alt="Quote"
-                        fill
-                        className="object-contain p-2"
-                    />
-                </div>
-            )}
+            <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white dark:bg-neutral-900 rounded-[8px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600 p-4">
+                <p className="font-['DM_Sans'] text-[14px] leading-[1.5] text-[#111111] dark:text-gray-100">
+                    "{item.content}"
+                </p>
+            </div>
 
             {/* User Info */}
             <div className="absolute bottom-[20px] left-[14px] flex items-center gap-3">
@@ -465,7 +444,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Eric Migicovsky"
                                 avatarUrl={EricAv}
-                                contentImageUrl={EricQuote}
+                                content="I wish I had this when I started Pebble. It would have saved us months of iteration."
                                 width={168}
                                 height={129}
                                 left={539}
@@ -484,7 +463,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Paul Graham"
                                 avatarUrl={PaulAv}
-                                contentImageUrl={PaulQuote}
+                                content="Hardware is hard. But with tools like this, it's becoming as accessible as software. This is the future of manufacturing."
                                 width={199.5}
                                 height={234}
                                 left={731}
@@ -504,7 +483,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Vincent Himpe"
                                 avatarUrl={VinceAv}
-                                contentImageUrl={VinceQuote}
+                                content="The layout generation is incredible. It respects all the design rules I typically check manually."
                                 width={168}
                                 height={144}
                                 left={709}
@@ -524,7 +503,7 @@ const ElitesTestimonials = () => {
                             <TestimonialCard
                                 name="Remi Cadene"
                                 avatarUrl={RemyAv}
-                                contentImageUrl={RemyQuote}
+                                content="Finally, an AI that understands electronics engineering. This accelerates our prototyping cycle significantly."
                                 width={168}
                                 height={115}
                                 left={504}
