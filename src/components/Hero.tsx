@@ -8,7 +8,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
   const [copied, setCopied] = useState(false);
-  const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
+  const contractAddress = "YET_TO_LUNCH_pump";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(contractAddress);

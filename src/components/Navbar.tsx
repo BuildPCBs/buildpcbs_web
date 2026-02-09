@@ -19,7 +19,7 @@ const Navbar = () => {
   const [isMobileAppOpen, setIsMobileAppOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
-  const contractAddress = "4w3W2CLQjsiumZXgtadzLhfXNS74wSPvrARmP2wrpump";
+  const contractAddress = "YET_TO_LUNCH_pump";
 
   const { isWaitlistOpen, openWaitlist, closeWaitlist } = useWaitlist();
 
