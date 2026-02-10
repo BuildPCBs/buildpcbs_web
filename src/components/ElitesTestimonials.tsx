@@ -3,12 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Star, Reply, MoreHorizontal, ChevronDown } from "lucide-react";
 
 import EricAv from "@/assets/Eric Av.png";
+import EricQuote from "@/assets/Eric Quote.png";
 import RemyAv from "@/assets/Remy Av.png";
+import RemyQuote from "@/assets/Remy Quote.png";
 import VinceAv from "@/assets/Vince Av.png";
+import VinceQuote from "@/assets/Vince Quote.png";
 import PaulAv from "@/assets/Paul Graham's Av.png";
+import PaulQuote from "@/assets/Paul Graham's Quote.png";
 import FigureSvg from "@/assets/Figure Svg.svg";
 import MITSvg from "@/assets/MIT SVG.svg";
 import ZTESvg from "@/assets/ZTE Svg.svg";
@@ -20,32 +23,28 @@ const TESTIMONIALS_DATA = [
         id: "eric",
         name: "Eric Migicovsky",
         avatar: EricAv,
-        date: "12 Mar 2025",
-        content: "I wish I had this when I started Pebble. It would have saved us months of iteration.",
+        content: EricQuote,
         isCustom: false
     },
     {
         id: "paul",
         name: "Paul Graham",
         avatar: PaulAv,
-        date: "17 Oct 2025", // From snippet
-        content: "Hardware is hard. But with tools like this, it's becoming as accessible as software. This is strictly the future of manufacturing.",
+        content: PaulQuote,
         isCustom: false
     },
     {
         id: "vince",
         name: "Vincent Himpe",
         avatar: VinceAv,
-        date: "22 Jan 2025",
-        content: "The layout generation is incredible. It respects all the design rules I typically check manually.",
+        content: VinceQuote,
         isCustom: false
     },
     {
         id: "remi",
         name: "Remi Cadene",
         avatar: RemyAv,
-        date: "05 Feb 2025",
-        content: "Finally, an AI that understands electronics engineering. This accelerates our prototyping cycle significantly.",
+        content: RemyQuote,
         isCustom: false
     }
 ];
@@ -83,74 +82,21 @@ const PartnerTicker = ({ className, style }: { className?: string, style?: React
     </motion.div>
 );
 
-interface EmailCardProps {
-    item: typeof TESTIMONIALS_DATA[0];
-    width?: number; // Optional override
-    height?: number; // Optional override
-}
-
-// Reusable Inner Content Component matching Figma Spec
-const EmailCardContent = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) => {
-    return (
-        <div className="w-full h-full flex flex-col gap-[10px] p-[10px] box-border">
-            {/* Header Row */}
-            <div className="flex flex-row items-center gap-[12px] w-full">
-                {/* Avatar */}
-                <div className="relative w-[25px] h-[25px] rounded-full overflow-hidden shrink-0 border border-gray-100 dark:border-neutral-700">
-                    {item.avatar && (
-                        <Image src={item.avatar} alt={item.name} fill className="object-cover" />
-                    )}
-                </div>
-
-                {/* Info Column */}
-                <div className="flex flex-col flex-1 min-w-0">
-                    {/* Name + Date + Icons Row */}
-                    <div className="flex items-center justify-between w-full">
-                        <div className="flex items-center gap-[6px] lg:gap-[16px] overflow-hidden">
-                            {/* Reduced gap slightly for small cards */}
-                            <span className="font-['DM_Sans'] text-[8px] text-[#444444] dark:text-gray-300 whitespace-nowrap overflow-hidden text-ellipsis">
-                                {item.name}
-                            </span>
-                            <span className="font-['DM_Sans'] text-[8px] text-[#777777] dark:text-gray-500 whitespace-nowrap shrink-0">
-                                {item.date}
-                            </span>
-                        </div>
-
-                        {/* Icons: Star, Reply, Dots. Hidden on very small width if needed, but flex justify-between handles spacing */}
-                        <div className="flex items-center gap-[6px] lg:gap-[10px] shrink-0 text-[#666666] dark:text-gray-500">
-                            <Star size={8} fill="none" strokeWidth={1.5} className="opacity-70" />
-                            <Reply size={8} strokeWidth={1.5} className="opacity-70" />
-                            <MoreHorizontal size={8} strokeWidth={1.5} className="opacity-70" />
-                        </div>
-                    </div>
-
-                    {/* to me row */}
-                    <div className="flex items-center gap-[4px] mt-[1px]">
-                        <span className="font-['DM_Sans'] text-[8px] text-[#444444] dark:text-gray-400">to me</span>
-                        {/* Dropdown arrow styled as small chevron */}
-                        <ChevronDown size={6} className="text-[#666666] dark:text-gray-500" strokeWidth={2} />
-                    </div>
-                </div>
-            </div>
-
-            {/* Body */}
-            <div className="w-full flex-1 overflow-hidden">
-                <p className="font-['DM_Sans'] text-[10px] leading-[130%] text-[#656565] dark:text-gray-300 tracking-[-0.005em]">
-                    {item.content}
-                </p>
-            </div>
-        </div>
-    );
-}
-
-
 interface TestimonialCardProps {
-    item: typeof TESTIMONIALS_DATA[0]
+    name: string;
+    avatarUrl: string | any;
+    content: string | any; // Back to accepting Image
+    badgeSrc?: string | any;
     // Dimensions & Positioning
     width: number;
     height: number;
     top: number;
     left: number;
+    // Internal Layout
+    contentTop?: number;
+    contentHeight?: number;
+    infoTop?: number; // Distance from top to the info row
+    infoLeft?: number;
     delay?: number;
     // Hover Interaction
     onHoverStart?: () => void;
@@ -160,11 +106,18 @@ interface TestimonialCardProps {
 }
 
 const TestimonialCard: React.FC<TestimonialCardProps> = ({
-    item,
+    name,
+    avatarUrl,
+    content,
+    badgeSrc,
     width,
     height,
     top,
     left,
+    contentTop = 8,
+    contentHeight = 59,
+    infoTop = 84,
+    infoLeft = 4,
     delay = 0,
     onHoverStart,
     onHoverEnd,
@@ -173,20 +126,19 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
     return (
         <motion.div
-            className="absolute bg-[#FFFFFF] dark:bg-neutral-900 border-[1px] border-[#CDCDCD] dark:border-neutral-700 rounded-[20px] box-border hidden lg:block cursor-pointer overflow-hidden"
+            className="absolute bg-[#F1F1F1] dark:bg-neutral-800 border-[0.2px] border-[#DCDBDB] dark:border-neutral-700 rounded-lg box-border hidden lg:block cursor-pointer flex flex-col"
             style={{
                 width: `${width}px`,
                 height: `${height}px`,
                 top: `${top}px`,
                 left: `${left}px`,
-                zIndex: isHovered ? 50 : (isAnyHovered ? 1 : 10),
+                zIndex: isHovered ? 50 : (isAnyHovered ? 1 : 10), // Lower z-index if another is hovered
             }}
             initial={{ opacity: 0, y: 20, scale: 1 }}
             whileInView={{ opacity: 1, y: 0 }}
             animate={{
-                scale: isHovered ? 1.5 : 1, // Reduced scale zoom slightly as cards are cleaner
-                boxShadow: isHovered ? "0px 10px 40px rgba(0,0,0,0.1)" : "none",
-                filter: (isAnyHovered && !isHovered) ? "blur(2px) opacity(0.5)" : "none",
+                scale: isHovered ? 2 : 1, // Restored original scale
+                filter: (isAnyHovered && !isHovered) ? "blur(2px) brightness(0.8)" : "none",
             }}
             transition={{
                 duration: 0.3,
@@ -196,7 +148,67 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
             onMouseEnter={onHoverStart}
             onMouseLeave={onHoverEnd}
         >
-            <EmailCardContent item={item} />
+            {/* Content Image Area (Top) */}
+            <div
+                className="absolute bg-white rounded-md overflow-hidden"
+                style={{
+                    left: '7px',
+                    width: `${width - 14}px`,
+                    top: `${contentTop}px`,
+                    height: `${contentHeight}px`
+                }}
+            >
+                {/* Render content as Image */}
+                <Image
+                    src={content}
+                    alt="Testimonial content"
+                    className="w-full h-full object-cover"
+                    fill={false}
+                    style={{ objectFit: 'contain' }}
+                />
+            </div>
+
+            {/* User Info Row (Bottom) */}
+            <div
+                className="absolute flex items-center gap-1"
+                style={{
+                    top: `${infoTop}px`,
+                    left: `${infoLeft}px`,
+                    width: '99px', // from frame 1000015379
+                    height: '26px'
+                }}
+            >
+                {/* Avatar */}
+                <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600 shrink-0">
+                    <Image
+                        src={avatarUrl}
+                        alt={name}
+                        className="w-full h-full object-cover"
+                        width={26}
+                        height={26}
+                    />
+                </div>
+
+                {/* Text Group */}
+                <div className="flex flex-col gap-[1px]">
+                    <span className="font-['DM_Sans'] text-[8px] font-normal text-[#4F4F4F] dark:text-gray-200 leading-none whitespace-nowrap">
+                        {name}
+                    </span>
+                    {/* Badge */}
+                    {badgeSrc && (
+                        <div className="w-[25px] h-[9px] relative rounded-md overflow-hidden">
+                            <Image
+                                src={badgeSrc}
+                                alt="Badge"
+                                className="w-full h-full object-contain"
+                                fill={false}
+                                width={25}
+                                height={9}
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
         </motion.div>
     );
 };
@@ -206,10 +218,30 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) => {
     return (
         <div
-            className="relative w-full aspect-square rounded-[20px] bg-[#FFFFFF] dark:bg-neutral-900 border border-[#CDCDCD] dark:border-neutral-700 overflow-hidden"
+            className="relative w-full aspect-square rounded-[12px] bg-[#F1F1F1] dark:bg-neutral-800 border border-[#DCDBDB] dark:border-neutral-700 overflow-hidden"
             style={{ transformOrigin: "bottom center" }}
         >
-            <EmailCardContent item={item} />
+            {/* Quote Content (Image) */}
+            <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white rounded-[8px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600">
+                <Image
+                    src={item.content}
+                    alt="Quote"
+                    fill
+                    className="object-contain p-2"
+                />
+            </div>
+
+            {/* User Info */}
+            <div className="absolute bottom-[20px] left-[14px] flex items-center gap-3">
+                <div className="relative w-[32px] h-[32px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600">
+                    {item.avatar && (
+                        <Image src={item.avatar} alt={item.name} fill className="object-cover" />
+                    )}
+                </div>
+                <span className="font-['DM_Sans'] text-[14px] leading-tight text-[#4F4F4F] dark:text-gray-200">
+                    {item.name}
+                </span>
+            </div>
         </div>
     );
 };
@@ -420,11 +452,16 @@ const ElitesTestimonials = () => {
                         <div className="relative w-full h-[600px] hidden lg:block">
                             {/* Eric Migicovsky */}
                             <TestimonialCard
-                                item={TESTIMONIALS_DATA[0]}
+                                name="Eric Migicovsky"
+                                avatarUrl={EricAv}
+                                content={EricQuote}
                                 width={168}
                                 height={129}
                                 left={539}
                                 top={258}
+                                contentTop={8}
+                                contentHeight={59}
+                                infoTop={96}
                                 delay={0}
                                 onHoverStart={() => setHoveredCard("eric")}
                                 onHoverEnd={() => setHoveredCard(null)}
@@ -434,11 +471,17 @@ const ElitesTestimonials = () => {
 
                             {/* Paul Graham */}
                             <TestimonialCard
-                                item={TESTIMONIALS_DATA[1]}
+                                name="Paul Graham"
+                                avatarUrl={PaulAv}
+                                content={PaulQuote}
                                 width={199.5}
                                 height={234}
                                 left={731}
                                 top={166}
+                                contentTop={8}
+                                contentHeight={176}
+                                infoTop={195}
+                                infoLeft={5}
                                 delay={1}
                                 onHoverStart={() => setHoveredCard("paul")}
                                 onHoverEnd={() => setHoveredCard(null)}
@@ -448,11 +491,17 @@ const ElitesTestimonials = () => {
 
                             {/* Vincent Himpe */}
                             <TestimonialCard
-                                item={TESTIMONIALS_DATA[2]}
+                                name="Vincent Himpe"
+                                avatarUrl={VinceAv}
+                                content={VinceQuote}
                                 width={168}
                                 height={144}
                                 left={709}
                                 top={498}
+                                contentTop={8}
+                                contentHeight={68.7}
+                                infoTop={113}
+                                infoLeft={6}
                                 delay={2}
                                 onHoverStart={() => setHoveredCard("vince")}
                                 onHoverEnd={() => setHoveredCard(null)}
@@ -462,11 +511,16 @@ const ElitesTestimonials = () => {
 
                             {/* Remi Cadene */}
                             <TestimonialCard
-                                item={TESTIMONIALS_DATA[3]}
+                                name="Remi Cadene"
+                                avatarUrl={RemyAv}
+                                content={RemyQuote}
                                 width={168}
                                 height={115}
                                 left={504}
                                 top={446}
+                                contentTop={9}
+                                contentHeight={55}
+                                infoTop={84}
                                 delay={1.5}
                                 onHoverStart={() => setHoveredCard("remi")}
                                 onHoverEnd={() => setHoveredCard(null)}
