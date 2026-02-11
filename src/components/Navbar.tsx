@@ -242,15 +242,17 @@ const Navbar = () => {
 
           {/* Right: Buttons (Join Always visible, Copy Conditional) */}
           <div className="flex items-center gap-2 flex-shrink-0 ml-5">
-            {/* Join Waitlist - Always Visible */}
-            <motion.button
-              onClick={openWaitlist}
+            {/* Launch App - Always Visible */}
+            <motion.a
+              href="https://app.buildpcbs.com/"
+              target="_blank"
+              rel="noopener noreferrer"
               initial="initial"
               whileHover="hovered"
               className="flex items-center justify-center w-[138px] h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
             >
               <div className="flex">
-                {"Join Waitlist".split("").map((char, index) => (
+                {"Launch App".split("").map((char, index) => (
                   <motion.span
                     key={index}
                     variants={{
@@ -268,7 +270,7 @@ const Navbar = () => {
                   </motion.span>
                 ))}
               </div>
-            </motion.button>
+            </motion.a>
 
             {/* Copy CA Button - Visible ONLY when Scrolled */}
             <AnimatePresence>
@@ -385,31 +387,7 @@ const Navbar = () => {
                   );
                 }
                 if (link.name === "Guides") {
-                  return (
-                    <div key={link.name} className="flex flex-col items-center">
-                      <motion.button
-                        variants={menuItemVariants}
-                        onClick={() => setIsGuidesHovered(!isGuidesHovered)}
-                        className="text-2xl font-medium text-gray-800 dark:text-gray-200 hover:text-[color:var(--primary-brand)] transition-colors"
-                      >
-                        {link.name}
-                      </motion.button>
-                      <AnimatePresence>
-                        {isGuidesHovered && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            className="overflow-hidden mt-4"
-                          >
-                            <div className="scale-[0.85] origin-top">
-                              <GuidesDropdown />
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  );
+                  return null;
                 }
                 if (link.name === "$BUILDERS") {
                   return (
@@ -450,9 +428,11 @@ const Navbar = () => {
                   </motion.a>
                 );
               })}
-              <motion.button
+              <motion.a
+                href="https://app.buildpcbs.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => {
-                  openWaitlist();
                   setIsMobileMenuOpen(false);
                 }}
                 variants={menuItemVariants}
@@ -460,7 +440,7 @@ const Navbar = () => {
                 className="flex items-center justify-center w-[180px] h-[50px] rounded-full bg-[color:var(--primary-brand)] text-lg font-medium text-white hover:opacity-90 overflow-hidden"
               >
                 <div className="flex">
-                  {"Join Waitlist".split("").map((char, index) => (
+                  {"Launch App".split("").map((char, index) => (
                     <motion.span
                       key={index}
                       variants={{
@@ -478,7 +458,7 @@ const Navbar = () => {
                     </motion.span>
                   ))}
                 </div>
-              </motion.button>
+              </motion.a>
             </motion.div>
           </motion.div>
         )}
