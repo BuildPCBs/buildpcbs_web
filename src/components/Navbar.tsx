@@ -19,7 +19,7 @@ const Navbar = () => {
   const [isMobileAppOpen, setIsMobileAppOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [copied, setCopied] = useState(false);
-  const contractAddress = "YET_TO_LUNCH_pump";
+  const contractAddress = "G2aXNcUo4rDbYjWpHou44TB4bwvc1qYhFuE4mPPNpump";
 
   const { isWaitlistOpen, openWaitlist, closeWaitlist } = useWaitlist();
 
@@ -115,7 +115,7 @@ const Navbar = () => {
           </div>
 
           {/* Center: Nav Links (Always Visible) */}
-          <div className="flex items-center gap-8 flex-shrink-0">
+          <div className="flex items-center gap-2 md:gap-8 flex-shrink-0">
             {navLinks.map((link) => {
               if (link.name === "App") {
                 return (
@@ -249,7 +249,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               initial="initial"
               whileHover="hovered"
-              className="flex items-center justify-center w-[138px] h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
+              className="hidden md:flex items-center justify-center w-[138px] h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
             >
               <div className="flex">
                 {"Launch App".split("").map((char, index) => (
