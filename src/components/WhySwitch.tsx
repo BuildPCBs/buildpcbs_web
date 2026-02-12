@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import ActivityTrackerSvg from "@/assets/Activity Analysis tracker.svg";
+import ComponentLibrarySvg from "@/assets/Library of Components.svg";
+import InviteExportSvg from "@/assets/Invite Team& Export Files.svg";
+import PromptUISvg from "@/assets/Detailed Prompt UI.svg";
 
 // --- Visual Components (Meticulously recreated from Figma) ---
 
@@ -232,22 +237,58 @@ const WhySwitch = () => {
   const FEATURES = [
     {
       title: "Activity Analytics Tracker",
-      component: <MeticulousAnalytics />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={ActivityTrackerSvg}
+            alt="Activity Analytics Tracker"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "Activity Analytics Tracker",
     },
     {
       title: "Ready to-use Component Library",
-      component: <VisualLibrary />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={ComponentLibrarySvg}
+            alt="Ready to-use Component Library"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "Ready to-use Component Library",
     },
     {
       title: "Exportable files & Invite team",
-      component: <VisualExport />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={InviteExportSvg}
+            alt="Exportable files & Invite team"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "Exportable files & Invite team",
     },
     {
       title: "AI-powered prompt interpreter",
-      component: <VisualInterpreter />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={PromptUISvg}
+            alt="AI-powered prompt interpreter"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "AI-powered prompt interpreter",
     },
   ];
