@@ -343,14 +343,14 @@ const BuildersDropdown = () => {
           isActive={activeItem === "Community"}
           onHover={setActiveItem}
         />
-        <BuilderItem
+        {/* <BuilderItem
           title="Tokenomics"
           subtitle="Supply & Vesting"
           Icon={TokenomicsIcon}
           href="/tokenomics"
           isActive={activeItem === "Tokenomics"}
           onHover={setActiveItem}
-        />
+        /> */}
         <BuilderItem
           title="Roadmap"
           subtitle="Future Plans"

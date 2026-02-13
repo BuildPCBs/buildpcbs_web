@@ -133,9 +133,9 @@ const BuildPage = () => {
       </section>
 
       {/* --- DISTRIBUTION (Pie Chart) --- */}
-      <section className="relative min-h-screen bg-white dark:bg-black">
+      {/* <section className="relative min-h-screen bg-white dark:bg-black">
         <DistributionPie />
-      </section>
+      </section> */}
 
       {/* --- WHY (Cards - Interactive Horizontal Scroll) --- */}
       <CardsSection />

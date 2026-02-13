@@ -17,7 +17,7 @@ const roadmapData = [
         points: [
           {
             label: "Token TGE",
-            desc: "Finalize the $BUILD launch - launch model not finalized.",
+            desc: "Fair launched via pump.fun. $BUILD is live.",
           },
           {
             label: "Mobile App Beta",
