@@ -249,7 +249,7 @@ const Navbar = () => {
               rel="noopener noreferrer"
               initial="initial"
               whileHover="hovered"
-              className="hidden md:flex items-center justify-center w-[138px] h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
+              className="flex items-center justify-center w-[110px] md:w-[138px] h-[36px] md:h-[42px] rounded-full bg-gradient-to-r from-[#0038DF] to-[#001E79] text-[13px] md:text-[14px] font-medium leading-[22px] tracking-[-0.005em] text-white hover:opacity-90 overflow-hidden"
             >
               <div className="flex">
                 {"Launch App".split("").map((char, index) => (
