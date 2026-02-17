@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         destination: "https://app.buildpcbs.com",
         permanent: false,
       },
+      {
+        source: "/explorer",
+        destination: "https://explorer.buildpcbs.com",
+        permanent: false,
+      },
     ];
   },
 };
