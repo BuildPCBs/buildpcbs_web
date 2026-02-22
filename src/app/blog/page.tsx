@@ -83,7 +83,7 @@ const BlogPage = () => {
   return (
     <section className="w-full min-h-screen bg-white dark:bg-black py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-left lg:text-center mb-32">
+        <div className="text-left lg:text-center mt-[25px] mb-32">
           <h1
             className="text-[44px] font-normal text-[#444444] dark:text-white"
             style={{ lineHeight: "120%", letterSpacing: "0%" }}

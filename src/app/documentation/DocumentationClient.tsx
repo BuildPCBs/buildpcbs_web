@@ -93,7 +93,7 @@ export default function DocumentationClient() {
     <section className="w-full min-h-screen bg-white dark:bg-black py-16">
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
         {/* Page Header */}
-        <div className="text-left mt-8 mb-16 lg:mb-24 px-0 lg:px-4">
+        <div className="text-left mt-[25px] mb-16 lg:mb-24 px-0 lg:px-4">
           <h1
             className="text-[40px] md:text-[52px] font-medium text-[#444444] dark:text-white tracking-[-0.02em] leading-[1.1]"
           >
@@ -115,8 +115,8 @@ export default function DocumentationClient() {
                 key={sec.id}
                 onClick={() => scrollToSection(sec.id)}
                 className={`whitespace-nowrap px-4 py-2 rounded-full text-[14px] font-medium transition-colors snap-start ${activeSection === sec.id
-                    ? "bg-[#0038DF] text-white"
-                    : "bg-[#F5F5F5] dark:bg-[#1A1A1A] text-[#666666] dark:text-[#AAAAAA]"
+                  ? "bg-[#0038DF] text-white"
+                  : "bg-[#F5F5F5] dark:bg-[#1A1A1A] text-[#666666] dark:text-[#AAAAAA]"
                   }`}
               >
                 {sec.title}
@@ -138,20 +138,20 @@ export default function DocumentationClient() {
                   >
                     <div
                       className={`absolute -left-4 top-1/2 -translate-y-1/2 w-[3px] h-[18px] rounded-r-full transition-all duration-300 ${activeSection === sec.id
-                          ? "bg-[#0038DF] opacity-100"
-                          : "bg-transparent opacity-0 group-hover:bg-[#DDE2FF] dark:group-hover:bg-[#0038DF]/50 group-hover:opacity-100"
+                        ? "bg-[#0038DF] opacity-100"
+                        : "bg-transparent opacity-0 group-hover:bg-[#DDE2FF] dark:group-hover:bg-[#0038DF]/50 group-hover:opacity-100"
                         }`}
                     ></div>
                     <div
                       className={`transition-all duration-300 ${activeSection === sec.id
-                          ? "translate-x-1"
-                          : "group-hover:translate-x-1"
+                        ? "translate-x-1"
+                        : "group-hover:translate-x-1"
                         }`}
                     >
                       <span
                         className={`text-[15px] leading-tight ${activeSection === sec.id
-                            ? "font-bold text-[#0038DF] dark:text-[#5C94FF] tracking-[-0.01em]"
-                            : "font-normal text-[#666666] dark:text-[#888888] group-hover:text-[#444444] dark:group-hover:text-gray-300"
+                          ? "font-bold text-[#0038DF] dark:text-[#5C94FF] tracking-[-0.01em]"
+                          : "font-normal text-[#666666] dark:text-[#888888] group-hover:text-[#444444] dark:group-hover:text-gray-300"
                           }`}
                       >
                         {sec.title}

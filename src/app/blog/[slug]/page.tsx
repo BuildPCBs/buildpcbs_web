@@ -54,7 +54,7 @@ const BlogPostPage = () => {
         <div className="w-full min-h-screen bg-white dark:bg-black text-[#444444] dark:text-white font-['DM_Sans'] transition-colors duration-300">
 
             {/* Blog Page Title Area */}
-            <div className="flex flex-col items-center pt-[77px] pb-[50px]">
+            <div className="flex flex-col items-center mt-[25px] pt-[77px] pb-[50px]">
                 <h1 className="text-[44px] font-normal leading-[120%] text-[#444444] dark:text-white">Blog</h1>
                 <p className="text-[18px] text-[#4A4A4A] dark:text-gray-400 font-light mt-2">Few minutes blog reads!</p>
             </div>
