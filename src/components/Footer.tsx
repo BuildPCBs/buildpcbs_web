@@ -281,7 +281,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="my-12 w-full">
+    <footer className="mt-4 mb-12 w-full">
       {/* Blue container */}
       <div className="bg-[#0038DF] w-full md:max-w-6xl md:mx-auto md:rounded-[44px] p-8">
         <CTA />

@@ -218,27 +218,27 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
 const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) => {
     return (
         <div
-            className="relative w-full aspect-square rounded-[12px] bg-[#F1F1F1] dark:bg-neutral-800 border border-[#DCDBDB] dark:border-neutral-700 overflow-hidden"
+            className="relative w-full aspect-square rounded-[16px] bg-[#F1F1F1] dark:bg-neutral-800 border border-[#DCDBDB] dark:border-neutral-700 overflow-hidden flex flex-col"
             style={{ transformOrigin: "bottom center" }}
         >
             {/* Quote Content (Image) */}
-            <div className="absolute top-[8px] left-[8px] right-[8px] h-[146px] bg-white rounded-[8px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600">
+            <div className="relative mt-[10px] mx-[10px] flex-grow bg-white dark:bg-neutral-900 rounded-[12px] overflow-hidden border border-[#EDECEC] dark:border-neutral-600">
                 <Image
                     src={item.content}
                     alt="Quote"
                     fill
-                    className="object-contain p-2"
+                    className="object-contain p-3 dark:invert"
                 />
             </div>
 
             {/* User Info */}
-            <div className="absolute bottom-[20px] left-[14px] flex items-center gap-3">
-                <div className="relative w-[32px] h-[32px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600">
+            <div className="relative mt-auto mb-[20px] mx-[16px] flex items-center gap-4">
+                <div className="relative w-[36px] h-[36px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600">
                     {item.avatar && (
                         <Image src={item.avatar} alt={item.name} fill className="object-cover" />
                     )}
                 </div>
-                <span className="font-['DM_Sans'] text-[14px] leading-tight text-[#4F4F4F] dark:text-gray-200">
+                <span className="font-['DM_Sans'] text-[16px] font-medium leading-tight text-[#4F4F4F] dark:text-gray-200">
                     {item.name}
                 </span>
             </div>
@@ -256,8 +256,6 @@ function ElitesMobileStack() {
         if (!el) return;
         if (!cardRefs.current.includes(el)) cardRefs.current.push(el);
     };
-
-    const [active, setActive] = useState(0);
 
     useLayoutEffect(() => {
         const reduce =
@@ -284,7 +282,6 @@ function ElitesMobileStack() {
                         scale: 1,
                         y: 0,
                         duration: 0.55,
-                        onStart: () => setActive(i),
                     },
                     `card-${i}`
                 );
@@ -314,67 +311,25 @@ function ElitesMobileStack() {
         return () => ctx.revert();
     }, []);
 
-    const jumpTo = (index: number) => {
-        const st = ScrollTrigger.getAll().find((t) => t.trigger === sectionRef.current);
-        if (!st) return;
-
-        const progress = index / Math.max(1, TESTIMONIALS_DATA.length - 1);
-        const y = st.start + (st.end - st.start) * progress;
-
-        window.scrollTo({ top: y, behavior: "smooth" });
-    };
-
     return (
         <section ref={sectionRef as any} className="lg:hidden w-full bg-white dark:bg-black relative">
-            <div ref={pinRef} className="relative h-[100vh] overflow-hidden px-[13px]">
-                <div className="mx-auto w-full max-w-[375px] h-full pt-[70px]">
-                    <div className="flex gap-[12px]">
-                        {/* LEFT COLUMN (Names) */}
-                        <div className="w-[139px] flex flex-col items-start gap-[25px]">
-                            <div className="flex flex-col gap-[12px]">
-                                {TESTIMONIALS_DATA.map((f, i) => (
-                                    <button
-                                        key={f.id}
-                                        onClick={() => jumpTo(i)}
-                                        className="group w-[130px] text-left"
-                                        type="button"
-                                    >
-                                        <div className="flex items-center justify-between gap-[10px] h-auto min-h-[17px]">
-                                            <span
-                                                className={[
-                                                    "font-['DM_Sans'] text-[14px] leading-[140%] tracking-[-0.005em]",
-                                                    i === active
-                                                        ? "text-[#4F4F4F] dark:text-gray-100"
-                                                        : "text-[#888888] dark:text-gray-500",
-                                                ].join(" ")}
-                                            >
-                                                {f.name}
-                                            </span>
+            <div ref={pinRef} className="relative h-[85vh] overflow-hidden px-[13px]">
+                <div className="mx-auto w-full max-w-[375px] h-full pt-[40px] flex flex-col items-center">
 
-                                            <span
-                                                className={[
-                                                    "h-[1px] w-[9px] transition-opacity shrink-0 mt-2",
-                                                    i === active
-                                                        ? "opacity-100 bg-[#4F4F4F] dark:bg-gray-100"
-                                                        : "opacity-0 bg-[#888888] dark:bg-gray-500",
-                                                ].join(" ")}
-                                            />
-                                        </div>
+                    {/* Intro Text for Mobile (Optional but good for context since names are gone, or just remove header?) */}
+                    <div className="w-full flex flex-col gap-2 mb-10 text-center">
+                        <h2 className="font-['DM_Sans'] font-light text-[32px] leading-[130%] tracking-[-0.01em] text-[#4F4F4F] dark:text-white">
+                            Words from elites
+                        </h2>
+                        <p className="font-['DM_Sans'] font-normal text-[14px] leading-[150%] tracking-[-0.005em] text-[#777777] dark:text-gray-400">
+                            Industry leaders and everyone’s mentor have given us directives from early.
+                        </p>
+                    </div>
 
-                                        <div
-                                            className={[
-                                                "mt-[4px] h-[1px] w-full transition-opacity",
-                                                i === active ? "opacity-20 bg-[#0038DF]" : "opacity-0",
-                                            ].join(" ")}
-                                        />
-                                    </button>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* RIGHT COLUMN (Stacked Cards) */}
-                        <div className="w-[222px] flex flex-col gap-[10px] relative">
-                            <div className="relative w-[222px] h-[221px]">
+                    <div className="flex justify-center w-full">
+                        {/* CENTERED COLUMN (Stacked Cards) */}
+                        <div className="w-[280px] flex flex-col gap-[10px] relative">
+                            <div className="relative w-[280px] h-[280px]">
                                 {TESTIMONIALS_DATA.map((item, idx) => (
                                     <div
                                         key={item.id}
@@ -409,8 +364,8 @@ const ElitesTestimonials = () => {
                 className="
                     hidden lg:block
                     w-full bg-white dark:bg-black relative px-4 overflow-visible min-h-[500px]
-                    py-16 mt-[-80px]
-                    lg:py-[140px]
+                    py-16
+                    lg:py-[80px]
                 "
             >
                 {/* ✅ Desktop: create a stable "stage" and center it vertically */}

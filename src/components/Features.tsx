@@ -1,59 +1,65 @@
 import React from "react";
 import Image from "next/image";
 
+import NaturalLanguageSvg from "@/assets/Natural Language.svg";
+import BuiltInChecksSvg from "@/assets/Built-In Checks.svg";
+import WorkflowSvg from "@/assets/Workflow.svg";
+import GodSpeedDesignSvg from "@/assets/God Speed Design.svg";
+
 const featuresData = [
   {
     title: "AI Hardware Compiler",
     description:
       "Describe a device in plain text. The system generates the PCB, schematic, BOM, enclosure, and firmware automatically.",
-    image: "/natural.png",
+    image: NaturalLanguageSvg,
   },
   {
     title: "Web3 Manufacturing",
     description:
       "A decentralized network where CNC owners and fabricators stake $BUILD to receive and process jobs.",
-    image: "/checks.png",
+    image: BuiltInChecksSvg,
   },
   {
     title: "Closed Marketplace",
     description:
       "Publish your designs to a closed ecosystem. Ownership, logs, and version history are tracked on-chain.",
-    image: "/end.png",
+    image: WorkflowSvg,
   },
   {
     title: "Mobile Execution",
     description:
       "Chat with the AI to design hardware, manage builds, or publish products entirely from your phone.",
-    image: "/godspeed.png",
+    image: GodSpeedDesignSvg,
   },
 ];
 
 interface FeatureCardProps {
   title: string;
   description: string;
-  image: string;
+  image: any;
 }
 
 const FeatureCard = ({ title, description, image }: FeatureCardProps) => {
   return (
-    <div className="group relative p-8 bg-white dark:bg-black border-[0.5px] border-[#0038DF] rounded-xl transition-all duration-300 hover:bg-gradient-to-b from-[#255CFF] to-[#0038DF]">
+    <div className="group relative p-8 bg-white dark:bg-[#111111] border-[0.5px] border-[#E8E8E8] dark:border-neutral-800 rounded-xl transition-all duration-300 hover:border-transparent dark:hover:border-transparent hover:bg-gradient-to-b hover:from-[#255CFF] hover:to-[#0038DF] shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-none">
       <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center md:items-start">
         <div className="text-left max-w-[476px]">
-          <h3 className="text-[24px] font-medium leading-[150%] tracking-[-0.005em] text-[#999999] group-hover:text-white">
+          <h3 className="text-[24px] font-medium leading-[150%] tracking-[-0.005em] text-[#333333] dark:text-gray-200 group-hover:text-white transition-colors duration-300">
             {title}
           </h3>
-          <p className="mt-2 text-[14px] font-normal leading-[125%] tracking-[-0.005em] text-[#C3C3C3] group-hover:text-white/80 max-w-[409px]">
+          <p className="mt-2 text-[14px] font-normal leading-[125%] tracking-[-0.005em] text-[#777777] dark:text-gray-400 group-hover:text-white/90 transition-colors duration-300 max-w-[409px]">
             {description}
           </p>
         </div>
-        <div className="flex justify-center md:justify-end">
-          <Image
-            src={image}
-            alt={title}
-            width={144}
-            height={144}
-            className="transition-transform duration-700 ease-in-out group-hover:scale-[1] group-hover:-translate-y-[40px]"
-          />
+        <div className="flex justify-center md:justify-end relative w-full h-[144px]">
+          {image ? (
+            <Image
+              src={image}
+              alt={title}
+              fill
+              className="object-contain transition-transform duration-700 ease-in-out group-hover:scale-[1.05] group-hover:-translate-y-[10px]"
+            />
+          ) : null}
         </div>
       </div>
     </div>
@@ -66,7 +72,7 @@ import MobileFeatures from "@/components/MobileFeatures";
 
 const Features = () => {
   return (
-    <section className="w-full max-w-7xl mx-auto px-0 md:px-6 lg:px-8 py-0 md:py-24">
+    <section className="w-full max-w-7xl mx-auto px-0 md:px-6 lg:px-8 py-0 md:py-24 mb-0 md:mb-12">
       {/* Desktop Grid */}
       <div className="hidden md:grid grid-cols-2 gap-8 px-4">
         {featuresData.map((feature) => (

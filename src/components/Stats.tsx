@@ -204,7 +204,7 @@ const StatCardFinal: React.FC<StatCardProps> = ({ description, value, label }) =
 
 const Stats = () => {
   return (
-    <section className="w-full py-16 md:py-24">
+    <section className="w-full py-8 md:py-24">
       {/* Desktop Layout */}
       <div className="hidden md:flex justify-center relative">
         <div className="relative w-full max-w-[1206px] flex justify-center">
