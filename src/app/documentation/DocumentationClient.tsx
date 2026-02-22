@@ -3,173 +3,169 @@
 import React, { useState, useEffect } from "react";
 
 const sections = [
-    { id: "introduction", title: "Introduction" },
-    { id: "quickstart", title: "Quickstart" },
-    { id: "core-features", title: "Core Platform Features" },
-    { id: "tech-specs", title: "Technical Specifications" },
-    { id: "manufacturing", title: "Manufacturing & Assembly" },
-    { id: "pricing", title: "Pricing & Quoting" },
-    { id: "api-integration", title: "API & Developer Integration" },
-    { id: "security", title: "Security & Compliance" },
-    { id: "builders", title: "$BUILDers Ecosystem" },
-    { id: "ai-pcb", title: "AI PCB Generation (Beta)" },
-    { id: "roadmap", title: "Roadmap" },
-    { id: "support", title: "Support" },
+  { id: "introduction", title: "Introduction" },
+  { id: "quickstart", title: "Quickstart" },
+  { id: "core-features", title: "Core Platform Features" },
+  { id: "tech-specs", title: "Technical Specifications" },
+  { id: "manufacturing", title: "Manufacturing & Assembly" },
+  { id: "pricing", title: "Pricing & Quoting" },
+  { id: "api-integration", title: "API & Developer Integration" },
+  { id: "security", title: "Security & Compliance" },
+  { id: "builders", title: "$BUILDers Ecosystem" },
+  { id: "ai-pcb", title: "AI PCB Generation (Beta)" },
+  { id: "roadmap", title: "Roadmap" },
+  { id: "support", title: "Support" },
 ];
 
 const Header = ({ children, id }: { children: React.ReactNode; id?: string }) => (
-    <h2
-        id={id}
-        className="text-[28px] md:text-[32px] font-medium mt-16 mb-6 text-[#444444] dark:text-white pb-4 border-b border-gray-200 dark:border-neutral-800 scroll-mt-32 transition-colors"
-    >
-        {children}
-    </h2>
+  <h2
+    id={id}
+    className="text-[28px] md:text-[32px] font-medium mt-16 mb-6 text-[#444444] dark:text-white pb-4 border-b border-gray-200 dark:border-neutral-800 scroll-mt-32 transition-colors"
+  >
+    {children}
+  </h2>
 );
 
 const SubHeader = ({ children }: { children: React.ReactNode }) => (
-    <h3 className="text-[20px] font-medium mt-8 mb-4 text-[#333333] dark:text-gray-200">
-        {children}
-    </h3>
+  <h3 className="text-[20px] font-medium mt-8 mb-4 text-[#333333] dark:text-gray-200">
+    {children}
+  </h3>
 );
 
 const Paragraph = ({ children }: { children: React.ReactNode }) => (
-    <p className="text-[16px] text-[#777777] dark:text-gray-400 mb-5 leading-[1.6]">
-        {children}
-    </p>
+  <p className="text-[16px] text-[#777777] dark:text-gray-400 mb-5 leading-[1.6]">
+    {children}
+  </p>
 );
 
 const List = ({ items }: { items: string[] }) => (
-    <ul className="list-disc list-outside ml-5 mb-6 text-[16px] text-[#777777] dark:text-gray-400 space-y-2">
-        {items.map((item, idx) => (
-            <li key={idx} className="leading-[1.6] pl-1 flex items-start">
-                <span className="relative top-0.5">{item}</span>
-            </li>
-        ))}
-    </ul>
+  <ul className="list-disc list-outside ml-5 mb-6 text-[16px] text-[#777777] dark:text-gray-400 space-y-2">
+    {items.map((item, idx) => (
+      <li key={idx} className="leading-[1.6] pl-1 flex items-start">
+        <span className="relative top-0.5">{item}</span>
+      </li>
+    ))}
+  </ul>
 );
 
 const CodeBlock = ({ children }: { children: React.ReactNode }) => (
-    <pre className="bg-[#F8F9FA] dark:bg-[#111111] border border-[#EAEAEA] dark:border-neutral-800 rounded-xl p-5 my-6 overflow-x-auto text-[13px] text-[#444444] dark:text-gray-300 font-mono shadow-sm">
-        <code>{children}</code>
-    </pre>
+  <pre className="bg-[#F8F9FA] dark:bg-[#111111] border border-[#EAEAEA] dark:border-neutral-800 rounded-xl p-5 my-6 overflow-x-auto text-[13px] text-[#444444] dark:text-gray-300 font-mono shadow-sm">
+    <code>{children}</code>
+  </pre>
 );
 
 export default function DocumentationClient() {
-    const [activeSection, setActiveSection] = useState("introduction");
+  const [activeSection, setActiveSection] = useState("introduction");
 
-    useEffect(() => {
-        const handleScroll = () => {
-            let current = sections[0].id;
-            for (const section of sections) {
-                const el = document.getElementById(section.id);
-                if (el) {
-                    const rect = el.getBoundingClientRect();
-                    if (rect.top <= 200) {
-                        current = section.id;
-                    }
-                }
-            }
-            setActiveSection(current);
-        };
-
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        // Trigger once on load
-        handleScroll();
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
-    const scrollToSection = (id: string) => {
-        const el = document.getElementById(id);
+  useEffect(() => {
+    const handleScroll = () => {
+      let current = sections[0].id;
+      for (const section of sections) {
+        const el = document.getElementById(section.id);
         if (el) {
-            const offset = 80; // space for fixed navbar
-            const rect = el.getBoundingClientRect();
-            const top = rect.top + window.scrollY - offset;
-            window.scrollTo({ top, behavior: "smooth" });
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 200) {
+            current = section.id;
+          }
         }
-        setActiveSection(id);
+      }
+      setActiveSection(current);
     };
 
-    return (
-        <section className="w-full min-h-screen bg-white dark:bg-black py-16">
-            <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
-                {/* Page Header */}
-                <div className="text-left mt-8 mb-16 lg:mb-24 px-0 lg:px-4">
-                    <h1
-                        className="text-[40px] md:text-[52px] font-medium text-[#444444] dark:text-white tracking-[-0.02em] leading-[1.1]"
-                    >
-                        Documentation
-                    </h1>
-                    <p
-                        className="text-[18px] md:text-[20px] font-normal text-gray-500 dark:text-gray-400 mt-4 leading-[1.4]"
-                    >
-                        High-performance hardware manufacturing powered by AI. <br className="hidden md:block" />
-                        Design, simulate, validate, and ship production-ready PCBs in record time.
-                    </p>
-                </div>
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    // Trigger once on load
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-                {/* Mobile Sticky Nav */}
-                <div className="lg:hidden sticky top-[60px] z-30 bg-white/95 dark:bg-black/95 backdrop-blur-md pt-4 pb-4 border-b border-gray-200 dark:border-gray-800 mb-8 -mx-4 px-4 overflow-hidden">
-                    <div className="flex overflow-x-auto gap-3 scrollbar-hide snap-x">
-                        {sections.map((sec) => (
-                            <button
-                                key={sec.id}
-                                onClick={() => scrollToSection(sec.id)}
-                                className={\`whitespace-nowrap px-4 py-2 rounded-full text-[14px] font-medium transition-colors snap-start \${
-                            activeSection === sec.id
-                                ? "bg-[#0038DF] text-white"
-                                : "bg-[#F5F5F5] dark:bg-[#1A1A1A] text-[#666666] dark:text-[#AAAAAA]"
-                        }\`}
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const offset = 80; // space for fixed navbar
+      const rect = el.getBoundingClientRect();
+      const top = rect.top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: "smooth" });
+    }
+    setActiveSection(id);
+  };
+
+  return (
+    <section className="w-full min-h-screen bg-white dark:bg-black py-16">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-12">
+        {/* Page Header */}
+        <div className="text-left mt-8 mb-16 lg:mb-24 px-0 lg:px-4">
+          <h1
+            className="text-[40px] md:text-[52px] font-medium text-[#444444] dark:text-white tracking-[-0.02em] leading-[1.1]"
+          >
+            Documentation
+          </h1>
+          <p
+            className="text-[18px] md:text-[20px] font-normal text-gray-500 dark:text-gray-400 mt-4 leading-[1.4]"
+          >
+            High-performance hardware manufacturing powered by AI. <br className="hidden md:block" />
+            Design, simulate, validate, and ship production-ready PCBs in record time.
+          </p>
+        </div>
+
+        {/* Mobile Sticky Nav */}
+        <div className="lg:hidden sticky top-[60px] z-30 bg-white/95 dark:bg-black/95 backdrop-blur-md pt-4 pb-4 border-b border-gray-200 dark:border-gray-800 mb-8 -mx-4 px-4 overflow-hidden">
+          <div className="flex overflow-x-auto gap-3 scrollbar-hide snap-x">
+            {sections.map((sec) => (
+              <button
+                key={sec.id}
+                onClick={() => scrollToSection(sec.id)}
+                className={`whitespace-nowrap px-4 py-2 rounded-full text-[14px] font-medium transition-colors snap-start ${activeSection === sec.id
+                    ? "bg-[#0038DF] text-white"
+                    : "bg-[#F5F5F5] dark:bg-[#1A1A1A] text-[#666666] dark:text-[#AAAAAA]"
+                  }`}
               >
-                        {sec.title}
-                    </button>
+                {sec.title}
+              </button>
             ))}
-                </div>
-            </div>
+          </div>
+        </div>
 
-            <div className="flex flex-col lg:flex-row lg:space-x-16">
-                {/* Sidebar - Desktop */}
-                <aside className="hidden lg:block lg:w-[280px] flex-shrink-0">
-                    <div className="sticky top-32">
-                        <nav className="space-y-1 pl-2">
-                            {sections.map((sec) => (
+        <div className="flex flex-col lg:flex-row lg:space-x-16">
+          {/* Sidebar - Desktop */}
+          <aside className="hidden lg:block lg:w-[280px] flex-shrink-0">
+            <div className="sticky top-32">
+              <nav className="space-y-1 pl-2">
+                {sections.map((sec) => (
                   <div
                     key={sec.id}
                     onClick={() => scrollToSection(sec.id)}
                     className="group relative cursor-pointer py-2.5 outline-none"
                   >
                     <div
-                      className={\`absolute -left-4 top-1/2 -translate-y-1/2 w-[3px] h-[18px] rounded-r-full transition-all duration-300 \${
-                        activeSection === sec.id
+                      className={`absolute -left-4 top-1/2 -translate-y-1/2 w-[3px] h-[18px] rounded-r-full transition-all duration-300 ${activeSection === sec.id
                           ? "bg-[#0038DF] opacity-100"
                           : "bg-transparent opacity-0 group-hover:bg-[#DDE2FF] dark:group-hover:bg-[#0038DF]/50 group-hover:opacity-100"
-                      }\`}
+                        }`}
                     ></div>
                     <div
-                      className={\`transition-all duration-300 \${
-                                activeSection === sec.id
-                                    ? "translate-x-1"
-                                    : "group-hover:translate-x-1"
-                            }\`}
+                      className={`transition-all duration-300 ${activeSection === sec.id
+                          ? "translate-x-1"
+                          : "group-hover:translate-x-1"
+                        }`}
                     >
-                            <span
-                                className={\`text-[15px] leading-tight \${
-                                activeSection === sec.id
-                                    ? "font-bold text-[#0038DF] dark:text-[#5C94FF] tracking-[-0.01em]"
-                                    : "font-normal text-[#666666] dark:text-[#888888] group-hover:text-[#444444] dark:group-hover:text-gray-300"
-                            }\`}
+                      <span
+                        className={`text-[15px] leading-tight ${activeSection === sec.id
+                            ? "font-bold text-[#0038DF] dark:text-[#5C94FF] tracking-[-0.01em]"
+                            : "font-normal text-[#666666] dark:text-[#888888] group-hover:text-[#444444] dark:group-hover:text-gray-300"
+                          }`}
                       >
-                            {sec.title}
-                        </span>
+                        {sec.title}
+                      </span>
                     </div>
-            </div>
+                  </div>
                 ))}
-        </nav>
-            </div >
-          </aside >
+              </nav>
+            </div>
+          </aside>
 
-        {/* Main Content Area */ }
-        < main className = "lg:max-w-[760px] w-full flex-1" >
-            
+          {/* Main Content Area */}
+          <main className="lg:max-w-[760px] w-full flex-1">
+
             <section>
               <Header id="introduction">Introduction</Header>
               <Paragraph>
@@ -430,7 +426,14 @@ export default function DocumentationClient() {
 
               <SubHeader>Example: Trigger Quote</SubHeader>
               <CodeBlock>
-                {`POST /v1/quotes\n\nBody:\n{\n  "projectId": "abc123",\n  "quantity": 100,\n  "assembly": true\n}`}
+                {`POST /v1/quotes
+
+Body:
+{
+  "projectId": "abc123",
+  "quantity": 100,
+  "assembly": true
+}`}
               </CodeBlock>
 
               <SubHeader>Can I automate production from CI/CD?</SubHeader>
@@ -483,8 +486,7 @@ export default function DocumentationClient() {
               <SubHeader>Can AI generate a PCB from a prompt?</SubHeader>
               <Paragraph>Yes (Beta).</Paragraph>
               <Paragraph>
-                Example: "Design a 5V USB-C regulated power board with status
-                LED."
+                Example: &quot;Design a 5V USB-C regulated power board with status LED.&quot;
               </Paragraph>
               <Paragraph>
                 System generates: Schematic draft, PCB layout, BOM suggestion, DFM
@@ -523,9 +525,9 @@ export default function DocumentationClient() {
               />
             </section>
 
-          </main >
-        </div >
-      </div >
-    </section >
+          </main>
+        </div>
+      </div>
+    </section>
   );
 }
