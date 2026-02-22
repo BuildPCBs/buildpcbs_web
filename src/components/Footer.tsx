@@ -62,6 +62,11 @@ const Footer = () => {
         <h3 className="font-medium text-lg">Support</h3>
         <ul className="mt-4 space-y-2">
           <li>
+            <a href="/documentation" className="text-base font-normal hover:opacity-80">
+              Documentation
+            </a>
+          </li>
+          <li>
             <a href="/faq" className="text-base font-normal hover:opacity-80">
               FAQ
             </a>
@@ -195,6 +200,11 @@ const Footer = () => {
         <div>
           <h3 className="font-medium text-lg text-black">Support</h3>
           <ul className="mt-4 space-y-2">
+            <li>
+              <a href="/documentation" className="text-base font-normal hover:opacity-80">
+                Documentation
+              </a>
+            </li>
             <li>
               <a href="/faq" className="text-base font-normal hover:opacity-80">
                 FAQ
