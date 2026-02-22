@@ -11,6 +11,17 @@ export const metadata: Metadata = {
 const BlogPage = () => {
   const posts = [
     {
+      id: 0,
+      title: "How to Design a PCB",
+      excerpt:
+        "A highly structured, step-by-step roadmap to designing Printed Circuit Boards. From raw schematics to production-ready manufacturing files.",
+      author: "System Engineer",
+      role: "BuildPCBs Team",
+      date: "October 15, 2025",
+      readTime: "10 min",
+      category: "Practical Tutorials / How-To Guides",
+    },
+    {
       id: 1,
       title:
         "What Is a PCB? The Complete Beginner’s Guide to Printed Circuit Boards",
