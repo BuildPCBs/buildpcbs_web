@@ -66,11 +66,11 @@ const PartnerTicker = ({ className, style }: { className?: string, style?: React
             >
                 {[...Array(2)].map((_, setIndex) => (
                     <React.Fragment key={setIndex}>
-                        <div className="relative w-[72px] h-[36px] grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0 invert dark:invert-0">
-                            <Image src={MITSvg} alt="MIT" fill className="object-contain dark:brightness-200" />
+                        <div className="relative w-[72px] h-[36px] opacity-70 hover:opacity-100 transition-opacity flex-shrink-0 dark:invert">
+                            <Image src={MITSvg} alt="MIT" fill className="object-contain" />
                         </div>
-                        <div className="relative w-12 h-6 grayscale opacity-70 hover:opacity-100 transition-opacity flex-shrink-0">
-                            <Image src={FigureSvg} alt="Figure" fill className="object-contain dark:brightness-200" />
+                        <div className="relative w-12 h-6 opacity-70 hover:opacity-100 transition-opacity flex-shrink-0 dark:invert">
+                            <Image src={FigureSvg} alt="Figure" fill className="object-contain" />
                         </div>
                         <div className="relative w-12 h-6 opacity-100 hover:opacity-100 transition-opacity flex-shrink-0">
                             <Image src={ZTESvg} alt="ZTE" fill className="object-contain dark:brightness-200" />
