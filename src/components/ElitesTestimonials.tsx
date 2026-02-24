@@ -51,7 +51,7 @@ const TESTIMONIALS_DATA = [
 
 const PartnerTicker = ({ className, style }: { className?: string, style?: React.CSSProperties }) => (
     <motion.div
-        className={`bg-[#F1F1F1] dark:bg-neutral-800 border-[0.2px] border-[#EDECEC] dark:border-neutral-700 rounded-full overflow-hidden flex items-center ${className}`}
+        className={`bg-[#EEEEEE] dark:bg-neutral-800 border-[0.2px] border-[#EDECEC] dark:border-neutral-700 rounded-full overflow-hidden flex items-center ${className}`}
         style={style}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
