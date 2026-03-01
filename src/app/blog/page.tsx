@@ -11,6 +11,17 @@ export const metadata: Metadata = {
 const BlogPage = () => {
   const posts = [
     {
+      id: 0,
+      title: "How to Design a PCB",
+      excerpt:
+        "A highly structured, step-by-step roadmap to designing Printed Circuit Boards. From raw schematics to production-ready manufacturing files.",
+      author: "System Engineer",
+      role: "BuildPCBs Team",
+      date: "October 15, 2025",
+      readTime: "10 min",
+      category: "Practical Tutorials / How-To Guides",
+    },
+    {
       id: 1,
       title:
         "What Is a PCB? The Complete Beginner’s Guide to Printed Circuit Boards",
@@ -72,7 +83,7 @@ const BlogPage = () => {
   return (
     <section className="w-full min-h-screen bg-white dark:bg-black py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-left lg:text-center mb-32">
+        <div className="text-left lg:text-center mt-[25px] mb-32">
           <h1
             className="text-[44px] font-normal text-[#444444] dark:text-white"
             style={{ lineHeight: "120%", letterSpacing: "0%" }}

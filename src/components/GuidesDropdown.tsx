@@ -209,7 +209,7 @@ const GuidesDropdown = () => {
           title="Documentation"
           subtitle="How and why it works"
           Icon={DocumentationIcon}
-          href="/docs"
+          href="/documentation"
           isActive={activeItem === "Documentation"}
           onHover={setActiveItem}
         />

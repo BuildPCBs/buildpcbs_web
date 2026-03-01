@@ -1,5 +1,10 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
+import ActivityTrackerSvg from "@/assets/Activity Analysis tracker.svg";
+import ComponentLibrarySvg from "@/assets/Library of Components.svg";
+import InviteExportSvg from "@/assets/Invite Team& Export Files.svg";
+import PromptUISvg from "@/assets/Detailed Prompt UI.svg";
 
 // --- Visual Components (Meticulously recreated from Figma) ---
 
@@ -232,22 +237,58 @@ const WhySwitch = () => {
   const FEATURES = [
     {
       title: "Activity Analytics Tracker",
-      component: <MeticulousAnalytics />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={ActivityTrackerSvg}
+            alt="Activity Analytics Tracker"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "Activity Analytics Tracker",
     },
     {
       title: "Ready to-use Component Library",
-      component: <VisualLibrary />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={ComponentLibrarySvg}
+            alt="Ready to-use Component Library"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "Ready to-use Component Library",
     },
     {
       title: "Exportable files & Invite team",
-      component: <VisualExport />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={InviteExportSvg}
+            alt="Exportable files & Invite team"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "Exportable files & Invite team",
     },
     {
       title: "AI-powered prompt interpreter",
-      component: <VisualInterpreter />,
+      component: (
+        <div className="relative w-full h-full">
+          <Image
+            src={PromptUISvg}
+            alt="AI-powered prompt interpreter"
+            fill
+            className="object-contain"
+          />
+        </div>
+      ),
       label: "AI-powered prompt interpreter",
     },
   ];
@@ -261,7 +302,7 @@ const WhySwitch = () => {
   }, [FEATURES.length]);
 
   return (
-    <section className="w-full relative bg-white dark:bg-black pb-24 overflow-hidden mt-32 md:mt-0">
+    <section className="w-full relative bg-white dark:bg-black pb-12 overflow-hidden mt-12 md:mt-0">
       {/* "WHY?" Background Text */}
       <div className="w-full flex justify-center pointer-events-none select-none relative z-0 mb-[-130px]">
         <h1
@@ -446,57 +487,49 @@ function StickyMobileStack() {
   }, [scrollY, cards.length]);
 
   return (
-    <div className="bg-white dark:bg-black text-[#333333] dark:text-gray-300 pt-10">
-      <section
-        ref={sectionRef}
-        className="relative mx-auto w-full max-w-[360px] px-0"
-        style={{
-          height: `calc(${cards.length} * 70vh)`,
-        }}
-      >
-        <div className="sticky top-20">
-          <div className="flex flex-col gap-[22px]">
-            {cards.map((c, i) => {
-              const p = progresses[i] ?? 0;
-              const cardLift = (1 - p) * 6;
-              const cardScale = 0.98 + p * 0.02;
+    <div className="bg-white dark:bg-black text-[#333333] dark:text-gray-300 pt-10 pb-10">
+      <section ref={sectionRef} className="relative mx-auto w-full max-w-[360px] px-0">
+        <div className="flex flex-col gap-[22px]">
+          {cards.map((c, i) => {
+            const p = progresses[i] ?? 0;
+            const cardLift = (1 - p) * 6;
+            const cardScale = 0.98 + p * 0.02;
 
-              return (
-                <div
-                  key={c.id}
-                  ref={(node) => {
-                    cardRefs.current[i] = node;
-                  }}
-                  className="relative w-full aspect-square rounded-[12px] border border-[#EBEBEB] dark:border-neutral-700 bg-gradient-to-b from-white to-[#F3F3F3] dark:from-neutral-800 dark:to-neutral-900"
-                  style={{
-                    transform: `translateY(${cardLift}px) scale(${cardScale})`,
-                    transition: "transform 120ms linear",
-                    overflow: "hidden",
-                  }}
-                >
-                  <div className="absolute left-4 bottom-4 right-4 z-10">
-                    <div className="text-[20px] leading-[150%] tracking-[-0.005em] text-[#8E8E8E] dark:text-gray-400">
-                      {c.title}
-                    </div>
-                    <div className="mt-1 text-[11px] tracking-[0.005em] text-[#555555] dark:text-gray-500">
-                      {c.subtitle}
-                    </div>
+            return (
+              <div
+                key={c.id}
+                ref={(node) => {
+                  cardRefs.current[i] = node;
+                }}
+                className="relative w-full aspect-square rounded-[12px] border border-[#EBEBEB] dark:border-neutral-700 bg-gradient-to-b from-white to-[#F3F3F3] dark:from-neutral-800 dark:to-neutral-900"
+                style={{
+                  transform: `translateY(${cardLift}px) scale(${cardScale})`,
+                  transition: "transform 120ms linear",
+                  overflow: "hidden",
+                }}
+              >
+                <div className="absolute left-4 bottom-4 right-4 z-10">
+                  <div className="text-[20px] leading-[150%] tracking-[-0.005em] text-[#8E8E8E] dark:text-gray-400">
+                    {c.title}
                   </div>
-                  <div className="absolute inset-0">{c.renderArt?.(p)}</div>
-                  <div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px)",
-                      backgroundSize: "8px 8px",
-                      opacity: 0.25,
-                      mixBlendMode: "multiply",
-                    }}
-                  />
+                  <div className="mt-1 text-[11px] tracking-[0.005em] text-[#555555] dark:text-gray-500">
+                    {c.subtitle}
+                  </div>
                 </div>
-              );
-            })}
-          </div>
+                <div className="absolute inset-0">{c.renderArt?.(p)}</div>
+                <div
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px)",
+                    backgroundSize: "8px 8px",
+                    opacity: 0.25,
+                    mixBlendMode: "multiply",
+                  }}
+                />
+              </div>
+            );
+          })}
         </div>
       </section>
     </div>
@@ -516,153 +549,23 @@ function MiniTiltedPanel({
   const y = (1 - progress) * 10;
   const opacity = 0.65 + progress * 0.35;
 
+  let Src: any = null;
+  if (variant === "dots") Src = ActivityTrackerSvg;
+  if (variant === "invite") Src = InviteExportSvg;
+  if (variant === "list") Src = ComponentLibrarySvg;
+  if (variant === "chat") Src = PromptUISvg;
+
   return (
     <div
-      className="absolute left-1/2 top-10"
+      className="absolute left-1/2 top-10 pointer-events-none"
       style={{
         transform: `translateX(-50%) translate(${x}px, ${y}px) rotate(${tilt}deg) skewX(${skew}deg)`,
         transition: "transform 120ms linear, opacity 120ms linear",
         opacity,
       }}
     >
-      <div className="relative w-[320px] h-[220px] rounded-[14px] border border-[#E6E6E6] dark:border-neutral-700 bg-white dark:bg-neutral-800 shadow-[0_18px_60px_rgba(0,0,0,0.08)] dark:shadow-[0_18px_60px_rgba(0,0,0,0.3)]">
-        <div className="absolute left-3 right-3 top-3 flex items-center justify-between">
-          <div className="text-[10px] text-[#555555] dark:text-gray-400 font-medium">
-            {variant === "dots"
-              ? "Activity Analytics"
-              : variant === "invite"
-                ? "Export this project"
-                : variant === "list"
-                  ? "Components"
-                  : "Prompt"}
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-[2px] bg-[#0038DF]" />
-            <span className="w-2 h-2 rounded-[2px] bg-[#5772FF]" />
-            <span className="w-2 h-2 rounded-[2px] bg-[#AAB8FF]" />
-          </div>
-        </div>
-
-        <div className="absolute left-3 right-3 top-10 bottom-3 rounded-[12px] bg-[#FAFAFA] dark:bg-neutral-900 border border-[#EAEAEA] dark:border-neutral-700 overflow-hidden">
-          {variant === "dots" && <DotField />}
-          {variant === "invite" && <InviteMock />}
-          {variant === "list" && <ListMock />}
-          {variant === "chat" && <ChatMock />}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function DotField() {
-  const dots = Array.from({ length: 42 }).map((_, i) => {
-    const left = (i * 17) % 280;
-    const top = (i * 11) % 140;
-    const colors = ["#0038DF", "#5772FF", "#AAB8FF", "#DDE2FF"];
-    const c = colors[i % colors.length];
-    return (
-      <span
-        key={i}
-        className="absolute"
-        style={{
-          left: `${left}px`,
-          top: `${top}px`,
-          width: 10,
-          height: 10,
-          borderRadius: 2,
-          background: c,
-          opacity: 0.9,
-        }}
-      />
-    );
-  });
-
-  return (
-    <div className="relative w-full h-full">
-      <div className="absolute left-3 top-3 text-[9px] text-[#777777] dark:text-gray-400">
-        Live Performance Stats on editor
-      </div>
-      <div className="absolute left-4 top-8 right-4 bottom-4">{dots}</div>
-    </div>
-  );
-}
-
-function InviteMock() {
-  return (
-    <div className="p-4">
-      <div className="flex items-center gap-2">
-        <div className="h-7 flex-1 rounded-md border border-[#EAEAEA] dark:border-neutral-700 bg-[#F8F8F8] dark:bg-neutral-800 px-3 flex items-center text-[10px] text-[#CCCBCB] dark:text-gray-500">
-          Enter email to invite
-        </div>
-        <button className="h-7 px-3 rounded-md bg-[#0038DF] text-white text-[10px] border border-[#0021CD]">
-          Invite
-        </button>
-      </div>
-
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <button className="h-7 rounded-md border border-[#EAEAEA] dark:border-neutral-700 bg-[#F8F8F8] dark:bg-neutral-800 text-[10px] text-[#999999] dark:text-gray-400">
-          Download
-        </button>
-        <button className="h-7 rounded-md border border-[#0021CD] bg-[#0038DF] text-[10px] text-white">
-          Send Feedback
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function ListMock() {
-  const items = [
-    "USB Port Layout",
-    "LED Battery Connector",
-    "Arduino Connector board",
-    "Joule thief circuit",
-    "ESP345-S3 bridge router",
-    "Li-ion battery jump lay",
-  ];
-  return (
-    <div className="p-4">
-      <div className="text-[10px] text-[#0038DF] font-medium mb-2">
-        Components
-      </div>
-      <div className="space-y-2">
-        {items.map((t) => (
-          <div
-            key={t}
-            className="flex items-center justify-between text-[11px] text-[#999999] dark:text-gray-400"
-          >
-            <span>{t}</span>
-            <span className="text-[#C0C0C0]">{">"}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function ChatMock() {
-  return (
-    <div className="p-4">
-      <div className="inline-flex max-w-[90%] rounded-xl rounded-bl-sm bg-[#0038DF] text-white text-[10px] leading-[140%] px-3 py-2 border border-[#002FBB]">
-        give me a USB type-c board layout PCB design for an android phone
-      </div>
-
-      <div className="mt-3 inline-flex max-w-[95%] rounded-xl rounded-br-sm bg-[#F8F8F8] dark:bg-neutral-800 text-[#777777] dark:text-gray-400 text-[10px] leading-[140%] px-3 py-2 border border-[#EAEAEA] dark:border-neutral-700">
-        Created a complete USB-C breakout board with CC pull-downs, ESD
-        protection, and power decoupling, suitable for connecting peripherals or
-        test equipment.
-      </div>
-
-      <div className="mt-3 flex gap-2">
-        <button className="h-6 px-2 rounded-md border border-[#EAEAEA] dark:border-neutral-700 bg-[#F7F7F7] dark:bg-neutral-800 text-[9px] text-[#777777] dark:text-gray-400">
-          Copy
-        </button>
-        <button className="h-6 px-2 rounded-md border border-[#EAEAEA] dark:border-neutral-700 bg-[#F7F7F7] dark:bg-neutral-800 text-[9px] text-[#777777] dark:text-gray-400">
-          Refresh
-        </button>
-        <button className="h-6 px-2 rounded-md border border-[#EAEAEA] dark:border-neutral-700 bg-[#F7F7F7] dark:bg-neutral-800 text-[9px] text-[#777777] dark:text-gray-400">
-          Like
-        </button>
+      <div className="relative w-[340px] h-[240px] drop-shadow-xl overflow-visible transform scale-90 origin-top">
+        <Image src={Src} alt="Feature visual" fill className="object-contain" priority />
       </div>
     </div>
   );

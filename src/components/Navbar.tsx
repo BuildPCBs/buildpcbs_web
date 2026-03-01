@@ -115,7 +115,7 @@ const Navbar = () => {
           </div>
 
           {/* Center: Nav Links (Always Visible) */}
-          <div className="flex items-center gap-2 md:gap-8 flex-shrink-0">
+          <div className="hidden md:flex items-center gap-8 flex-shrink-0">
             {navLinks.map((link) => {
               if (link.name === "App") {
                 return (

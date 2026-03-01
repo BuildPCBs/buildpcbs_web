@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ onJoinWaitlist }) => {
   const buttonText = copied ? "Copied!" : "Copy CA";
 
   return (
-    <section className="w-full h-screen flex flex-col justify-end pb-[20vh]">
+    <section className="w-full min-h-[100dvh] flex flex-col justify-end pb-[20vh]">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
         {/* Left Column */}
         <div className="flex flex-col gap-6 md:gap-8">

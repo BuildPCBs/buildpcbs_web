@@ -62,6 +62,11 @@ const Footer = () => {
         <h3 className="font-medium text-lg">Support</h3>
         <ul className="mt-4 space-y-2">
           <li>
+            <a href="/documentation" className="text-base font-normal hover:opacity-80">
+              Documentation
+            </a>
+          </li>
+          <li>
             <a href="/faq" className="text-base font-normal hover:opacity-80">
               FAQ
             </a>
@@ -225,6 +230,11 @@ const Footer = () => {
           <h3 className="font-medium text-lg text-black">Support</h3>
           <ul className="mt-4 space-y-2">
             <li>
+              <a href="/documentation" className="text-base font-normal hover:opacity-80">
+                Documentation
+              </a>
+            </li>
+            <li>
               <a href="/faq" className="text-base font-normal hover:opacity-80">
                 FAQ
               </a>
@@ -322,7 +332,7 @@ const Footer = () => {
   const copyrightSection = (
     <div className="w-full mt-8 md:mt-12 pt-8 text-center text-sm">
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-4">
-        <p>&copy; 2025 buildpcbs. All rights reserved.</p>
+        <p>&copy; 2026 buildpcbs. All rights reserved.</p>
         <div className="flex items-center space-x-6">
           <a href="/terms" className="hover:opacity-80">
             Terms of Service
@@ -339,7 +349,7 @@ const Footer = () => {
   );
 
   return (
-    <footer className="my-12 w-full">
+    <footer className="mt-4 mb-12 w-full">
       {/* Blue container */}
       <div className="bg-[#0038DF] w-full md:max-w-6xl md:mx-auto md:rounded-[44px] p-8">
         <CTA />
