@@ -61,7 +61,7 @@ export const metadata: Metadata = {
         description: "AI-powered PCB design platform for electronics engineers",
         foundingDate: "2024",
         sameAs: [
-          "https://twitter.com/buildpcbwithAi",
+          "https://x.com/buildpcbwithAi",
           "https://linkedin.com/company/buildpcbs",
         ],
       },
@@ -88,4 +88,3 @@ export default function Page() {
     </WaitlistProvider>
   );
 }
-
