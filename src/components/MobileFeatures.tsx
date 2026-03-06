@@ -148,7 +148,7 @@ export default function MobileFeatureStack() {
   };
 
   return (
-    <section ref={sectionRef as any} className="lg:hidden w-full bg-white relative">
+    <section ref={sectionRef as any} className="lg:hidden w-full bg-white dark:bg-[#111111] relative">
       {/* pinned stage */}
       <div ref={pinRef} className="relative h-[80vh] overflow-hidden px-[13px]">
         {/* This matches your 375px wide concept, but responsive */}
@@ -167,8 +167,8 @@ export default function MobileFeatureStack() {
                     <div className="flex items-center justify-between gap-[23px] h-[17px]">
                       <span
                         className={[
-                          "font-['DM_Sans'] text-[14px] leading-[120%] tracking-[-0.005em]",
-                          i === active ? "text-[#4F4F4F]" : "text-[#888888]",
+                          "font-['DM_Sans'] text-[14px] leading-[120%] tracking-[-0.005em] transition-colors",
+                          i === active ? "text-[#4F4F4F] dark:text-white" : "text-[#888888] dark:text-[#666666]",
                         ].join(" ")}
                       >
                         {f.label}
@@ -177,8 +177,8 @@ export default function MobileFeatureStack() {
                       {/* only show the little divider line on the active item (cleaner) */}
                       <span
                         className={[
-                          "h-[1px] w-[9px] transition-opacity",
-                          i === active ? "opacity-100 bg-[#4F4F4F]" : "opacity-0 bg-[#888888]",
+                          "h-[1px] w-[9px] transition-all",
+                          i === active ? "opacity-100 bg-[#4F4F4F] dark:bg-white" : "opacity-0 bg-[#888888] dark:bg-[#666666]",
                         ].join(" ")}
                       />
                     </div>

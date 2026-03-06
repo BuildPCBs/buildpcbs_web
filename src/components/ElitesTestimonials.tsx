@@ -150,7 +150,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         >
             {/* Content Image Area (Top) */}
             <div
-                className="absolute bg-white rounded-md overflow-hidden"
+                className="absolute bg-white dark:bg-neutral-900 rounded-md overflow-hidden"
                 style={{
                     left: '7px',
                     width: `${width - 14}px`,
@@ -179,7 +179,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
                 }}
             >
                 {/* Avatar */}
-                <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600 shrink-0">
+                <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden bg-white dark:bg-neutral-900 border border-[#EDECEC] dark:border-neutral-600 shrink-0">
                     <Image
                         src={avatarUrl}
                         alt={name}
@@ -233,7 +233,7 @@ const ElitesMobileStackCard = ({ item }: { item: typeof TESTIMONIALS_DATA[0] }) 
 
             {/* User Info */}
             <div className="relative mt-auto mb-[20px] mx-[16px] flex items-center gap-4">
-                <div className="relative w-[36px] h-[36px] rounded-full overflow-hidden bg-white border border-[#EDECEC] dark:border-neutral-600">
+                <div className="relative w-[36px] h-[36px] rounded-full overflow-hidden bg-white dark:bg-neutral-900 border border-[#EDECEC] dark:border-neutral-600">
                     {item.avatar && (
                         <Image src={item.avatar} alt={item.name} fill className="object-cover" />
                     )}
