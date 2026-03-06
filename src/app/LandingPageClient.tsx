@@ -11,6 +11,7 @@ import FAQ from "@/components/FAQ";
 import WaitlistModal from "@/components/WaitlistModal";
 import ElitesTestimonials from "@/components/ElitesTestimonials";
 import { useWaitlist } from "@/context/WaitlistContext";
+import QuestsPreview from "@/components/QuestsPreview";
 
 const LandingPageClient = () => {
   const { isWaitlistOpen, closeWaitlist, openWaitlist } = useWaitlist();

@@ -40,16 +40,18 @@ interface FeatureCardProps {
 }
 
 const FeatureCard = ({ title, description, image }: FeatureCardProps) => {
+  const titleParts = title.split(" ");
+  const lastWord = titleParts.pop();
+  const restOfTitle = titleParts.join(" ");
+
   return (
     <div className="group relative p-8 bg-white dark:bg-[#111111] border-[0.5px] border-[#E8E8E8] dark:border-neutral-800 rounded-xl transition-all duration-300 hover:border-transparent dark:hover:border-transparent hover:bg-gradient-to-b hover:from-[#255CFF] hover:to-[#0038DF] shadow-[0_4px_20px_rgba(0,0,0,0.02)] dark:shadow-none">
       <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-8 items-center md:items-start">
         <div className="text-left max-w-[476px]">
-          <h3 className="text-[24px] font-medium leading-[150%] tracking-[-0.005em] text-[#333333] dark:text-gray-200 group-hover:text-white transition-colors duration-300">
-            {title}
+          <h3 className="font-medium tracking-[-0.005em] text-[#333333] dark:text-gray-200 group-hover:text-white transition-colors duration-300 flex flex-col">
+            <span className="text-[24px] leading-[150%]">{restOfTitle}</span>
+            <span className="text-[44px] leading-[120%]">{lastWord}</span>
           </h3>
-          <p className="mt-2 text-[14px] font-normal leading-[125%] tracking-[-0.005em] text-[#777777] dark:text-gray-400 group-hover:text-white/90 transition-colors duration-300 max-w-[409px]">
-            {description}
-          </p>
         </div>
         <div className="flex justify-center md:justify-end relative w-full h-[144px]">
           {image ? (
