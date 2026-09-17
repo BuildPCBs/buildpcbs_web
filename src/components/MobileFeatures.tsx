@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-import Image from "next/image";
+import Image from "@/lib/Image";
 import NaturalLanguageSvg from "@/assets/Natural Language.svg";
 import BuiltInChecksSvg from "@/assets/Built-In Checks.svg";
 import WorkflowSvg from "@/assets/Workflow.svg";

@@ -1,5 +1,5 @@
 import React from "react";
-import Link from "next/link";
+import Link from "@/lib/Link";
 import {
   ArrowRight,
   Book,
@@ -8,7 +8,7 @@ import {
   ShoppingBag,
   Terminal,
 } from "lucide-react";
-import type { Metadata } from "next";
+import type { Metadata } from "@/types/metadata";
 
 export const metadata: Metadata = {
   title: "Documentation | BuildPCBs",

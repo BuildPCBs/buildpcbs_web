@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
+import Link from "@/lib/Link";
 import { motion, AnimatePresence } from "framer-motion";
 
 // --- SVG Icons for Left Panel ---

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+import Image from "@/lib/Image";
 import ActivityTrackerSvg from "@/assets/Activity Analysis tracker.svg";
 import ComponentLibrarySvg from "@/assets/Library of Components.svg";
 import InviteExportSvg from "@/assets/Invite Team& Export Files.svg";

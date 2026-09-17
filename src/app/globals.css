@@ -4,6 +4,10 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+  --font-geist-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-geist-mono: "DM Mono", ui-monospace, monospace;
   --primary-brand: #0038df;
   --text-primary: #444444;
   --gradient-primary-start: #0038df;

@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from "react";
-import Link from "next/link";
-import { useParams } from "next/navigation";
+import Link from "@/lib/Link";
+import { useParams } from "@/lib/navigation";
 import { Clock, Calendar, User } from "lucide-react";
 
 // --- Dummy Content for Demonstration ---

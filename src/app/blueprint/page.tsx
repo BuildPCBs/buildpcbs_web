@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata } from "@/types/metadata";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export const metadata: Metadata = {

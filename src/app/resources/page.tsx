@@ -1,5 +1,5 @@
 import React from "react";
-import type { Metadata } from "next";
+import type { Metadata } from "@/types/metadata";
 
 export const metadata: Metadata = {
   title: "Resources | BuildPCBs.com",

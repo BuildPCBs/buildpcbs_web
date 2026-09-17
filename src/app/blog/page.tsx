@@ -1,6 +1,6 @@
-import Link from "next/link";
+import Link from "@/lib/Link";
 import { Clock, Calendar } from "lucide-react";
-import type { Metadata } from "next";
+import type { Metadata } from "@/types/metadata";
 
 export const metadata: Metadata = {
   title: "Blog | BuildPCBs.com",

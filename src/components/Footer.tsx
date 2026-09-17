@@ -1,7 +1,7 @@
 import React from "react";
 import CTA from "@/components/CTA";
-import Link from "next/link";
-import Image from "next/image";
+import Link from "@/lib/Link";
+import Image from "@/lib/Image";
 
 const Footer = () => {
   const desktopLinks = (

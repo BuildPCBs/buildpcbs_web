@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
-import Image from "next/image";
+import Link from "@/lib/Link";
+import Image from "@/lib/Image";
 
 const AppDropdown = () => {
   return (
